@@ -22,6 +22,11 @@ group :development, :test do
   # Default
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
+  # Debug
+  gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  
   # Add
   gem 'dotenv-rails'
 end
