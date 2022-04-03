@@ -21,6 +21,9 @@ gem 'webpacker', '~> 5.0'
 group :development, :test do
   # Default
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # Add
+  gem 'dotenv-rails'
 end
 
 group :development do
