@@ -1,0 +1,2 @@
+module LivehousesHelper
+end
