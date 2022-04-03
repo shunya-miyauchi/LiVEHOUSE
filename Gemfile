@@ -18,6 +18,7 @@ gem 'webpacker', '~> 5.0'
 
 # Add
 gem 'rexml'
+gem 'nokogiri'
 
 
 
