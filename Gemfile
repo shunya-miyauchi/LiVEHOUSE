@@ -16,6 +16,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Front
 gem 'webpacker', '~> 5.0'
 
+# Add
+gem 'rexml'
+
 
 
 group :development, :test do
@@ -29,6 +32,10 @@ group :development, :test do
   
   # Add
   gem 'dotenv-rails'
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
+  gem 'factory_bot_rails'
+  gem 'launchy'
 end
 
 group :development do
