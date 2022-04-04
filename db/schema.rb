@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 2022_04_03_031023) do
   create_table "events", force: :cascade do |t|
     t.string "title", null: false
     t.date "held_on", null: false
-    t.string "open", default: "未定", null: false
-    t.string "start", default: "未定", null: false
-    t.integer "price", null: false
-    t.string "artist", null: false
+    t.string "open", default: "未定"
+    t.string "start", default: "未定"
+    t.integer "price"
+    t.string "artist", default: "未定"
     t.bigint "livehouse_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
