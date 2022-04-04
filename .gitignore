@@ -35,4 +35,6 @@
 yarn-debug.log*
 .yarn-integrity
 
+# Add
 .DS_Store
+.env
