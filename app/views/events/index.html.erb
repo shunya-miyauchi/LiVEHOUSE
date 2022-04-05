@@ -1,0 +1,71 @@
+<%= image_tag "top_image(1920×360).png" %>
+
+<div class="d-flex flex-row justify-content-center">
+    <div class="nav flex-column">
+    <div>
+      検索窓をここに配置
+    </div>
+
+    <ul class="nav flex-column">
+      <% @livehouses.each do |livehouse| %>
+        <li class="nav-item">
+          <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+
+
+  <div class="d-flex flex-column bd-highlight mb-1">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="schedule-tab" data-toggle="pill" href="#pills-schedule" role="tab" aria-controls="pills-schedule" aria-selected="true">スケジュール</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="livehouse-info-tab" data-toggle="pill" href="#pills-livehouse-tab" role="tab" aria-controls="pills-livehouse-tab" aria-selected="false">ライブハウス情報</a>
+      </li>
+    </ul>
+
+
+    <div class="tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="pills-schedule" role="tabpanel" aria-labelledby="schedule-tab">
+        <% @events.each do |event| %>
+          <div class="d-flex flex-row bd-highlight mb-1">
+            <div class="card" style="width: 8rem;">
+              <div class="card-body">
+                <div>
+                  <%= event.held_on.strftime("%Y") %>
+                </div>
+                <div>
+                  <%= event.held_on.strftime("%m.%d") %>
+                </div>
+                <div>
+                  <%= event.held_on.strftime("%a") %>
+                </div>
+              </div>
+            </div>
+            <div class="card" style="width: 40rem;">
+              <div class="card-body">
+                <div>
+                  <%= event.title %>
+                </div>
+                <div>
+                  <%= event.artist %>
+                </div>
+                <%= link_to "詳細",livehouse_event_path(event.livehouse_id,event.id) %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="tab-pane fade" id="pills-livehouse-tab" role="tabpanel" aria-labelledby="livehouse-info-tab">
+        <%= @livehouse.name %>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
