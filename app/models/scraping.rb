@@ -9,7 +9,7 @@ class Scraping < Event
     end
 
     # "Spotify O-nest"スクレイピング、DB保存
-    def o_nest_get(url)
+    def o_nest_get(url,livehouse_id)
       html = URI.open("#{url}").read
       doc = Nokogiri::HTML.parse(html)
       links = doc.xpath("//div[@class='p-scheduled-card p-scheduled-card--horizontal']//a").map {|f| f.attribute("href").value} 
@@ -24,19 +24,20 @@ class Scraping < Event
                       price: link_doc.xpath("//div[@class='p-schedule-detail__dd']")[2].text[/(?<=[￥¥])([0-9０−９,]{3,6})/].to_s.gsub(",","").to_i,
                       artist:link_doc.xpath("//ul[@class='p-schedule-detail__artist']").text.strip.gsub(/\t| |\n|（|）/,{"\t"=>""," "=>"","\n"=>" / ","（"=>"(","）"=>")"}),
                       url: link,
-                      livehouse_id: 2
+                      livehouse_id: livehouse_id
         }
       end      
     end
 
     def o_nest_save
       date = Date.current
+      livehouse_id = Livehouse.where("name LIKE?", "%Spotify O-nest%").ids
       @events = []
       3.times do |f|
         year = date.year
         month = date.month
         url = "https://shibuya-o.com/nest/schedule/?y=#{year}&m=#{month}/"
-        o_nest_get(url)
+        o_nest_get(url,livehouse_id)
         date = date.next_month
         date = date.next_year if date.month == 1
       end
@@ -44,12 +45,10 @@ class Scraping < Event
     end
 
     # "下北沢BASEMENT BAR"スクレイピング、DB保存
-    def basementbar_get(url)
+    def basementbar_get(url,livehouse_id)
       html = URI.open("#{url}").read
       doc = Nokogiri::HTML.parse(html)
-      
       links = doc.xpath("//h2[@class='eo-event-title entry-title']//a").map {|f| f.attribute("href").value}
-      
       links.map do |link|
         link_html = URI.open("#{link}")
         link_doc = Nokogiri::HTML.parse(link_html)
@@ -60,19 +59,20 @@ class Scraping < Event
                       price: link_doc.xpath("//div[@class='sub_detail']").text[/[￥¥](.*?)-/,1].to_s.gsub(",","").to_i,
                       artist: link_doc.xpath("//div[@class='detail']").text.gsub(/\n|\r|\r\n/, " / "),
                       url: link,
-                      livehouse_id: 1
+                      livehouse_id: livehouse_id
         }
       end
     end
 
     def basementbar_save
       date = Date.current
+      livehouse_id = Livehouse.where("name LIKE?", "%下北沢BASEMENT BAR%").ids
       @events = []
       3.times do |f|
         year = date.year
         month = date.strftime("%m")
         url = "https://toos.co.jp/basementbar/event/on/#{year}/#{month}/"
-        basementbar_get(url)
+        basementbar_get(url,livehouse_id)
         date = date.next_month
         date = date.next_year if date.month == 1
       end
