@@ -61,7 +61,18 @@
       </div>
 
       <div class="tab-pane fade" id="pills-livehouse-tab" role="tabpanel" aria-labelledby="livehouse-info-tab">
-        <%= @livehouse.name %>
+        <div>
+          <%= @livehouse.name %>
+        </div>
+        <div>
+          <%= @livehouse.address %>
+        </div>
+        <div>
+          <%= link_to "ホームページ", @livehouse.url %>
+        </div>
+        <div>
+          <%= @livehouse.nearest_station %>
+        </div>
       </div>
 
 
