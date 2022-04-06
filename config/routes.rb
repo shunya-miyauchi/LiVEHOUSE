@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root "livehouses#index"
+  root 'livehouses#index'
   resources :livehouses do
-    resources :events, only: %i(index show)
+    resources :events, only: %i[index show]
   end
 end

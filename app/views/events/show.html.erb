@@ -1,0 +1,45 @@
+<div class="d-flex flex-row justify-content-center">
+    <div class="nav flex-column">
+    <div>
+      検索窓をここに配置
+    </div>
+
+    <ul class="nav flex-column">
+      <% @livehouses.each do |livehouse| %>
+        <li class="nav-item">
+          <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="nav flex-column">
+    <div>
+      <%= @event.held_on.strftime("%Y年%m月%d日(%a)") %>
+    </div>
+    <div>
+      <%= @event.title %>
+    </div>
+    <table class="table table-bordered">
+      <tr>
+        <td>開場／開演</td>
+        <td><%= @event.open %>／<%= @event.start %></td>
+      </tr>
+      <tr>
+        <td>チケット代</td>
+        <td><%= @event.price %>円</td>
+      </tr>
+      <tr>
+        <td>出演者</td>
+        <td><%= h(@event.artist).gsub("/", "</br>").html_safe %></td>
+      </tr>
+    </table>
+    <%= link_to "戻る", livehouse_events_path(@livehouse.id,anchor: "#{@event.id}") %>
+  </div>
+
+
+
+
+  
+
+</div>
