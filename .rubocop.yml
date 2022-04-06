@@ -1,0 +1,28 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+# 除外するディレクトリ（自動生成されたファイル）
+  Exclude:
+    - "bin/*"
+    - "config/puma.rb"
+    # 要最終確認
+    - 'app/models/scraping.rb'
+
+# ブロック内の行数をチェックする
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+    - "db/schema.rb"
+
+
+# 文字列に値が代入されて変わっていないかチェック（無効）
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# クラスやモジュール定義前に、それらの説明書きがあるかをチェック（無効）
+Style/Documentation:
+  Enabled: false
+
+# クラス内にクラスが定義されていないかチェック（無効）
+Style/ClassAndModuleChildren:
+  Enabled: false

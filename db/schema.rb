@@ -10,37 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_04_113723) do
-
+ActiveRecord::Schema.define(version: 20_220_404_113_723) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "events", force: :cascade do |t|
-    t.string "title", null: false
-    t.date "held_on", null: false
-    t.string "open", default: "未定"
-    t.string "start", default: "未定"
-    t.integer "price"
-    t.string "artist", default: "未定"
-    t.bigint "livehouse_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.text "url"
-    t.index ["held_on"], name: "index_events_on_held_on"
-    t.index ["livehouse_id"], name: "index_events_on_livehouse_id"
-    t.index ["title", "held_on", "start"], name: "for_upsert", unique: true
+  create_table 'events', force: :cascade do |t|
+    t.string 'title', null: false
+    t.date 'held_on', null: false
+    t.string 'open', default: '未定'
+    t.string 'start', default: '未定'
+    t.integer 'price'
+    t.string 'artist', default: '未定'
+    t.bigint 'livehouse_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.text 'url'
+    t.index ['held_on'], name: 'index_events_on_held_on'
+    t.index ['livehouse_id'], name: 'index_events_on_livehouse_id'
+    t.index %w[title held_on start], name: 'for_upsert', unique: true
   end
 
-  create_table "livehouses", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "address", null: false
-    t.text "url", null: false
-    t.string "nearest_station"
-    t.float "latitude"
-    t.float "longitude"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'livehouses', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'address', null: false
+    t.text 'url', null: false
+    t.string 'nearest_station'
+    t.float 'latitude'
+    t.float 'longitude'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  add_foreign_key "events", "livehouses"
+  add_foreign_key 'events', 'livehouses'
 end
