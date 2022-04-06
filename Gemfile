@@ -19,6 +19,8 @@ gem 'activerecord-import'
 gem 'devise'
 gem 'nokogiri'
 gem 'rexml'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   # Default
