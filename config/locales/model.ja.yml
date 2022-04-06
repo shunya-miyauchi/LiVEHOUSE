@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    models:
+      event: イベント
+      livehouse: ライブハウス
+    attributes:
+      event:
+        title: タイトル
+        held_on: 開催日
+        open: 開場
+        start: 開演
+        price: チケット代
+        artist: 出演者
+      livehouse:
+        name: ライブハウス名
+        address: 住所
+        url: URL
+        nearest_station: 最寄駅情報 
+        latitude: 緯度
+        longitude: 経度
