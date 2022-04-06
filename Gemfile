@@ -17,10 +17,12 @@ gem 'webpacker', '~> 5.0'
 # Add
 gem 'activerecord-import'
 gem 'devise'
+gem 'devise-i18n'
 gem 'nokogiri'
 gem 'rexml'
 gem 'carrierwave'
 gem 'mini_magick'
+
 
 group :development, :test do
   # Default
