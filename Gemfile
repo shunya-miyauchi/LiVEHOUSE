@@ -5,7 +5,6 @@ ruby '3.0.1'
 
 # Default
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'devise'
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
@@ -17,6 +16,7 @@ gem 'webpacker', '~> 5.0'
 
 # Add
 gem 'activerecord-import'
+gem 'devise'
 gem 'nokogiri'
 gem 'rexml'
 
