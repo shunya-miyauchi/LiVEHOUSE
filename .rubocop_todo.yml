@@ -17,4 +17,4 @@ Layout/MultilineBlockLayout:
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
 Layout/LineLength:
-  Max: 154
+  Max: 156

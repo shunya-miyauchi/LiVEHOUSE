@@ -5,7 +5,7 @@ RSpec.describe 'イベント管理', type: :system do
   let!(:user_second) { FactoryBot.create(:user_second) }
   let!(:livehouse) { FactoryBot.create(:livehouse) }
   let!(:livehouse_second) { FactoryBot.create(:livehouse_second) }
-  let!(:event) { FactoryBot.create(:event, livehouse: livehouse) }  
+  let!(:event) { FactoryBot.create(:event, livehouse: livehouse) }
   let!(:event_second) { FactoryBot.create(:event_second, livehouse: livehouse) }
   let!(:event_third) { FactoryBot.create(:event_third, livehouse: livehouse) }
   let!(:event_fourth) { FactoryBot.create(:event_fourth, livehouse: livehouse_second) }
@@ -55,14 +55,14 @@ RSpec.describe 'イベント管理', type: :system do
           visit root_path
           click_on '下北沢BASEMENT BAR'
         end
-        it 'スケジュール情報を確認できる' do 
+        it 'スケジュール情報を確認できる' do
           expect(page).to have_content 'ログイン'
           expect(page).to have_content 'タイトル１'
           expect(page).to have_content 'あああ / あああ'
           expect(page).to have_content 'タイトル２'
           expect(page).to have_content 'いいい / いいい'
         end
-        it 'ライブハウス情報を確認できる' do 
+        it 'ライブハウス情報を確認できる' do
           click_on 'ライブハウス情報'
           expect(page).to have_content 'ログイン'
           expect(page).to have_content '下北沢BASEMENT BAR'
@@ -81,7 +81,7 @@ RSpec.describe 'イベント管理', type: :system do
         sign_in user
       end
       it 'イベント詳細を確認できる' do
-        all(".d-flex .card .card-body.detail")[0].click_link "詳細"
+        all('.d-flex .card .card-body.detail')[0].click_link '詳細'
         expect(page).to have_content 'ログアウト'
         expect(page).to have_content 'タイトル１'
         expect(page).to have_content '2022年01月03日'
@@ -92,7 +92,7 @@ RSpec.describe 'イベント管理', type: :system do
     end
     context 'ログインしてない場合' do
       it 'イベント詳細を確認できる' do
-        all(".d-flex .card .card-body.detail")[0].click_link "詳細"
+        all('.d-flex .card .card-body.detail')[0].click_link '詳細'
         expect(page).to have_content 'ログイン'
         expect(page).to have_content 'タイトル１'
         expect(page).to have_content '2022年01月03日'
