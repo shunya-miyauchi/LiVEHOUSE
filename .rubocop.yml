@@ -5,6 +5,8 @@ AllCops:
   Exclude:
     - "bin/*"
     - "config/puma.rb"
+    - "db/schema.rb"
+    - "db/migrate/*"
     # 要最終確認
     - 'app/models/scraping.rb'
 
@@ -12,7 +14,6 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
-    - "db/schema.rb"
 
 
 # 文字列に値が代入されて変わっていないかチェック（無効）

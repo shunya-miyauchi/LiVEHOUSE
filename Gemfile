@@ -12,12 +12,14 @@ gem 'rails', '~> 6.0.3'
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-# Front
 gem 'webpacker', '~> 5.0'
 
 # Add
 gem 'activerecord-import'
+gem 'carrierwave'
+gem 'devise'
+gem 'devise-i18n'
+gem 'mini_magick'
 gem 'nokogiri'
 gem 'rexml'
 
