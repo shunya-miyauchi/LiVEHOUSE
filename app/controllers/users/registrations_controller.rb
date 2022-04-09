@@ -41,7 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_update_path_for(resource)
-    users_show_path(current_user.id)
+    user_path(current_user.id)
   end
 
   def update_resource(resource, params)
