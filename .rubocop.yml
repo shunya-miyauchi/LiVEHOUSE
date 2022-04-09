@@ -1,6 +1,7 @@
 inherit_from: .rubocop_todo.yml
 
 AllCops:
+  TargetRubyVersion: 3.0.1
 # 除外するディレクトリ（自動生成されたファイル）
   Exclude:
     - "bin/*"
