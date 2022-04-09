@@ -1,0 +1,16 @@
+<div class="nav flex-column">
+  <div>
+    <div>プロフィール</div>
+    <div><%= @user.name %></div>
+    <div><%= @user.display_name %></div>
+    <%= link_to "編集", edit_user_registration_path(@user.id) %>
+  </div>
+
+  <div>
+    <div>ライブ予定</div>
+    <div>参加記録</div>
+    <div>ブログ</div>
+
+  </div>
+
+</div>
