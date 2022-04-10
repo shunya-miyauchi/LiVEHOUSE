@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :events, only: %i[index show]
   end
   resources :users, only: %i[show]
+  resources :favorites, only: %i[create destroy]
   root 'livehouses#index'
 end
