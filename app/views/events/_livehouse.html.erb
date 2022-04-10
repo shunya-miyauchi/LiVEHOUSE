@@ -1,0 +1,8 @@
+<%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id) %>
+<% if user_signed_in? %>
+  <% if current_user.favorites_by?(livehouse.id) %>
+    <%= link_to 'お気に入り', favorite_path(id: livehouse.id), method: :delete, remote: true ,class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'お気に入り外す', favorites_path(id: livehouse.id), method: :post, remote: true, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
