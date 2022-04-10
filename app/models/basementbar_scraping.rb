@@ -17,6 +17,7 @@ class BasementbarScraping < ApplicationRecord
         basementbar_get(url, livehouse_id)
         date = date.next_month
         date = date.next_year if date.month == 1
+      end
       Event.import @events, validate_uniqueness: true, on_duplicate_key_update: { constraint_name: :for_upsert, columns: %i[title held_on open start price artist] }
     end
 
@@ -42,37 +43,36 @@ class BasementbarScraping < ApplicationRecord
     def title_get(link_doc)
       title = link_doc.xpath("//div[@class='main_title']")
       if title.blank?
-        "未定"
+        '未定'
       else
-        title.text || "未定"
+        title.text || '未定'
       end
     end
 
     def held_on_get(link_doc)
       held_on = link_doc.xpath("//div[@class='date']").text[/\A[^日]+/]
       if held_on.blank?
-        "1000-01-01"
+        '1000-01-01'
       else
-        held_on.to_s.gsub(/年|月|日/, '-').tr('０-９','0-9') || "1000-01-01"
+        held_on.to_s.gsub(/年|月|日/, '-').tr('０-９', '0-9') || '1000-01-01'
       end
     end
 
     def open_get(link_doc)
       open = link_doc.xpath("//div[@class='sub_detail']")
       if open.blank?
-        "未定"
+        '未定'
       else
-        open.text[/(?<=OPEN)*(\d{2}:\d{2})/, 1] || "未定"
+        open.text[/(?<=OPEN)*(\d{2}:\d{2})/, 1] || '未定'
       end
     end
-    
 
     def start_get(link_doc)
       start = link_doc.xpath("//div[@class='sub_detail']")
       if start.blank?
-        "未定"
+        '未定'
       else
-        start.text[/(?<=START)(\d{2}:\d{2})/, 1] || "未定"
+        start.text[/(?<=START)(\d{2}:\d{2})/, 1] || '未定'
       end
     end
 
@@ -88,9 +88,9 @@ class BasementbarScraping < ApplicationRecord
     def artist_get(link_doc)
       artist = link_doc.xpath("//div[@class='detail']")
       if artist.blank?
-        "未定"
+        '未定'
       else
-        artist.text.gsub(/\n|\r|\r\n/, ' / ') || "未定"
+        artist.text.gsub(/\n|\r|\r\n/, ' / ') || '未定'
       end
     end
   end
