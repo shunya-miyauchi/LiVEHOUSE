@@ -45,26 +45,26 @@ class OnestScraping < ApplicationRecord
     def title_get(link_doc)
       title = link_doc.xpath("//span[@class='p-schedule-detail__title-main']")
       if title.blank?
-        "未定"
+        '未定'
       else
-        title.text.to_s.strip || "未定"
+        title.text.to_s.strip || '未定'
       end
     end
 
     def held_on_get(link_doc)
       held_on = link_doc.xpath("//span[@class='p-schedule-detail__date-item']")
       if held_on.blank?
-        "1000-01-01"
+        '1000-01-01'
       else
         year = Date.current.year
-        held_on.text.gsub(' / ', '-').insert(0, "#{year}-") || "1000-01-01"
+        held_on.text.gsub(' / ', '-').insert(0, "#{year}-") || '1000-01-01'
       end
     end
 
     def open_get(link_doc)
       open = link_doc.xpath("//div[@class='p-schedule-detail__dd']")[0]
       if open.blank?
-        "未定"
+        '未定'
       else
         open.text
       end
@@ -73,7 +73,7 @@ class OnestScraping < ApplicationRecord
     def start_get(link_doc)
       start = link_doc.xpath("//div[@class='p-schedule-detail__dd']")[1]
       if start.blank?
-        "未定"
+        '未定'
       else
         start.text
       end
@@ -91,9 +91,9 @@ class OnestScraping < ApplicationRecord
     def artist_get(link_doc)
       artist = link_doc.xpath("//ul[@class='p-schedule-detail__artist']")
       if artist.blank?
-        "未定"
+        '未定'
       else
-        artist.text.strip.gsub(/\t| |\n|（|）/, { "\t" => '',' ' => '', "\n" => ' / ', '（' => '(', '）' => ')' }) || "未定"
+        artist.text.strip.gsub(/\t| |\n|（|）/, { "\t" => '', ' ' => '', "\n" => ' / ', '（' => '(', '）' => ')' }) || '未定'
       end
     end
   end

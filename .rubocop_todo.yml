@@ -18,3 +18,21 @@ Layout/MultilineBlockLayout:
 # URISchemes: http, https
 Layout/LineLength:
   Max: 156
+  Exclude:
+    - 'app/models/onest_scraping.rb'
+    - 'app/models/basementbar_scraping.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'app/models/onest_scraping.rb'
+    - 'app/models/basementbar_scraping.rb'
+
+Security/Open:
+  Exclude:
+    - 'app/models/onest_scraping.rb'
+    - 'app/models/basementbar_scraping.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'app/models/onest_scraping.rb'
+    - 'app/models/basementbar_scraping.rb'
