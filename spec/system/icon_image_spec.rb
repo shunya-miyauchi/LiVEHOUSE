@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'アイコン画像', type: :system do
-
   before do
     IconUploader.enable_processing = true
   end

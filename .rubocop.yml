@@ -16,6 +16,13 @@ Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
 
+# Assignment: 変数への代入
+# Branch: メソッド呼び出し
+# Condition: 条件文
+# 上記項目をRubocopが計算して基準値を超えると警告を出す（上記頭文字をとって'Abc'）
+Metrics/AbcSize:
+  Max: 20
+
 
 # 文字列に値が代入されて変わっていないかチェック（無効）
 Style/FrozenStringLiteralComment:
