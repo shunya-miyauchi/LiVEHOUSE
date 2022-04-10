@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_06_061439) do
+ActiveRecord::Schema.define(version: 2022_04_10_060840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 2022_04_06_061439) do
     t.index ["held_on"], name: "index_events_on_held_on"
     t.index ["livehouse_id"], name: "index_events_on_livehouse_id"
     t.index ["title", "held_on", "start"], name: "for_upsert", unique: true
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "livehouse_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["livehouse_id"], name: "index_favorites_on_livehouse_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "livehouses", force: :cascade do |t|
@@ -64,4 +73,6 @@ ActiveRecord::Schema.define(version: 2022_04_06_061439) do
   end
 
   add_foreign_key "events", "livehouses"
+  add_foreign_key "favorites", "livehouses"
+  add_foreign_key "favorites", "users"
 end
