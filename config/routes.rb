@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   resources :livehouses, only: %i[index] do
-    resources :events, only: %i[index show]
+    resources :events, only: %i[index show] do
+      resources :comments, only: %i[create]
+    end
   end
   resources :favorites, only: %i[index show]
   resources :users, only: %i[show] do

@@ -9,5 +9,7 @@ class EventsController < ApplicationController
     @livehouses = Livehouse.all
     @livehouse = Livehouse.find(params[:livehouse_id])
     @event = Event.find(params[:id])
+    @comments = @event.comments
+    @comment = Comment.new
   end
 end

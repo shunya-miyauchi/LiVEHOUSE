@@ -1,0 +1,10 @@
+<%= form_with(model: [livehouse, event, comment]) do |form| %>
+  <div class="field">
+    <%= form.text_area :content, placeholder: "コメント入力" %>  
+  </div>
+
+  <div class="action">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.submit "投稿" %>
+  </div>
+<% end %>
