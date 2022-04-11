@@ -21,7 +21,7 @@
         <td><%= h(@event.artist).gsub("/", "</br>").html_safe %></td>
       </tr>
     </table>
-    <%= link_to "戻る", livehouse_events_path(@livehouse.id,anchor: "#{@event.id}") %>
+    <%= link_to "戻る", 'javascript:history.back()' %>
   </div>
 
   <div>
