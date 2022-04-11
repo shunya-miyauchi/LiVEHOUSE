@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :favorites, dependent: :destroy
-  has_many :favorite_livehouses, through: :favorites, source: :livehouses
+  has_many :favorite_livehouses, through: :favorites, source: :livehouse
   mount_uploader :image, IconUploader
 
   def favorites_by?(livehouse_id)
