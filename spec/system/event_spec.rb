@@ -102,4 +102,41 @@ RSpec.describe 'イベント管理', type: :system do
       end
     end
   end
+
+  describe 'イベントコメント投稿機能' do
+    before do
+      FactoryBot.create(:comment, user_id: user.id, event_id: event.id)
+      FactoryBot.create(:comment_second, user_id: user_second.id, event_id: event.id)
+    end
+    context 'ログインしている場合' do
+      before do
+        sign_in user
+        visit livehouse_event_path(livehouse,event)
+      end
+      it 'コメント一覧が表示される' do
+        expect(page).to have_selector '#comments_area', text: 'コメント１'
+        expect(page).to have_selector '#comments_area', text: 'コメント２'
+      end
+      it 'コメント投稿フォームが表示される' do
+        expect(page).to have_button '投稿'
+      end
+      it '投稿すると、非同期でコメント一覧に入力される', js: true do
+        fill_in 'コメント入力', with: 'コメント３'
+        click_button '投稿'
+        expect(page).to have_selector '#comments_area', text: 'コメント３'
+      end
+    end
+    context 'ログインしてない場合' do
+      before do
+        visit livehouse_event_path(livehouse,event)
+      end
+      it 'コメント一覧が表示される' do
+        expect(page).to have_selector '#comments_area', text: 'コメント１'
+        expect(page).to have_selector '#comments_area', text: 'コメント２'
+      end
+      it 'コメント投稿フォームが表示されない' do
+        expect(page).not_to have_button '投稿'
+      end
+    end
+  end
 end
