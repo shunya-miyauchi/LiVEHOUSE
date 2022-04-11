@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'お気に入り', type: :system do
   let!(:user) { FactoryBot.create(:user) }
   let!(:livehouse) { FactoryBot.create(:livehouse) }
-  let!(:livehouse_second) { FactoryBot.create(:livehouse_second) }  
+  let!(:livehouse_second) { FactoryBot.create(:livehouse_second) }
   let!(:event) { FactoryBot.create(:event, livehouse: livehouse) }
   let!(:event_second) { FactoryBot.create(:event_second, livehouse: livehouse) }
   let!(:event_fourth) { FactoryBot.create(:event_fourth, livehouse: livehouse_second) }
@@ -58,8 +58,8 @@ RSpec.describe 'お気に入り', type: :system do
       sign_in user
     end
     context 'お気に入りが登録されている場合' do
-      let!(:favorite) {FactoryBot.create(:favorite, user_id: user.id, livehouse_id: livehouse.id)}
-      let!(:favorite_second) {FactoryBot.create(:favorite, user_id: user.id, livehouse_id: livehouse_second.id)}
+      let!(:favorite) { FactoryBot.create(:favorite, user_id: user.id, livehouse_id: livehouse.id) }
+      let!(:favorite_second) { FactoryBot.create(:favorite, user_id: user.id, livehouse_id: livehouse_second.id) }
       before do
         visit favorites_path
       end
