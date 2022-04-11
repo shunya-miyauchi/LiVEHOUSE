@@ -1,17 +1,4 @@
 <div class="d-flex flex-row justify-content-center">
-    <div class="nav flex-column">
-    <div>
-      検索窓をここに配置
-    </div>
-
-    <ul class="nav flex-column">
-      <% @livehouses.each do |livehouse| %>
-        <li class="nav-item">
-          <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id) %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
 
   <div class="nav flex-column">
     <div>
@@ -37,9 +24,16 @@
     <%= link_to "戻る", livehouse_events_path(@livehouse.id,anchor: "#{@event.id}") %>
   </div>
 
-
-
-
-  
+  <div>
+    <p>コメント</p>
+    <div id="comments_area">
+      <%= render 'index', { comments: @comments } %>
+    </div>
+    <% if user_signed_in? %>
+      <div id="comment_form">
+        <%= render 'form', { livehouse: @livehouse, event: @event, comment: @comment } %>
+      </div>
+    <% end %>
+  </div>
 
 </div>
