@@ -26,8 +26,10 @@
 
   <div>
     <p>コメント</p>
-    <div id="comments_area">
-      <%= render 'index', { comments: @comments } %>
+    <div class="overflow-auto" style="width:300px; height:300px;">
+      <div id="comments_area">
+        <%= render 'index', { comments: @comments } %>
+      </div>
     </div>
     <% if user_signed_in? %>
       <div id="comment_form">
