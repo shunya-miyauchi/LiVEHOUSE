@@ -11,5 +11,4 @@ class User < ApplicationRecord
   def favorites_by?(livehouse_id)
     favorites.find_by(livehouse_id: livehouse_id).present?
   end
-
 end

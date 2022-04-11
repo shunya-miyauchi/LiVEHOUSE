@@ -24,6 +24,4 @@ class FavoritesController < ApplicationController
   def livehouse_params
     @livehouse = Livehouse.find(params[:id])
   end
-
 end
-
