@@ -1,12 +1,13 @@
-<div class="d-flex flex-row justify-content-center">
 
+<div>
+  <%= @event.held_on.strftime("%Y年%m月%d日(%a)") %>
+</div>
+<div>
+  <%= @event.title %>
+</div>
+
+<div class="d-flex flex-row">
   <div class="nav flex-column">
-    <div>
-      <%= @event.held_on.strftime("%Y年%m月%d日(%a)") %>
-    </div>
-    <div>
-      <%= @event.title %>
-    </div>
     <table class="table table-bordered">
       <tr>
         <td>開場／開演</td>
@@ -20,8 +21,11 @@
         <td>出演者</td>
         <td><%= h(@event.artist).gsub("/", "</br>").html_safe %></td>
       </tr>
+      <tr>
+        <td>リンク</td>
+        <td><%= link_to "イベント詳細ページ", "#{@event.url}" %></td>
+      </tr>
     </table>
-    <%= link_to "戻る", 'javascript:history.back()' %>
   </div>
 
   <div>
@@ -37,5 +41,5 @@
       </div>
     <% end %>
   </div>
-
 </div>
+<%= link_to "戻る", 'javascript:history.back()' %>
