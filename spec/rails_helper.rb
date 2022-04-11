@@ -63,4 +63,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include ActiveSupport::Testing::TimeHelpers
   config.include Devise::Test::IntegrationHelpers, type: :system
+  config.after(:all) do
+    FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads_#{Rails.env}/"]) if Rails.env.test?
+  end
 end

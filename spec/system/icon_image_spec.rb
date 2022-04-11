@@ -6,7 +6,6 @@ RSpec.describe 'アイコン画像', type: :system do
   end
   after do
     IconUploader.enable_processing = false
-    FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads_#{Rails.env}/"])
   end
 
   describe 'アイコン新規登録機能' do
