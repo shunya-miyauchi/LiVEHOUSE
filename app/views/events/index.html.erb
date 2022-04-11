@@ -1,15 +1,16 @@
 <%= image_tag "top_image(1920×360).png" %>
 
 <div class="d-flex flex-row justify-content-center">
-    <div class="nav flex-column">
+  <div class="nav flex-column">
     <div>
       検索窓をここに配置
     </div>
 
     <ul class="nav flex-column">
       <% @livehouses.each do |livehouse| %>
-        <li class="nav-item", id="favorite_<%= livehouse.id %>">
-          <%= render 'livehouse', { livehouse: livehouse } %>
+        <li class="nav-item">
+          <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id) %>
+          <span id="favorite_<%= livehouse.id %>"><%= render 'livehouse', { livehouse: livehouse } %></span>
         </li>
       <% end %>
     </ul>
