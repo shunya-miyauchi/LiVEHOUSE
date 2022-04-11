@@ -6,6 +6,7 @@ class FavoritesController < ApplicationController
   end
 
   def show
+    @favorite_livehouses = current_user.favorite_livehouses
     @livehouse = Livehouse.find(params[:id])
     @events = @livehouse.events.where('held_on >= ?', Date.current)
   end
