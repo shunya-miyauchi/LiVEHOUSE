@@ -111,7 +111,7 @@ RSpec.describe 'イベント管理', type: :system do
     context 'ログインしている場合' do
       before do
         sign_in user
-        visit livehouse_event_path(livehouse,event)
+        visit livehouse_event_path(livehouse, event)
       end
       it 'コメント一覧が表示される' do
         expect(page).to have_selector '#comments_area', text: 'コメント１'
@@ -128,7 +128,7 @@ RSpec.describe 'イベント管理', type: :system do
     end
     context 'ログインしてない場合' do
       before do
-        visit livehouse_event_path(livehouse,event)
+        visit livehouse_event_path(livehouse, event)
       end
       it 'コメント一覧が表示される' do
         expect(page).to have_selector '#comments_area', text: 'コメント１'
