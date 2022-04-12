@@ -14,10 +14,38 @@
   </div>
 
   <div>
-    <div>ライブ予定</div>
-    <div>参加記録</div>
-    <div>ブログ</div>
-
+    <div><%= link_to "ライブ予定", user_path(current_user.id) %></div>
+    <div><%= link_to "参加記録", past_joins_user_path(current_user.id) %></div>
+    <div><%= link_to "ブログ" %></div>
   </div>
 
+  <div>ライブ予定</div>
+  <% @events.each do |event| %>
+    <div class="d-flex flex-row bd-highlight mb-1">
+      <div class="card" style="width: 8rem;">
+        <div class="card-body">
+          <div>
+            <%= event.held_on.strftime("%Y") %>
+          </div>
+          <div>
+            <%= event.held_on.strftime("%m.%d") %>
+          </div>
+          <div>
+            <%= event.held_on.strftime("%a") %>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="width: 40rem;">
+        <div class="card-body detail", id="<%= event.id %>">
+          <div>
+            <%= event.title %>
+          </div>
+          <div>
+            <%= event.artist %>
+          </div>
+          <%= link_to "詳細",livehouse_event_path(event.livehouse_id,event.id) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
