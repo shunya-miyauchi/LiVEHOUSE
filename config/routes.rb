@@ -12,8 +12,7 @@ Rails.application.routes.draw do
   resources :favorites, only: %i[index show]
   resources :users, only: %i[show] do
     member do
-      get 'future_events'
-      get 'past_events'
+      get 'past_joins'
     end
   end
   resources :favorites, only: %i[create destroy]
