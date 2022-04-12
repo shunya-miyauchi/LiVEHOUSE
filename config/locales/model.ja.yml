@@ -3,6 +3,7 @@ ja:
     models:
       event: イベント
       livehouse: ライブハウス
+      user: ユーザー
     attributes:
       event:
         title: タイトル
