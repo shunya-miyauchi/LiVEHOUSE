@@ -55,6 +55,9 @@
                   <%= event.artist %>
                 </div>
                 <%= link_to "詳細",livehouse_event_path(event.livehouse_id,event.id) %>
+                <span id="favorite_<%= event.id %>">
+                  <%= render 'joins/select', { event: event } %>
+                </span>
               </div>
             </div>
           </div>

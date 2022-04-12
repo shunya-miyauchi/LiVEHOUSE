@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+  <% if current_user.joins_by?(event.id) %>
+    <%= link_to '不参加', join_path(id: event.id), method: :delete, remote: true ,class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to '参加', joins_path(id: event.id), method: :post, remote: true, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>
