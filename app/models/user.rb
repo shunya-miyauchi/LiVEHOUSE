@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_livehouses, through: :favorites, source: :livehouse
   has_many :comments, dependent: :destroy
+  has_many :events
 
   mount_uploader :image, IconUploader
 
