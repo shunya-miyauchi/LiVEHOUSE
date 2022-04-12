@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :livehouse_params, only: %i[create destroy]
+  before_action :set_livehouse, only: %i[create destroy]
 
   def index
     @favorite_livehouses = current_user.favorite_livehouses
@@ -21,7 +21,7 @@ class FavoritesController < ApplicationController
 
   private
 
-  def livehouse_params
+  def set_livehouse
     @livehouse = Livehouse.find(params[:id])
   end
 end

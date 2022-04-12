@@ -1,5 +1,5 @@
 class JoinsController < ApplicationController
-  before_action :event_params
+  before_action :set_params
   
   def create
     current_user.joins.create(event_id: params[:id])
@@ -11,7 +11,7 @@ class JoinsController < ApplicationController
 
   private
 
-  def event_params
+  def set_params
     @event = Event.find(params[:id])
   end
 end
