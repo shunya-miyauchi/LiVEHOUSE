@@ -24,6 +24,7 @@ gem 'mini_magick'
 gem 'nokogiri'
 gem 'rails_admin', '~> 3.0'
 gem 'rexml'
+gem 'geocoder'
 
 group :development, :test do
   # Default
