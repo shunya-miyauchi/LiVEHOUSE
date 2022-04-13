@@ -13,21 +13,20 @@ RSpec.describe 'お気に入り', type: :system do
         sign_in user
         visit root_path
       end
-      context 'お気に入りボタンを押した場合', js: true do
+      context 'お気に入りボタンを押した場合' do
         before do
+          all("#favorite_#{livehouse.id}")[0].click_link 'お気に入り'
         end
         it '非同期でボタン表示が変わる' do
-          all("#favorite_#{livehouse.id}")[0].click_link 'お気に入り'
           expect(page).not_to have_selector 'li', text: 'お気に入り'
           expect(page).to have_selector 'li', text: '外す'
         end
         it 'favoritesテーブルに登録される' do
-          all("#favorite_#{livehouse.id}")[0].click_link 'お気に入り'
-          expect(page).to have_selector 'li', text: '外す'
+          sleep 0.01
           expect(Favorite.where(user_id: user.id).count).to eq 1
         end
       end
-      context '外すボタンを押した場合', js: true do
+      context '外すボタンを押した場合' do
         before do
           FactoryBot.create(:favorite, user_id: user.id, livehouse_id: livehouse.id)
           visit current_path
@@ -45,9 +44,12 @@ RSpec.describe 'お気に入り', type: :system do
       end
     end
     context 'ログインしていない場合' do
+      before do
+        visit root_path
+      end
       it 'お気に入りボタンは表示されない' do
-        expect(page).not_to have_selector 'li', text: 'お気に入り'
-        expect(page).not_to have_selector 'li', text: '外す'
+        expect(page).not_to have_content 'お気に入り'
+        expect(page).not_to have_content '外す'
       end
     end
   end

@@ -19,9 +19,9 @@
     <div><%= link_to "ブログ" %></div>
   </div>
 
-  <div>ライブ予定</div>
+  <div>参加記録</div>
   <% if @events.blank? %>
-    <div>参加予定のイベントはありません。</div>
+    <div>参加したイベントはありません。</div>
   <% end %>
   <% @events.each do |event| %>
     <div class="d-flex flex-row bd-highlight mb-1">
@@ -44,12 +44,11 @@
             <%= event.title %>
           </div>
           <div>
+            <%= event.livehouse.name %>
+          </div>
+          <div>
             <%= event.artist %>
           </div>
-          <%= link_to "詳細",livehouse_event_path(event.livehouse_id,event.id) %>
-          <span id="join_<%= event.id %>">
-            <%= render 'joins/select', { event: event } %>
-          </span>
         </div>
       </div>
     </div>

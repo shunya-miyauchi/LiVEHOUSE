@@ -21,32 +21,6 @@ RSpec.describe 'ユーザー管理', type: :system do
         expect(User.where(email: 'aaa@gmail.com').count).to eq 1
       end
     end
-    context '会員登録時、アドレスを入力しなかった場合' do
-      it 'エラーメッセージが表示され、登録できない' do
-        visit new_user_registration_path
-        fill_in '名前', with: 'たかはし'
-        fill_in 'ユーザー名', with: 'takahashi'
-        fill_in 'メールアドレス', with: ''
-        fill_in 'パスワード', with: '123456'
-        fill_in 'パスワード(確認用)', with: '123456'
-        click_on 'アカウント登録'
-        expect(page).to have_content 'メールアドレスを入力してください'
-        expect(page).to have_content '新規登録'
-      end
-    end
-    context '会員登録時、パスワードを入力しなかった場合' do
-      it 'エラーメッセージが表示され、登録できない' do
-        visit new_user_registration_path
-        fill_in '名前', with: 'たかはし'
-        fill_in 'ユーザー名', with: 'takahashi'
-        fill_in 'メールアドレス', with: 'aaa@gmail.com'
-        fill_in 'パスワード', with: ''
-        fill_in 'パスワード(確認用)', with: ''
-        click_on 'アカウント登録'
-        expect(page).to have_content 'パスワードを入力してください'
-        expect(page).to have_content '新規登録'
-      end
-    end
   end
 
   describe 'ログイン機能' do
@@ -62,13 +36,35 @@ RSpec.describe 'ユーザー管理', type: :system do
       end
     end
     context '登録されてないアカウントでログインした場合' do
-      it 'エラーメッセージが表示され、ログインできない' do
+      it 'エラーが表示され、ログインできない' do
         visit new_user_session_path
         fill_in 'メールアドレス', with: 'bbb@gmail.com'
         fill_in 'パスワード', with: '654321'
         click_button 'ログイン'
         expect(page).to have_content 'メールアドレスまたはパスワードが違います。'
         expect(page).to have_content 'ログイン'
+      end
+    end
+  end
+
+  describe '管理ユーザー機能' do
+    let!(:user) { FactoryBot.create(:user, admin: true) }
+    let!(:user_second) { FactoryBot.create(:user_second) }
+    context '管理ユーザーの場合' do
+      before do
+        sign_in user
+      end
+      it '管理画面に遷移できる' do
+        visit rails_admin_path
+        expect(current_path).to eq rails_admin_path
+      end
+    end
+    context '一般ユーザーの場合' do
+      before do
+        sign_in user_second
+      end
+      it '管理画面にアクセスできない' do
+        expect(current_path).not_to eq rails_admin_path
       end
     end
   end

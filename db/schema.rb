@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_11_054351) do
+ActiveRecord::Schema.define(version: 2022_04_12_111254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2022_04_11_054351) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "joins", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_joins_on_event_id"
+    t.index ["user_id"], name: "index_joins_on_user_id"
+  end
+
   create_table "livehouses", force: :cascade do |t|
     t.string "name", null: false
     t.string "address", null: false
@@ -78,6 +87,7 @@ ActiveRecord::Schema.define(version: 2022_04_11_054351) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_name"], name: "index_users_on_display_name", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -87,4 +97,6 @@ ActiveRecord::Schema.define(version: 2022_04_11_054351) do
   add_foreign_key "events", "livehouses"
   add_foreign_key "favorites", "livehouses"
   add_foreign_key "favorites", "users"
+  add_foreign_key "joins", "events"
+  add_foreign_key "joins", "users"
 end
