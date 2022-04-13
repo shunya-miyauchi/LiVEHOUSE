@@ -78,6 +78,29 @@
           <%= @livehouse.nearest_station %>
         </div>
       </div>
+      <div id='map'></div>
     </div>
   </div>
 </div>
+
+<script>
+  let map
+  let geocoder
+
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+    
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: <%= @livehouse.latitude %>, lng: <%= @livehouse.longitude %>},
+      zoom: 15,
+      mapTypeControl: false, 
+      streetViewControl: false
+    });
+
+    marker = new google.maps.Marker({
+      position:  {lat: <%= @livehouse.latitude %>, lng: <%= @livehouse.longitude %>},
+      map: map
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap" async defer></script>
