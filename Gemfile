@@ -25,6 +25,7 @@ gem 'nokogiri'
 gem 'rails_admin', '~> 3.0'
 gem 'rexml'
 gem 'geocoder'
+gem 'ransack'
 
 group :development, :test do
   # Default
