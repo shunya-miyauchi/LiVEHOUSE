@@ -7,7 +7,7 @@ class BasementbarScraping < ApplicationRecord
     end
 
     private
-    
+
     def basementbar_import
       date = Date.current
       livehouse_id = Livehouse.find_by('name LIKE?', '%下北沢BASEMENT BAR%').id
@@ -20,12 +20,12 @@ class BasementbarScraping < ApplicationRecord
         date = date.next_month
         date = date.next_year if date.month == 1
       end
-      Event.import @events, 
-        validate_uniqueness: true, 
-        on_duplicate_key_update: { 
-          constraint_name: :for_upsert, 
-          columns: %i[title held_on open start price artist] 
-        }
+      Event.import @events,
+                   validate_uniqueness: true,
+                   on_duplicate_key_update: {
+                     constraint_name: :for_upsert,
+                     columns: %i[title held_on open start price artist]
+                   }
     end
 
     def events_get(url, livehouse_id)

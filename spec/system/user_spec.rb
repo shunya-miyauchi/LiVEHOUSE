@@ -47,10 +47,10 @@ RSpec.describe 'ユーザー管理', type: :system do
     end
   end
 
-  describe "管理ユーザー機能" do
+  describe '管理ユーザー機能' do
     let!(:user) { FactoryBot.create(:user, admin: true) }
     let!(:user_second) { FactoryBot.create(:user_second) }
-    context "管理ユーザーの場合" do
+    context '管理ユーザーの場合' do
       before do
         sign_in user
       end
@@ -59,7 +59,7 @@ RSpec.describe 'ユーザー管理', type: :system do
         expect(current_path).to eq rails_admin_path
       end
     end
-    context "一般ユーザーの場合" do
+    context '一般ユーザーの場合' do
       before do
         sign_in user_second
       end

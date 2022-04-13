@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user?
   before_action :set_user
 
-  def show 
+  def show
     @events = @user.join_events.where('held_on >= ?', Date.current)
   end
 

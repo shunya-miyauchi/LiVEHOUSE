@@ -20,12 +20,12 @@ class OnestScraping < ApplicationRecord
         date = date.next_month
         date = date.next_year if date.month == 1
       end
-      Event.import @events, 
-        validate_uniqueness: true, 
-        on_duplicate_key_update: { 
-          constraint_name: :for_upsert, 
-          columns: %i[title held_on open start price artist] 
-        }
+      Event.import @events,
+                   validate_uniqueness: true,
+                   on_duplicate_key_update: {
+                     constraint_name: :for_upsert,
+                     columns: %i[title held_on open start price artist]
+                   }
     end
 
     # "Spotify O-nest"スクレイピング、DB保存

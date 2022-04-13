@@ -1,6 +1,6 @@
 class JoinsController < ApplicationController
   before_action :set_params
-  
+
   def create
     current_user.joins.create(event_id: params[:id])
   end

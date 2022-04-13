@@ -36,3 +36,7 @@ Metrics/MethodLength:
   Exclude:
     - 'app/models/onest_scraping.rb'
     - 'app/models/basementbar_scraping.rb'
+
+Style/GuardClause:
+  Exclude:
+    - 'app/models/ability.rb'

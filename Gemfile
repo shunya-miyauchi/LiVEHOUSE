@@ -20,9 +20,9 @@ gem 'cancancan'
 gem 'carrierwave'
 gem 'devise'
 gem 'devise-i18n'
-gem 'rails_admin', '~> 3.0'
 gem 'mini_magick'
 gem 'nokogiri'
+gem 'rails_admin', '~> 3.0'
 gem 'rexml'
 
 group :development, :test do
