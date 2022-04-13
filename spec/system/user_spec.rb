@@ -21,32 +21,6 @@ RSpec.describe 'ユーザー管理', type: :system do
         expect(User.where(email: 'aaa@gmail.com').count).to eq 1
       end
     end
-    context '会員登録時、アドレスを入力しなかった場合' do
-      it 'エラーメッセージが表示され、登録できない' do
-        visit new_user_registration_path
-        fill_in '名前', with: 'たかはし'
-        fill_in 'ユーザー名', with: 'takahashi'
-        fill_in 'メールアドレス', with: ''
-        fill_in 'パスワード', with: '123456'
-        fill_in 'パスワード(確認用)', with: '123456'
-        click_on 'アカウント登録'
-        expect(page).to have_content 'メールアドレスを入力してください'
-        expect(page).to have_content '新規登録'
-      end
-    end
-    context '会員登録時、パスワードを入力しなかった場合' do
-      it 'エラーメッセージが表示され、登録できない' do
-        visit new_user_registration_path
-        fill_in '名前', with: 'たかはし'
-        fill_in 'ユーザー名', with: 'takahashi'
-        fill_in 'メールアドレス', with: 'aaa@gmail.com'
-        fill_in 'パスワード', with: ''
-        fill_in 'パスワード(確認用)', with: ''
-        click_on 'アカウント登録'
-        expect(page).to have_content 'パスワードを入力してください'
-        expect(page).to have_content '新規登録'
-      end
-    end
   end
 
   describe 'ログイン機能' do
@@ -62,7 +36,7 @@ RSpec.describe 'ユーザー管理', type: :system do
       end
     end
     context '登録されてないアカウントでログインした場合' do
-      it 'エラーメッセージが表示され、ログインできない' do
+      it 'エラーが表示され、ログインできない' do
         visit new_user_session_path
         fill_in 'メールアドレス', with: 'bbb@gmail.com'
         fill_in 'パスワード', with: '654321'
