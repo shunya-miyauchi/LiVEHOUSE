@@ -17,6 +17,7 @@ class User < ApplicationRecord
             uniqueness: true,
             length: { minimum: 5, maximum: 15 },
             format: { with: /\A[a-z0-9_]{5,15}\z/ }
+  
 
   def favorites_by?(livehouse_id)
     favorites.find_by(livehouse_id: livehouse_id).present?
@@ -24,5 +25,13 @@ class User < ApplicationRecord
 
   def joins_by?(event_id)
     joins.find_by(event_id: event_id).present?
+  end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.name = 'ゲスト'
+      user.display_name = 'guest'
+      user.password = SecureRandom.urlsafe_base64
+    end
   end
 end
