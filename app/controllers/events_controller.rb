@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :q_event
 
   def index
-    @events = @livehouse.events.where('held_on >= ?', Date.current).order(held_on: "ASC")
+    @events = @livehouse.events.where('held_on >= ?', Date.current).order(held_on: 'ASC')
   end
 
   def show
@@ -22,19 +22,19 @@ class EventsController < ApplicationController
 
   def q_livehouse
     @q_livehouse = Livehouse.ransack(params[:q])
-    if @q_livehouse.conditions.present?
-      @result_livehouses = @q_livehouse.result(distinct: true)
-    else
-      @result_livehouses = Livehouse.where(place_id: @livehouse.place_id)
-    end
+    @result_livehouses = if @q_livehouse.conditions.present?
+                           @q_livehouse.result(distinct: true)
+                         else
+                           Livehouse.where(place_id: @livehouse.place_id)
+                         end
   end
 
   def q_event
     @q_event = Event.ransack(params[:date_search], search_key: :date_search)
-    if @q_event.conditions.present?
-      @result_events = @q_event.result(distinct: true).order(held_on: "ASC")
-    else
-      @result_events = @livehouse.events.where('held_on >= ?', Date.current).order(held_on: "ASC")
-    end
+    @result_events = if @q_event.conditions.present?
+                       @q_event.result(distinct: true).order(held_on: 'ASC')
+                     else
+                       @livehouse.events.where('held_on >= ?', Date.current).order(held_on: 'ASC')
+                     end
   end
 end

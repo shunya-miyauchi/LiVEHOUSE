@@ -17,10 +17,10 @@ RSpec.describe Livehouse, type: :model do
   end
   describe 'geocoderテスト' do
     context 'livehouseが作成された場合' do
-      let!(:livehouse){ FactoryBot.create(:livehouse) }
+      let!(:livehouse) { FactoryBot.create(:livehouse) }
       it '経度緯度が自動で保存される' do
-        expect( livehouse.latitude ).to be_present
-        expect( livehouse.longitude ).to be_present
+        expect(livehouse.latitude).to be_present
+        expect(livehouse.longitude).to be_present
       end
     end
   end

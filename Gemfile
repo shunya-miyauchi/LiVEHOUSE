@@ -15,18 +15,18 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'webpacker', '~> 5.0'
 
 # Add
+gem 'active_hash'
 gem 'activerecord-import'
 gem 'cancancan'
 gem 'carrierwave'
 gem 'devise'
 gem 'devise-i18n'
+gem 'geocoder'
 gem 'mini_magick'
 gem 'nokogiri'
 gem 'rails_admin', '~> 3.0'
-gem 'rexml'
-gem 'geocoder'
 gem 'ransack'
-gem 'active_hash'
+gem 'rexml'
 
 group :development, :test do
   # Default
