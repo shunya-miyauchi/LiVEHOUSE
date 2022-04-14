@@ -17,7 +17,7 @@ RSpec.describe 'ユーザー管理', type: :system do
         fill_in 'パスワード', with: '123456'
         fill_in 'パスワード(確認用)', with: '123456'
         click_on 'アカウント登録'
-        expect(page).to have_content '下北沢BASEMENT BAR'
+        expect(page).to have_content 'アカウント登録が完了しました。'
         expect(User.where(email: 'aaa@gmail.com').count).to eq 1
       end
     end
@@ -32,7 +32,7 @@ RSpec.describe 'ユーザー管理', type: :system do
         fill_in 'メールアドレス', with: 'aaa@gmail.com'
         fill_in 'パスワード', with: '123456'
         click_button 'ログイン'
-        expect(page).to have_content '下北沢BASEMENT BAR'
+        expect(page).to have_content 'ログインしました。'
       end
     end
     context '登録されてないアカウントでログインした場合' do

@@ -23,7 +23,7 @@ RSpec.describe 'イベント参加記録', type: :system do
           expect(page).to have_selector "#join_#{event.id}", text: '不参加'
         end
         it 'joinsテーブルに登録される' do
-          sleep 0.01
+          sleep 0.1
           expect(Join.where(user_id: user.id).size).to eq 1
         end
       end
@@ -37,7 +37,7 @@ RSpec.describe 'イベント参加記録', type: :system do
           expect(page).to have_selector "#join_#{event.id}", text: '参加'
         end
         it 'joinsテーブルから削除される' do
-          sleep 0.01
+          sleep 0.1
           expect(Join.where(user_id: user.id).size).to eq 0
         end
       end
