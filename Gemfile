@@ -26,6 +26,7 @@ gem 'rails_admin', '~> 3.0'
 gem 'rexml'
 gem 'geocoder'
 gem 'ransack'
+gem 'active_hash'
 
 group :development, :test do
   # Default
