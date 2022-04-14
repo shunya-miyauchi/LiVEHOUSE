@@ -2,92 +2,24 @@
 
 <div class="d-flex flex-row justify-content-center">
   <div class="nav flex-column">
-    <div>
-      検索窓をここに配置
-    </div>
-
-    <ul class="nav flex-column">
-      <% @livehouses.each do |livehouse| %>
-        <li class="nav-item">
-          <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id) %>
-          <span id="favorite_<%= livehouse.id %>"><%= render 'events/livehouse', { livehouse: livehouse } %></span>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-
-
-  <div class="d-flex flex-column bd-highlight mb-1">
-
-  
-    <div>今週のライブ</div>
-    <% @events_this.each do |event| %>
-      <div class="d-flex flex-row bd-highlight mb-1">
-        <div class="card" style="width: 8rem;">
-          <div class="card-body">
-            <div>
-              <%= event.held_on.strftime("%Y") %>
-            </div>
-            <div>
-              <%= event.held_on.strftime("%m.%d") %>
-            </div>
-            <div>
-              <%= event.held_on.strftime("%a") %>
-            </div>
-          </div>
-        </div>
-        <div class="card" style="width: 40rem;">
-          <div class="card-body detail">
-            <div>
-              <%= event.title %>
-            </div>
-            <div>
-              <%= event.artist %>
-            </div>
-            <%= link_to "詳細",livehouse_event_path(event.livehouse_id,event.id) %>
-            <span id="join_<%= event.id %>">
-              <%= render 'joins/select', { event: event } %>
-            </span>
-          </div>
-        </div>
+    <%= search_form_for @q_livehouse, url: livehouses_path do |f| %>
+      <div>
+        <%= f.label "ライブハウス検索" %>
       </div>
+      <div>
+        <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area %>
+      </div>
+      <%= f.submit '検索' %>
     <% end %>
 
-    <div>来週のライブ</div>
-    <% @events_next.each do |event| %>
-      <div class="d-flex flex-row bd-highlight mb-1">
-        <div class="card" style="width: 8rem;">
-          <div class="card-body">
-            <div>
-              <%= event.held_on.strftime("%Y") %>
-            </div>
-            <div>
-              <%= event.held_on.strftime("%m.%d") %>
-            </div>
-            <div>
-              <%= event.held_on.strftime("%a") %>
-            </div>
-          </div>
-        </div>
-        <div class="card" style="width: 40rem;">
-          <div class="card-body">
-            <div>
-              <%= event.title %>
-            </div>
-            <div>
-              <%= event.artist %>
-            </div>
-            <%= link_to "詳細",livehouse_event_path(event.livehouse_id,event.id) %>
-            <span id="join_<%= event.id %>">
-              <%= render 'joins/select', { event: event } %>
-            </span>
-          </div>
-        </div>
-      </div>
+    <% if @q_livehouse.conditions.present? %>
+      <ul class="nav flex-column">
+        <% @result_livehouses.each do |livehouse| %>
+          <li class="nav-item">
+            <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: @q_livehouse.conditions[0].value}) %>
+            <span id="favorite_<%= livehouse.id %>"><%= render 'events/livehouse', { livehouse: livehouse } %></span>
+          </li>
+        <% end %>
+      </ul>
     <% end %>
   </div>
-</div>
-    
-    
-
-

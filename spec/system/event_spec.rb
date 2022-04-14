@@ -13,72 +13,41 @@ RSpec.describe 'イベント管理', type: :system do
   # context - 条件の概要、文脈や状況、条件分岐、〜の場合
   # it - 確認したいことを書く
   describe 'イベント一覧画面' do
+    before do
+      travel_to Time.zone.local(2022, 1, 3)
+    end
     context 'ログインしている場合' do
       before do
-        travel_to Time.zone.local(2022, 1, 3)
         sign_in user
-        visit root_path
+        visit livehouse_events_path(livehouse)
       end
-      context 'トップページに遷移した場合' do
-        it '東京都のライブハウスが参照される' do
-          expect(page).to have_content 'ログアウト'
-          expect(page).to have_content '下北沢BASEMENT BAR'
-        end
-        it '今週/来週のイベント情報のみが参照される' do
-          expect(page).to have_content 'ログアウト'
-          expect(page).to have_content 'タイトル１'
-          expect(page).to have_content 'タイトル２'
-          expect(page).not_to have_content 'タイトル３'
-        end
+      it 'ライブハウスのスケジュール一覧が表示される' do
+        expect(page).to have_content 'ログアウト'
+        expect(page).to have_content 'タイトル１'
+        expect(page).to have_content 'タイトル２'
+        expect(page).not_to have_content 'タイトル４'
       end
     end
     context 'ログインしていない場合' do
       before do
-        travel_to Time.zone.local(2022, 1, 3)
-        visit root_path
+        visit livehouse_events_path(livehouse)
       end
-      context 'トップページに遷移した場合' do
-        it '東京都のライブハウスが参照される' do
-          expect(page).to have_content 'ログイン'
-          expect(page).to have_content '下北沢BASEMENT BAR'
-          expect(page).not_to have_content '心斎橋Pangea'
-        end
-        it '今週/来週のイベント情報のみが参照される' do
-          expect(page).to have_content 'ログイン'
-          expect(page).to have_content 'タイトル１'
-          expect(page).to have_content 'タイトル２'
-          expect(page).not_to have_content 'タイトル３'
-        end
-      end
-      context 'ライブハウスページに遷移した場合' do
-        before do
-          visit root_path
-          click_on '下北沢BASEMENT BAR'
-        end
-        it 'スケジュール情報を確認できる' do
-          expect(page).to have_content 'ログイン'
-          expect(page).to have_content 'タイトル１'
-          expect(page).to have_content 'あああ / あああ'
-          expect(page).to have_content 'タイトル２'
-          expect(page).to have_content 'いいい / いいい'
-        end
-        it 'ライブハウス情報を確認できる' do
-          click_on 'ライブハウス情報'
-          expect(page).to have_content 'ログイン'
-          expect(page).to have_content '下北沢BASEMENT BAR'
-          expect(page).to have_content '東京都世田谷区代沢5-18-1'
-        end
+      it 'ライブハウスのスケジュール一覧が表示される' do
+        expect(page).to have_content 'ログイン'
+        expect(page).to have_content 'タイトル１'
+        expect(page).to have_content 'タイトル２'
+        expect(page).not_to have_content 'タイトル４'
       end
     end
   end
   describe 'イベント詳細画面' do
     before do
       travel_to Time.zone.local(2022, 1, 3)
-      visit root_path
     end
     context 'ログインしている場合' do
       before do
         sign_in user
+        visit livehouse_events_path(livehouse)
       end
       it 'イベント詳細を確認できる' do
         all('.d-flex .card .card-body.detail')[0].click_link '詳細'
@@ -91,6 +60,9 @@ RSpec.describe 'イベント管理', type: :system do
       end
     end
     context 'ログインしてない場合' do
+      before do
+        visit livehouse_events_path(livehouse)
+      end
       it 'イベント詳細を確認できる' do
         all('.d-flex .card .card-body.detail')[0].click_link '詳細'
         expect(page).to have_content 'ログイン'

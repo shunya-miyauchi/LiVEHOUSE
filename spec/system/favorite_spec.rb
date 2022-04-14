@@ -11,7 +11,7 @@ RSpec.describe 'お気に入り', type: :system do
     context 'ログインしている場合' do
       before do
         sign_in user
-        visit root_path
+        visit livehouse_events_path(livehouse)
       end
       context 'お気に入りボタンを押した場合' do
         before do
