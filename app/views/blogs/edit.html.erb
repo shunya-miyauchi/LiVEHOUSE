@@ -1,0 +1,46 @@
+<div class="nav flex-column">
+  <div>
+    <div>プロフィール</div>
+
+    <% if current_user.image? %>
+      <div><%= image_tag current_user.image.url(:thumb100) %></div>
+    <% else %>
+      <div><%= image_tag "default.png" %></div>
+    <% end %>
+    
+    <div><%= current_user.name %></div>
+    <div><%= current_user.display_name %></div>
+    <%= link_to "編集", edit_user_registration_path(current_user.id) %>
+  </div>
+
+  <div>
+    <div><%= link_to "ライブ予定", user_path(current_user.id) %></div>
+    <div><%= link_to "参加記録", past_joins_user_path(current_user.id) %></div>
+    <div><%= link_to "ブログ" %></div>
+  </div>
+
+  <div>新規投稿</div>
+  <%= form_with( model: @blog,local:true ) do |f| %>
+    <div>
+      <%= f.collection_select :event_id, current_user.join_events.date_before_today, :id, :date_title %> 
+    </div>
+    <div>
+      <%= f.label :title, 'タイトル' %>
+      <%= f.text_field :title %> 
+    </div>
+    <div>
+      <%= f.label :content, '本文' %>
+      <%= f.text_field :content %> 
+    </div>
+    <div class="field">
+      <%= f.label :image, "画像" %><br />
+      <%= f.file_field :image, multiple: true %>
+    </div>
+    <div>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= f.submit '投稿' %> 
+    </div>  
+  <% end %>
+
+  <%= link_to "戻る", 'javascript:history.back()' %>
+</div>
