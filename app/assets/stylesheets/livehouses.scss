@@ -2,7 +2,121 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-#map {
-  height: 400px;
-  width: 400px;
+.container-fluid.livehouses {
+  position: relative;
+  header {
+    width: auto;
+    height: auto;
+    .main_in {
+      position: absolute;
+      z-index: 100;
+      width: auto;
+      top: 5%;
+      left: 80%;
+      .sign_up {
+        background-color: red;
+        font-size: 1.2rem;
+        color: white;
+        padding: 10px;
+        margin-right: 5px;
+        border-radius: 10px;
+      }
+      .login {
+        background-color: black;
+        font-size: 1.2rem;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+      }
+    }
+    .sub_in {
+      position: absolute;
+      width: auto;
+      top: 10%;
+      left: 80%;
+      .guest_login {
+        font-size: 1rem;
+        color: red;
+        margin-right: 5px;
+      }
+      .admin_guest_login {
+        font-size: 1rem;
+        color: red;
+      }
+    }
+    .main_out {
+      position: absolute;
+      z-index: 100;
+      width: auto;
+      top: 5%;
+      left: 75%;
+      .mypage {
+        background-color: red;
+        font-size: 1.0rem;
+        color: white;
+        padding: 10px;
+        margin-right: 5px;
+        border-radius: 10px;
+      }
+      .favorite {
+        background-color: black;
+        font-size: 1.0rem;
+        color: white;
+        padding: 10px;
+        margin-right: 5px;
+        border-radius: 10px;
+      }
+      .sign_out {
+        background-color: black;
+        font-size: 1.0rem;
+        color: white;
+        padding: 10px;
+        margin-right: 5px;
+        border-radius: 10px;
+      }
+    }
+    .sub_out {
+      position: absolute;
+      width: auto;
+      top: 10%;
+      left: 75%;
+      .admin {
+        font-size: 1rem;
+        color: red;
+      }
+    }
+  }
+
+  main {
+    .alert-notice {
+      background-color: transparent;
+      color:red;
+      position: absolute;
+      top: 10%;
+      left: 50%;
+    }
+    .top_img {
+      // background-image: image-url('top_img.png');
+      width: 100%;
+      height: 100%;
+      // overflow: hidden;
+      // height: 100vw;
+    }
+    .top_logo {
+      // background-image: image-url('top_logo.png');
+      position: absolute;
+      transform: translate(-50%,-50%);
+      top: 30%;
+      left: 50%;
+    }
+    .search_form {
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: red;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      text-align: center;
+      top: 70%;
+      left: 50%;
+    }
+  }
 }
