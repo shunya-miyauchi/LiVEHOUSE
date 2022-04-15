@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :joins, dependent: :destroy
   has_many :join_events, through: :joins, source: :event
+  has_many :blogs, dependent: :destroy
 
   mount_uploader :image, IconUploader
 
