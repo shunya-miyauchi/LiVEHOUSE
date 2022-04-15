@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
   resources :favorites, only: %i[index show create destroy]
   resources :joins, only: %i[create destroy]
+  resources :blogs
   
   # ゲストログイン
   devise_scope :user do
