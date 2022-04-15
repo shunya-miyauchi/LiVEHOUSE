@@ -4,5 +4,5 @@ class Blog < ApplicationRecord
 
   mount_uploaders :image, ImagesUploader
 
-  validates :title, presence: true,length: { maximum: 30 }
+  validates :title, presence: true, length: { maximum: 30 }
 end

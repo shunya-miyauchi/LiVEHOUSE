@@ -20,9 +20,9 @@ class BlogsController < ApplicationController
     end
   end
 
-  def show; end;
+  def show; end
 
-  def edit;end;
+  def edit; end
 
   def update
     if @blog.update
@@ -42,7 +42,7 @@ class BlogsController < ApplicationController
   private
 
   def blog_params
-    params.require(:blog).permit(:title, :content, {image: []},:event_id, :user_id)
+    params.require(:blog).permit(:title, :content, { image: [] }, :event_id, :user_id)
   end
 
   def set_blog

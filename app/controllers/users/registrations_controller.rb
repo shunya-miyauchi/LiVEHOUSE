@@ -60,9 +60,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def ensure_normal_user
-    if resource.email == 'guest@example.com' || 'admin_guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーは削除できません。'
-    end
+    redirect_to root_path, alert: 'ゲストユーザーは削除できません。' if resource.email == ('guest@example.com' || 'admin_guest@example.com')
   end
 
   # The path used after sign up.

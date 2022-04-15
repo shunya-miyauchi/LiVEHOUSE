@@ -21,7 +21,7 @@ class EventsController < ApplicationController
 
   def q_livehouse
     @q_livehouse = Livehouse.ransack(params[:q])
-    @result_livehouses = 
+    @result_livehouses =
       if @q_livehouse.conditions.present?
         @q_livehouse.result(distinct: true)
       else
@@ -31,7 +31,7 @@ class EventsController < ApplicationController
 
   def q_event
     @q_event = Event.ransack(params[:date_search], search_key: :date_search)
-    @result_events = 
+    @result_events =
       if @q_event.conditions.present?
         @q_event.result(distinct: true).sort_held_on
       else

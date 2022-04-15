@@ -17,13 +17,13 @@ Rails.application.routes.draw do
   resources :favorites, only: %i[index show create destroy]
   resources :joins, only: %i[create destroy]
   resources :blogs
-  
+
   # ゲストログイン
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
     post 'users/admin_guest_sign_in', to: 'users/sessions#admin_guest_sign_in'
   end
-  
+
   # ルート
   root 'livehouses#index'
 end

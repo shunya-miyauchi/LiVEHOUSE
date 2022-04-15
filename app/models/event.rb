@@ -6,11 +6,10 @@ class Event < ApplicationRecord
 
   scope :date_after_today, -> { where('held_on >= ?', Date.current) }
   scope :date_before_today, -> { where('held_on < ?', Date.current) }
-  scope :sort_held_on, -> { order(held_on: "ASC") }
+  scope :sort_held_on, -> { order(held_on: 'ASC') }
 
   def date_title
-    date = self.held_on.strftime("%Y/%-m/%d")
-    "#{date}#{self.title}".truncate(30,omission:"...")
+    date = held_on.strftime('%Y/%-m/%d')
+    "#{date}#{title}".truncate(30, omission: '...')
   end
-
 end

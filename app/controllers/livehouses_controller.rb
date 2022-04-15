@@ -1,7 +1,7 @@
 class LivehousesController < ApplicationController
   before_action :q_livehouse
 
-  def index; end;
+  def index; end
 
   private
 
