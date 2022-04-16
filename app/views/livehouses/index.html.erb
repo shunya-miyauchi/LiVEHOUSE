@@ -1,27 +1,94 @@
-    <%# <div class="top_img"></div>
-    <div class="top_logo"></div> %>
-    <%= image_tag "top_img.png", class: "top_img" %>
+
+  <%= image_tag "top_img.png", class: "top_img" %>
+
+ 
     <%= image_tag "top_logo.png", class: "top_logo" %>
 
-    <div class="search_form">
-          <%= search_form_for @q_livehouse, url: livehouses_path do |f| %>
-            <div>
-              <%= f.label "ライブハウス検索" %>
-            </div>
-            <div>
-              <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area %>
-            </div>
-            <%= f.submit '検索' %>
-          <% end %>
+    <div class="search_form col-sm-7 col-xl-5 ">
+      <%= search_form_for @q_livehouse, url: livehouses_path, remote: true do |f| %>
+        <div class="search_livehouse">
+          <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
+          <%= f.submit '検索', class: "search_btn btn btn-outline-danger" %>
+        </div>
+    <% end %>
 
-          <% if @q_livehouse.conditions.present? %>
-            <ul class="nav flex-column">
-              <% @result_livehouses.each do |livehouse| %>
-                <li class="nav-item">
-                  <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id }) %>
-                  <span id="favorite_<%= livehouse.id %>"><%= render 'events/livehouse', { livehouse: livehouse } %></span>
-                </li>
-              <% end %>
-            </ul>
-          <% end %>
-    </div>
+
+        <div id="livehouses_area">
+          <%= render 'index', { result_livehouses: @result_livehouses, q_livehouse: @q_livehouse } %>
+        </div>
+
+<%# 
+<div class="sel sel--black-panther">
+  <select name="select-profession" id="select-profession">
+    <option value="" disabled>Profession</option>
+    <option value="hacker">Hacker</option>
+    <option value="gamer">Gamer</option>
+    <option value="developer">Developer</option>
+    <option value="programmer">Programmer</option>
+    <option value="designer">Designer</option>
+  </select>
+</div>
+
+<hr class="rule">
+
+<div class="sel sel--superman">
+  <select name="select-superpower" id="select-superpower">
+    <option value="" disabled>Superpower</option>
+    <option value="hacker">Power</option>
+    <option value="gamer">Speed</option>
+    <option value="developer">Acrobatics</option>
+    <option value="programmer">Accuracy</option>
+  </select>
+</div>
+
+<script>
+
+$('.sel').each(function() {
+  $(this).children('select').css('display', 'none');
+  
+  var $current = $(this);
+  
+  $(this).find('option').each(function(i) {
+    if (i == 0) {
+      $current.prepend($('<div>', {
+        class: $current.attr('class').replace(/sel/g, 'sel__box')
+      }));
+      
+      var placeholder = $(this).text();
+      $current.prepend($('<span>', {
+        class: $current.attr('class').replace(/sel/g, 'sel__placeholder'),
+        text: placeholder,
+        'data-placeholder': placeholder
+      }));
+      
+      return;
+    }
+    
+    $current.children('div').append($('<span>', {
+      class: $current.attr('class').replace(/sel/g, 'sel__box__options'),
+      text: $(this).text()
+    }));
+  });
+});
+
+// Toggling the `.active` state on the `.sel`.
+$('.sel').click(function() {
+  $(this).toggleClass('active');
+});
+
+// Toggling the `.selected` state on the options.
+$('.sel__box__options').click(function() {
+  var txt = $(this).text();
+  var index = $(this).index();
+  
+  $(this).siblings('.sel__box__options').removeClass('selected');
+  $(this).addClass('selected');
+  
+  var $currentSel = $(this).closest('.sel');
+  $currentSel.children('.sel__placeholder').text(txt);
+  $currentSel.children('select').prop('selectedIndex', index + 1);
+});
+
+
+
+</script> %>
