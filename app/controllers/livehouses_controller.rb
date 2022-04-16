@@ -2,7 +2,7 @@ class LivehousesController < ApplicationController
   before_action :q_livehouse
 
   def index
-    unless params[:q_livehouse].blank?
+    unless params[:q].blank?
       render :index
     end
   end
