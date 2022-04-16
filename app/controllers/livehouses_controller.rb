@@ -1,7 +1,11 @@
 class LivehousesController < ApplicationController
   before_action :q_livehouse
 
-  def index; end
+  def index
+    unless params[:q_livehouse].blank?
+      render :index
+    end
+  end
 
   private
 
