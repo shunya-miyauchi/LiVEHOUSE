@@ -57,7 +57,8 @@
           </div>
         <% end %> 
       </header>
-      <main class="<%=controller.controller_name %>">
+      <main class="container-fluid <%=controller.controller_name %>">
+        <div class="row">
           <% if notice %>
             <p class="alert alert-notice"><%= notice %></p>
           <% end %>
@@ -65,6 +66,7 @@
             <p class="alert alert-error"><%= alert %></p>
           <% end %>
           <%= yield %>
+        </div>
       </main>
       <footer>
       
