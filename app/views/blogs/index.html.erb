@@ -1,4 +1,4 @@
-<div class="nav flex-column">
+<div class="col-lg-3">
   <div>
     <div>プロフィール</div>
 
@@ -18,9 +18,13 @@
     <div><%= link_to "参加記録", past_joins_user_path(current_user.id) %></div>
     <div><%= link_to "ブログ" %></div>
   </div>
+</div>
 
-  <div>ブログ一覧</div>
-  <div><%= link_to "ブログ作成",new_blog_path %></div>
+<div class="col-lg-9">
+  <div>
+    <div>ブログ一覧</div>
+    <%= link_to "ブログ作成",new_blog_path %>
+  </div>
   <% if @blogs.blank? %>
     <div>まだブログの作成がありません。</div>
   <% end %>

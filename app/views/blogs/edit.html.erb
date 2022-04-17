@@ -1,4 +1,4 @@
-<div class="nav flex-column">
+<div class="col-lg-3">
   <div>
     <div>プロフィール</div>
 
@@ -18,7 +18,9 @@
     <div><%= link_to "参加記録", past_joins_user_path(current_user.id) %></div>
     <div><%= link_to "ブログ" %></div>
   </div>
+</div>
 
+<div class="col-lg-9">
   <div>新規投稿</div>
   <%= form_with( model: @blog,local:true ) do |f| %>
     <div>
@@ -41,6 +43,5 @@
       <%= f.submit '投稿' %> 
     </div>  
   <% end %>
-
   <%= link_to "戻る", 'javascript:history.back()' %>
 </div>
