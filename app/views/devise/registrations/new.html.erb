@@ -1,42 +1,50 @@
-<h2><%= t('.sign_up') %></h2>
+<%= image_tag "top_img.png", class: "top_img" %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="sign_up col-sm-6 col-lg-6 col-xl-5">  
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <div class="title">
+        <%= t('.sign_up') %>
+      </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
+    <div class="name">
+      <div><%= f.label :name, "お名前" %></div>
+      <%= render "devise/shared/error_messages", resource: resource, attribute: :name %>
+      <%= f.text_field :name, autofocus: true, placeholder: "お名前" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :display_name %><br />
-    <%= f.text_field :display_name %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
+    <div class="display_name">
+      <div><%= f.label :display_name %></div>
+      <div class="notes">半角英数字,アンダースコア(_)のみ</div>
+      <%= render "devise/shared/error_messages", resource: resource, attribute: :display_name %>
+      <%= f.text_field :display_name, placeholder: "ユーザー名" %>
+    </div>
+    
+    <div class="email">
+      <div><%= f.label :email %></div>
+      <%= render "devise/shared/error_messages", resource: resource, attribute: :email %>
+      <%= f.email_field :email, autocomplete: "email", placeholder: "メールアドレス" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="password">
+      <div><%= f.label :password %></div>
+      <%= render "devise/shared/error_messages", resource: resource, attribute: :password %>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="password_confirmation">
+      <div><%= f.label :password_confirmation %></div>
+      <%= render "devise/shared/error_messages", resource: resource, attribute: :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード(確認用)" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :image, "アイコン画像(jpg,jpeg,gif,png)" %><br />
-    <%= f.file_field :image %>
-  </div>
+    <div class="image">
+      <div><%= f.label :image, "アイコン画像選択" %></div>
+      <div class="notes">JPG,JPEG,GIF,PNGのみ</div>
+      <%= f.file_field :image %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit t('.sign_up') %>
-  </div>
-<% end %>
+    <div class="submit">
+      <%= f.submit t('.sign_up'),class:"button" %>
+    </div>
+  <% end %>
+</div>
