@@ -25,7 +25,7 @@ class BlogsController < ApplicationController
   def edit; end
 
   def update
-    if @blog.update
+    if @blog.update(blog_params)
       redirect_to blogs_path
     else
       flash.now[:alert] = '変更できません。'
