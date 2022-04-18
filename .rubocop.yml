@@ -15,6 +15,7 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
+    - "config/initializers/carrierwave.rb"
 
 # Assignment: 変数への代入
 # Branch: メソッド呼び出し
