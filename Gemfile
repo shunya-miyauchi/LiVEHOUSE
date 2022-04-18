@@ -28,6 +28,7 @@ gem 'nokogiri'
 gem 'rails_admin', '~> 3.0'
 gem 'ransack'
 gem 'rexml'
+gem 'kaminari'
 
 group :development, :test do
   # Default
