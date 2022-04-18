@@ -27,6 +27,7 @@ gem 'nokogiri'
 gem 'rails_admin', '~> 3.0'
 gem 'ransack'
 gem 'rexml'
+gem 'fog-aws'
 
 group :development, :test do
   # Default
