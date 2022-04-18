@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   scope :date_after_today, -> { where('held_on >= ?', Date.current) }
   scope :date_before_today, -> { where('held_on < ?', Date.current) }
   scope :sort_held_on, -> { order(held_on: 'ASC') }
+  scope :reverse_held_on, -> { order(held_on: 'DESC') }
 
   def date_title
     date = held_on.strftime('%Y/%-m/%d')
