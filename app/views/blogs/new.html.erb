@@ -36,8 +36,8 @@
       <%= f.text_field :content %> 
     </div>
     <div class="field">
-      <%= f.label :image, "画像" %><br />
-      <%= f.file_field :image, multiple: true %>
+      <%= f.label :images, "画像" %><br />
+      <%= f.file_field :images, multiple: true %>
     </div>
     <div>
       <%= f.hidden_field :user_id, value: current_user.id %>

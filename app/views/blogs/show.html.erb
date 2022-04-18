@@ -55,7 +55,7 @@
     <%= @blog.content %> 
   </div>
   <div>
-    <% @blog.image.each do |image| %>
+    <% @blog.images.each do |image| %>
       <%= image_tag image.url %>
     <% end %>
   </div>
