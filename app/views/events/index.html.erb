@@ -43,30 +43,11 @@
 
 
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
-      <div class="row">
-        <% @result_events.each do |event| %>
-          <div class="col-lg-4 col-md-6 mb-4" style="height: 15rem">
-            <div class="card text-center border-danger">
-              <div class="card-header">
-                <%= event.held_on.strftime("%Y.%m.%d.%a") %>
-              </div>
-              <div class="card-body detail", id="<%= event.id %>">
-                <%= event.title %>
-              </div>
-              <div>
-                <%= event.artist.truncate(50, omission: '...他多数!') %>
-              </div>
-              <div>
-                <%= link_to "詳細",livehouse_event_path(event.livehouse_id,event.id) %>
-                <span id="join_<%= event.id %>">
-                  <%= render 'joins/select', { event: event } %>
-                </span>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
+    <div class="tab-pane fade show active row" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
+        <div class="schedule row" >
+          <%= render "schedule", {result_events: @result_events} %> 
+        </div>    
+        <%= link_to_next_page @result_events, 'もっと見る', remote: true, id: 'more_link' %>
     </div>
 
     <div class="tab-pane fade" id="livehouse" role="tabpanel" aria-labelledby="livehouse-tab">
@@ -82,7 +63,7 @@
       <div>
         <%= @livehouse.nearest_station %>
       </div>
-      <div id='map'></div>
+      <%# <div id='map'></div> %>
     </div>
   </div>
 </div>

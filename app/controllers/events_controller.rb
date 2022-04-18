@@ -4,7 +4,8 @@ class EventsController < ApplicationController
   before_action :q_event
 
   def index
-    @events = @livehouse.events.date_after_today.sort_held_on
+    return unless request.xhr?
+    render :schedule
   end
 
   def show
@@ -33,9 +34,9 @@ class EventsController < ApplicationController
     @q_event = @livehouse.events.ransack(params[:date_search], search_key: :date_search)
     @result_events =
       if @q_event.conditions.present?
-        @q_event.result(distinct: true).sort_held_on
+        @q_event.result(distinct: true).sort_held_on.page(params[:page]).per(5)
       else
-        @livehouse.events.date_after_today.sort_held_on
+        @livehouse.events.date_after_today.sort_held_on.page(params[:page]).per(5)
       end
   end
 end
