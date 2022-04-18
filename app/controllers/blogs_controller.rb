@@ -2,7 +2,7 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: %i[show edit update destroy]
 
   def index
-    @blogs = Blog.all
+    @blogs = Blog.all.reverse_created_at
   end
 
   def new
@@ -42,7 +42,7 @@ class BlogsController < ApplicationController
   private
 
   def blog_params
-    params.require(:blog).permit(:title, :content, { image: [] }, :event_id, :user_id)
+    params.require(:blog).permit(:title, :content, { images: [] }, :event_id, :user_id)
   end
 
   def set_blog
