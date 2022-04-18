@@ -1,7 +1,5 @@
-<%= image_tag "top_image(1920×360).png" %>
-
-<div class="d-flex flex-row justify-content-center">
-  <div class="nav flex-column">
+<div class="col-lg-3">
+  <div class="">
     <%= search_form_for @q_livehouse, url: livehouse_events_path(@livehouse) do |f| %>
       <div>
         <%= f.label "ライブハウス検索" %>
@@ -21,61 +19,45 @@
     <% end %>
 
 
-    <ul class="nav flex-column">
+    <ul class="">
       <% @result_livehouses.each do |livehouse| %>
-        <li class="nav-item">
-          <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: @livehouse.place_id}) %>
+        <li class="">
+          <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id}) %>
           <span id="favorite_<%= livehouse.id %>"><%= render 'events/livehouse', { livehouse: livehouse } %></span>
         </li>
       <% end %>
     </ul>
   </div>
+</div>
 
 
+<div class="col-lg-9">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true">スケジュール</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="livehouse-tab" data-toggle="tab" href="#livehouse" role="tab" aria-controls="livehouse" aria-selected="false">ライブハウス情報</a>
+    </li>
+  </ul>
 
-  <div class="d-flex flex-column bd-highlight mb-1">
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="schedule-tab" data-toggle="pill" href="#pills-schedule" role="tab" aria-controls="pills-schedule" aria-selected="true">スケジュール</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="livehouse-info-tab" data-toggle="pill" href="#pills-livehouse-tab" role="tab" aria-controls="pills-livehouse-tab" aria-selected="false">ライブハウス情報</a>
-      </li>
-    </ul>
 
-
-    <div class="tab-content" id="pills-tabContent">
-      <div class="tab-pane fade show active" id="pills-schedule" role="tabpanel" aria-labelledby="schedule-tab">
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
+      <div class="row">
         <% @result_events.each do |event| %>
-          <% if event == @events[0] %>
-            <div>今週のライブ</div>
-          <% elsif event == @events.where('held_on >= ?', Date.current.next_week(:monday))[0] %>
-            <div>来週のライブ</div>
-          <% elsif event == @events.where('held_on >= ?', Date.current.since(2.week).beginning_of_week)[0] %>
-            <div>それ以降</div>
-          <% end %>
-          <div class="d-flex flex-row bd-highlight mb-1">
-            <div class="card" style="width: 8rem;">
-              <div class="card-body">
-                <div>
-                  <%= event.held_on.strftime("%Y") %>
-                </div>
-                <div>
-                  <%= event.held_on.strftime("%m.%d") %>
-                </div>
-                <div>
-                  <%= event.held_on.strftime("%a") %>
-                </div>
+          <div class="col-lg-4 col-md-6 mb-4" style="height: 15rem">
+            <div class="card text-center border-danger">
+              <div class="card-header">
+                <%= event.held_on.strftime("%Y.%m.%d.%a") %>
               </div>
-            </div>
-            <div class="card" style="width: 40rem;">
               <div class="card-body detail", id="<%= event.id %>">
-                <div>
-                  <%= event.title %>
-                </div>
-                <div>
-                  <%= event.artist %>
-                </div>
+                <%= event.title %>
+              </div>
+              <div>
+                <%= event.artist.truncate(50, omission: '...他多数!') %>
+              </div>
+              <div>
                 <%= link_to "詳細",livehouse_event_path(event.livehouse_id,event.id) %>
                 <span id="join_<%= event.id %>">
                   <%= render 'joins/select', { event: event } %>
@@ -85,22 +67,22 @@
           </div>
         <% end %>
       </div>
+    </div>
 
-      <div class="tab-pane fade" id="pills-livehouse-tab" role="tabpanel" aria-labelledby="livehouse-info-tab">
-        <div>
-          <%= @livehouse.name %>
-        </div>
-        <div>
-          <%= @livehouse.address %>
-        </div>
-        <div>
-          <%= link_to "ホームページ", @livehouse.url %>
-        </div>
-        <div>
-          <%= @livehouse.nearest_station %>
-        </div>
-        <div id='map'></div>
+    <div class="tab-pane fade" id="livehouse" role="tabpanel" aria-labelledby="livehouse-tab">
+      <div>
+        <%= @livehouse.name %>
       </div>
+      <div>
+        <%= @livehouse.address %>
+      </div>
+      <div>
+        <%= link_to "ホームページ", @livehouse.url %>
+      </div>
+      <div>
+        <%= @livehouse.nearest_station %>
+      </div>
+      <div id='map'></div>
     </div>
   </div>
 </div>

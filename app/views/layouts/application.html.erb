@@ -4,37 +4,73 @@
     <title>LiVEHOUSE</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name=”viewport” content=”width=device-width, initial-scale=1”>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&family=Kosugi&family=Kosugi+Maru&family=Noto+Sans+JP&family=Rampart+One&display=swap" rel="stylesheet">
   </head>
 
-  <body>
-    <header>
-      <% if user_signed_in? %>
-        <%= link_to "トップ", root_path %>
-        <%= link_to "マイページ", user_path(current_user.id) %>
-        <%= link_to "お気に入り", favorites_path %>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        <% if current_user.admin? %>
-          <%= link_to "管理者画面", rails_admin_path %>
-        <% end %>
-      <% else %>
-        <%= link_to "新規登録", new_user_registration_path %>
-        <%= link_to "ログイン", new_user_session_path %>
-      <% end %>    
-    </header>
-    <main>
-      <% if notice %>
-        <p class="alert alert-notice"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-error"><%= alert %></p>
-      <% end %>
-      <%= yield %>
-    </main>
-    <footer>
-    
-    </footer>
+  <body class="container-fluid <%=controller.controller_name %>">
+    <div class="row">
+      <header>
+        <% if user_signed_in? %>
+          <div class="header_top">
+              <ul class="header_nav">
+                <li class="header-item">
+                  <%= link_to "トップ", root_path, class: "header-link" %>
+                </li>
+                <li class="header-item">
+                  <%= link_to "マイページ", user_path(current_user.id), class: "header-link"  %>
+                </li>
+                <li class="header-item">
+                  <%= link_to "お気に入り", favorites_path, class: "header-link"  %>
+                </li>
+                <li class="header-item">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-link"  %>
+                </li>
+                <li class="header-item">
+                  <% if current_user.admin? %>
+                    <%= link_to "管理者画面", rails_admin_path, class: "header-link"  %>
+                  <% end %>
+                </li>
+              </ul>
+          </div>
+        <% else %>
+          <div class="header_top">
+            <ul class="header_nav">
+              <li class="header-item">
+                <%= link_to "新規登録", new_user_registration_path, class: "header-link" %>
+              </li>
+              <li class="header-item">
+                <%= link_to "ログイン", new_user_session_path, class: "header-link" %>
+              </li>
+              <li class="header-item">
+                <%= link_to '一般ゲスト', users_guest_sign_in_path, method: :post, class: "header-link" %>
+              </li>
+              <li class="header-item">
+                <%= link_to '管理ゲスト', users_admin_guest_sign_in_path, method: :post, class: "header-link" %>
+              </li>
+            </ul>
+          </div>
+        <% end %> 
+      </header>
+      <main class="container-fluid <%=controller.controller_name %>">
+        <div class="row">
+          <% if notice %>
+            <p class="alert alert-notice"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert alert-error"><%= alert %></p>
+          <% end %>
+          <%= yield %>
+        </div>
+      </main>
+      <footer>
+      
+      </footer>
+    </div>
   </body>
 </html>

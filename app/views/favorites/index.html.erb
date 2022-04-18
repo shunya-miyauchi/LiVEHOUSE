@@ -1,28 +1,61 @@
-<div class="d-flex flex-row justify-content-center">
-  <div class="nav flex-column">
-    <div>
-      検索窓をここに配置
-    </div>
+<div class="col-lg-3">
+  <ul class="nav flex-column">
+    <% @livehouses.each do |livehouse| %>
+      <li class="nav-item">
+        <%= link_to "#{livehouse.name}", favorite_path(livehouse.id) %>
+        <span id="favorite_<%= livehouse.id %>"><%= render 'events/livehouse', { livehouse: livehouse } %></span>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to "戻る", 'javascript:history.back()' %>
+</div>
 
-    
-
-    <ul class="nav flex-column">
-      <% @favorite_livehouses.each do |livehouse| %>
-        <li class="nav-item">
-          <%= link_to "#{livehouse.name}", favorite_path(livehouse.id) %>
-          <span id="favorite_<%= livehouse.id %>"><%= render 'events/livehouse', { livehouse: livehouse } %></span>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-
+<div class="col-lg-9">
   <div>
-    <% if @favorite_livehouses.blank? %>
+    <% if @livehouses.blank? %>
       <div>ライブハウスをお気に入り登録して下さい。</div>
     <% else %>
-      <div>ライブハウスを選択してください。</div>
+      <% @events.each do |event| %>
+        <% if event == @events.where('held_on >= ?', Date.current)[0] %>
+          <div>今週のライブ</div>
+        <% elsif event == @events.where('held_on >= ?', Date.current.next_week(:monday))[0] %>
+          <div>来週のライブ</div>
+        <% elsif event == @events.where('held_on >= ?', Date.current.since(2.week).beginning_of_week)[0] %>
+          <div>それ以降</div>
+        <% end %>
+        <div class="d-flex flex-row bd-highlight mb-1">
+          <div class="card" style="width: 8rem;">
+            <div class="card-body">
+              <div>
+                <%= event.held_on.strftime("%Y") %>
+              </div>
+              <div>
+                <%= event.held_on.strftime("%m.%d") %>
+              </div>
+              <div>
+                <%= event.held_on.strftime("%a") %>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="width: 40rem;">
+            <div class="card-body detail", id="<%= event.id %>">
+              <div>
+                <%= event.title %>
+              </div>
+              <div>
+                <%= event.artist %>
+              </div>
+              <div>
+                <%= event.livehouse.name %>
+              </div>
+              <%= link_to "詳細",livehouse_event_path(event.livehouse_id,event.id) %>
+              <span id="join_<%= event.id %>">
+                <%= render 'joins/select', { event: event } %>
+              </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
-
-
 </div>

@@ -1,14 +1,13 @@
 class FavoritesController < ApplicationController
-  before_action :set_livehouse, only: %i[create destroy]
+  before_action :set_livehouse, only: %i[show create destroy]
+  before_action :set_livehouses, only: %i[index show]
 
   def index
-    @favorite_livehouses = current_user.favorite_livehouses
+    @events = Event.where(livehouse_id: @livehouses.ids).date_after_today.sort_held_on
   end
 
   def show
-    @favorite_livehouses = current_user.favorite_livehouses
-    @livehouse = Livehouse.find(params[:id])
-    @events = @livehouse.events.where('held_on >= ?', Date.current)
+    @events = @livehouse.events.date_after_today
   end
 
   def create
@@ -23,5 +22,9 @@ class FavoritesController < ApplicationController
 
   def set_livehouse
     @livehouse = Livehouse.find(params[:id])
+  end
+
+  def set_livehouses
+    @livehouses = current_user.favorite_livehouses
   end
 end

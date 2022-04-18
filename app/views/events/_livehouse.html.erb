@@ -1,8 +1,12 @@
 <% if user_signed_in? %>
   <% if current_user.favorites_by?(livehouse.id) %>
-    <%= link_to '外す', favorite_path(id: livehouse.id), method: :delete, remote: true ,class: 'btn btn-danger' %>
+    <%= link_to favorite_path(id: livehouse.id), method: :delete, remote: true do %>
+      <span class="material-icons">favorite</span>
+    <% end %>
   <% else %>
-    <%= link_to 'お気に入り', favorites_path(id: livehouse.id), method: :post, remote: true, class: 'btn btn-primary' %>
+    <%= link_to favorites_path(id: livehouse.id), method: :post, remote: true do %>
+      <span class="material-icons">favorite_border</span>
+    <% end %>
   <% end %>
 <% end %>
 

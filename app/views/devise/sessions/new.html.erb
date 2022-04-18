@@ -1,29 +1,31 @@
-<h2><%= t('.sign_in') %></h2>
+<%= image_tag "top_img.png", class: "top_img" %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
-  </div>
+<div class="sign_in col-sm-6 col-lg-6 col-xl-5">  
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="title">
+      <%= t('.sign_in') %>
+    </div>
+    <div class="email">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+    </div>
 
-  <div class="field">
-    <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %>
-  </div>
+    <div class="password">
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワード" %>
+    </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="submit">
+      <%= f.submit t('.sign_in'), class: "button" %>
     </div>
   <% end %>
+  <%= render "devise/shared/recoverable" %>
 
-  <div class="actions">
-    <%= f.submit t('.sign_in') %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/recoverable" %>
-
-<hr>
-
-<div>アカウントをお持ちでない方</div>
-<%= render "devise/shared/registerable" %>
+  <div>アカウントをお持ちでない方</div>
+  <%= render "devise/shared/registerable" %>
+</div>

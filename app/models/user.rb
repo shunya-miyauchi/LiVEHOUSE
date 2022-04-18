@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :joins, dependent: :destroy
   has_many :join_events, through: :joins, source: :event
+  has_many :blogs, dependent: :destroy
 
   mount_uploader :image, IconUploader
 
@@ -24,5 +25,22 @@ class User < ApplicationRecord
 
   def joins_by?(event_id)
     joins.find_by(event_id: event_id).present?
+  end
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.name = 'ゲスト'
+      user.display_name = 'guest'
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
+
+  def self.admin_guest
+    find_or_create_by!(email: 'admin_guest@example.com') do |user|
+      user.name = '管理者ゲスト'
+      user.display_name = 'admin_guest'
+      user.password = SecureRandom.urlsafe_base64
+      user.admin = true
+    end
   end
 end

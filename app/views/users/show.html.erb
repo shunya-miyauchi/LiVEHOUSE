@@ -1,4 +1,4 @@
-<div class="nav flex-column">
+<div class="col-lg-3">
   <div>
     <div>プロフィール</div>
 
@@ -16,9 +16,11 @@
   <div>
     <div><%= link_to "ライブ予定", user_path(current_user.id) %></div>
     <div><%= link_to "参加記録", past_joins_user_path(current_user.id) %></div>
-    <div><%= link_to "ブログ" %></div>
+    <div><%= link_to "ブログ",blogs_path %></div>
   </div>
+</div>
 
+<div class="col-lg-9">
   <div>ライブ予定</div>
   <% if @events.blank? %>
     <div>参加予定のイベントはありません。</div>
@@ -54,4 +56,5 @@
       </div>
     </div>
   <% end %>
+  <%= link_to "戻る", 'javascript:history.back()' %>
 </div>

@@ -1,0 +1,62 @@
+<div class="col-lg-3">
+  <div>
+    <div>プロフィール</div>
+
+    <% if current_user.image? %>
+      <div><%= image_tag current_user.image.url(:thumb100) %></div>
+    <% else %>
+      <div><%= image_tag "default.png" %></div>
+    <% end %>
+    
+    <div><%= current_user.name %></div>
+    <div><%= current_user.display_name %></div>
+    <%= link_to "編集", edit_user_registration_path(current_user.id) %>
+  </div>
+
+  <div>
+    <div><%= link_to "ライブ予定", user_path(current_user.id) %></div>
+    <div><%= link_to "参加記録", past_joins_user_path(current_user.id) %></div>
+    <div><%= link_to "ブログ" %></div>
+  </div>
+</div>
+
+<div class="col-lg-9">
+  <div>
+    <div>ブログ一覧</div>
+    <%= link_to "ブログ作成",new_blog_path %>
+  </div>
+  <% if @blogs.blank? %>
+    <div>まだブログの作成がありません。</div>
+  <% end %>
+  <% @blogs.each do |blog| %>
+    <div class="d-flex flex-row bd-highlight mb-1">
+      <div class="card" style="width: 8rem;">
+        <div class="card-body">
+          <div>
+            <%= blog.created_at.strftime("%Y") %>
+          </div>
+          <div>
+            <%= blog.created_at.strftime("%m.%d") %>
+          </div>
+          <div>
+            <%= blog.created_at.strftime("%a") %>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="width: 40rem;">
+        <div class="card-body detail", id="<%= blog.id %>">
+          <div>
+            <%= blog.title %>
+          </div>
+          <div>
+            <%= blog.event.title %>
+          </div>
+          <%= link_to "詳細",blog_path(blog.id) %>
+          <%= link_to "編集", edit_blog_path(blog.id) %>
+          <%= link_to "削除", blog_path(blog.id), method: :delete %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to "戻る", 'javascript:history.back()' %>
+</div>
