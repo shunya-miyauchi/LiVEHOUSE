@@ -30,6 +30,9 @@
   justify-content: flex-end;
   align-items: center;
   padding: 0.5rem 1rem;
+  border-bottom: 1px solid white;
+  // text-decoration:underline;
+  // text-decoration-color: white;
   .header_nav * {
     color: white;
     font-family: 'Kosugi Maru', sans-serif;
@@ -53,17 +56,8 @@
 
 main {
   font-family: 'Kosugi Maru', sans-serif;
+  // height: 2000px;
   padding-top: 56px ;
+  // color: white;
+  // background-color: black;
 }
-
-
-
-// .container-fluid {
-//   position: relative;
-//   header {
-//     background-color: black;
-//     color: white;
-//     height: 2rem;
-//     font-size: 1rem;
-//   }
-// }
