@@ -1,24 +1,21 @@
 <div class="col-lg-3">
-  <div class="">
-
-    <%= search_form_for @q_livehouse, url: livehouse_events_path(@livehouse) do |f| %>
-      <div><%= f.label "ライブハウス検索" %></div>
-      <div>
-        <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area %>
-      </div>
-      <%= f.submit '検索', class: "search_btn" %>
-    <% end %>
-
-    <div id="livehouses_area">
-      <ul class="favorite_group">
-        <% @result_livehouses.each do |livehouse| %>
-          <li class="favorite_list">
-            <span id="favorite_<%= livehouse.id %>"><%= render 'events/livehouse', { livehouse: livehouse } %></span>
-            <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id}),class: "favorite_item" %>
-          </li>
-        <% end %>
-      </ul>
+  <%= search_form_for @q_livehouse, url: livehouse_events_path(@livehouse) do |f| %>
+    <div><%= f.label "ライブハウス検索" %></div>
+    <div>
+      <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area %>
     </div>
+    <%= f.submit '検索', class: "search_btn" %>
+  <% end %>
+
+  <div id="livehouses_area">
+    <ul class="favorite_group">
+      <% @result_livehouses.each do |livehouse| %>
+        <li class="favorite_list">
+          <span id="favorite_<%= livehouse.id %>"><%= render 'events/livehouse', { livehouse: livehouse } %></span>
+          <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id}),class: "favorite_item" %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
 
@@ -33,7 +30,6 @@
         <a class="nav-link" id="livehouse-tab" data-toggle="tab" href="#livehouse" role="tab" aria-controls="livehouse" aria-selected="false"><%= @livehouse.name %></a>
       </li>
       <%= search_form_for @q_event, as: :date_search, url: livehouse_events_path(@livehouse,q: {place_id_eq: @livehouse.place_id}) do |f| %>
-      <li>
         <div class="search_form">
           <%= f.date_field :held_on_gteq %>
           <div class="line" >〜</div>
@@ -41,7 +37,6 @@
           <%= f.submit '検索', class: "search_btn" %>
         </div>
       <% end %>
-    </li>
     </ul>
   </div>
 
