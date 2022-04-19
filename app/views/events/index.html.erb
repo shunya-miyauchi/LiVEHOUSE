@@ -1,69 +1,78 @@
 <div class="col-lg-3">
   <div class="">
+
     <%= search_form_for @q_livehouse, url: livehouse_events_path(@livehouse) do |f| %>
-      <div>
-        <%= f.label "ライブハウス検索" %>
-      </div>
+      <div><%= f.label "ライブハウス検索" %></div>
       <div>
         <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area %>
       </div>
-      <%= f.submit '検索' %>
-    <% end %>
-    <%= search_form_for @q_event, as: :date_search, url: livehouse_events_path(@livehouse,q: {place_id_eq: @livehouse.place_id}) do |f| %>
-      <div>
-        <%= f.date_field :held_on_gteq %>
-        <span>~</span>
-        <%= f.date_field :held_on_lteq %>
-      </div>
-      <%= f.submit '検索' %>
+      <%= f.submit '検索', class: "search_btn" %>
     <% end %>
 
-
-    <ul class="">
-      <% @result_livehouses.each do |livehouse| %>
-        <li class="">
-          <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id}) %>
-          <span id="favorite_<%= livehouse.id %>"><%= render 'events/livehouse', { livehouse: livehouse } %></span>
-        </li>
-      <% end %>
-    </ul>
+    <div id="livehouses_area">
+      <ul class="favorite_group">
+        <% @result_livehouses.each do |livehouse| %>
+          <li class="favorite_list">
+            <span id="favorite_<%= livehouse.id %>"><%= render 'events/livehouse', { livehouse: livehouse } %></span>
+            <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id}),class: "favorite_item" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
 
 
 <div class="col-lg-9">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <a class="nav-link active" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true">スケジュール</a>
+  <div class="tabs row">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true">スケジュール</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="livehouse-tab" data-toggle="tab" href="#livehouse" role="tab" aria-controls="livehouse" aria-selected="false"><%= @livehouse.name %></a>
+      </li>
+      <%= search_form_for @q_event, as: :date_search, url: livehouse_events_path(@livehouse,q: {place_id_eq: @livehouse.place_id}) do |f| %>
+      <li>
+        <div class="search_form">
+          <%= f.date_field :held_on_gteq %>
+          <div class="line" >〜</div>
+          <%= f.date_field :held_on_lteq %>
+          <%= f.submit '検索', class: "search_btn" %>
+        </div>
+      <% end %>
     </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" id="livehouse-tab" data-toggle="tab" href="#livehouse" role="tab" aria-controls="livehouse" aria-selected="false">ライブハウス情報</a>
-    </li>
-  </ul>
-
+    </ul>
+  </div>
 
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active row" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
+    <div class="tab-pane fade show active" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
         <div class="schedule row" >
           <%= render "schedule", {result_events: @result_events} %> 
         </div>    
-        <%= link_to_next_page @result_events, 'もっと見る', remote: true, id: 'more_link' %>
+        <%= link_to_next_page @result_events, 'もっとみる', remote: true, id: 'more_link' %>
     </div>
 
     <div class="tab-pane fade" id="livehouse" role="tabpanel" aria-labelledby="livehouse-tab">
-      <div>
-        <%= @livehouse.name %>
+      <div class="row"> 
+        <div class="col-lg-5">
+          <div class="address">
+            <div class="label">住所</div>
+            <%= @livehouse.address %>
+          </div>
+          <div class="url">
+            <div class="label">公式HP</div>
+            <%= link_to @livehouse.url %>
+          </div>
+          <div class="station">
+            <div class="label">最寄駅</div>
+            <%= @livehouse.nearest_station %>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div id='map'></div>
+        </div>
       </div>
-      <div>
-        <%= @livehouse.address %>
-      </div>
-      <div>
-        <%= link_to "ホームページ", @livehouse.url %>
-      </div>
-      <div>
-        <%= @livehouse.nearest_station %>
-      </div>
-      <%# <div id='map'></div> %>
     </div>
   </div>
 </div>
