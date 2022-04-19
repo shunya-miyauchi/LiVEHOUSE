@@ -5,7 +5,7 @@
   <%= search_form_for @q_livehouse, url: livehouses_path, remote: true do |f| %>
     <div class="search_livehouse">
       <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
-      <%= f.submit '検索', class: "search_btn btn btn-outline-danger" %>
+      <%= f.submit '検索', class: "search_btn" %>
     </div>
   <% end %>
 
