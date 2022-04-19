@@ -1,14 +1,18 @@
-<h2><%= t('.forgot_your_password') %></h2>
+<%= image_tag "top_img.png", class: "top_img" %>
 
+<div class="password col-sm-6 col-lg-6 col-xl-5">  
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
+  <div class="title">
+    <%= t('.forgot_your_password') %>
+  </div>
   <div>再設定方法をメールにてお送りします。</div>
-  <div class="field">
+  
+  <div class="email">
+    <%= render "devise/shared/error_messages", resource: resource, attribute: :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit t('.send_me_reset_password_instructions') %>
+  <div class="submit">
+    <%= f.submit t('.send_me_reset_password_instructions'), class: "button" %>
   </div>
 <% end %>
