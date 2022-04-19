@@ -1,23 +1,4 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
-
-
-.container-fluid.users {
-
-  // プロフィール
-  .user_profile {
-    .img {
-      border: thin solid white;
-      border-radius: 50%;
-      width: 80%;
-      height: auto;
-      object-fit: cover;
-      margin: 20px 20px 20px 0px;
-    }
-  }
-
-
+.container-fluid.favorites {
   // スケジュール
   #schedule {
     padding: 1.5rem 0;
@@ -59,6 +40,40 @@
           padding: 1rem 1rem 0 1rem;
         }
       }
+    }
+    #more_link {
+      background-color: white;
+      color: black;
+      padding: 5px;
+      border-radius: 0.25rem;
+    }
+  }
+  // ライブハウス一覧
+  #livehouses_area {
+    overflow-y: auto;
+    padding-top: 2%;
+    width: 70%;
+    height: 10rem;
+    background-color: transparent;
+    text-align: start;
+    .favorite_group {
+      padding: 0;
+      li span {
+        display: flex;
+        align-items: center;
+      }
+      .favorite_list {
+        display: flex;
+        list-style: none;
+        text-align: start;
+        align-items: center;
+        align-content: center;
+        .favorite_item {
+          padding-left: 5%;
+          color: white;
+          font-size: 1.2rem;
+        }
+      }  
     }
   }
 }

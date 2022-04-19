@@ -1,4 +1,4 @@
-class BasementbarScraping < ApplicationRecord
+class Scraping::Basementbar < ApplicationRecord
   require 'open-uri'
 
   class << self
@@ -48,11 +48,7 @@ class BasementbarScraping < ApplicationRecord
 
     def title(link_doc)
       title = link_doc.xpath("//div[@class='main_title']")
-      if title.blank?
-        '未定'
-      else
-        title.text || '未定'
-      end
+      title.text.presence || '未定'
     end
 
     def held_on(link_doc)

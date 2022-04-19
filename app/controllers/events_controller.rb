@@ -4,12 +4,14 @@ class EventsController < ApplicationController
   before_action :q_event
 
   def index
-    @events = @livehouse.events.date_after_today.sort_held_on
+    return unless request.xhr?
+
+    render :schedule
   end
 
   def show
     @event = Event.find(params[:id])
-    @comments = @event.comments
+    @comments = @event.comments.includes(:user)
     @comment = Comment.new
   end
 
@@ -33,9 +35,9 @@ class EventsController < ApplicationController
     @q_event = @livehouse.events.ransack(params[:date_search], search_key: :date_search)
     @result_events =
       if @q_event.conditions.present?
-        @q_event.result(distinct: true).sort_held_on
+        @q_event.result(distinct: true).sort_held_on.page(params[:page]).per(12)
       else
-        @livehouse.events.date_after_today.sort_held_on
+        @livehouse.events.date_after_today.sort_held_on.page(params[:page]).per(12)
       end
   end
 end

@@ -16,6 +16,7 @@ Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
     - "config/initializers/carrierwave.rb"
+    - "config/environments/development.rb"
 
 # Assignment: 変数への代入
 # Branch: メソッド呼び出し

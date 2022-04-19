@@ -1,4 +1,4 @@
-class OnestScraping < ApplicationRecord
+class Scraping::SpotifyOnest < ApplicationRecord
   require 'open-uri'
 
   class << self
@@ -49,11 +49,7 @@ class OnestScraping < ApplicationRecord
 
     def title(link_doc)
       title = link_doc.xpath("//span[@class='p-schedule-detail__title-main']")
-      if title.blank?
-        '未定'
-      else
-        title.text.to_s.strip || '未定'
-      end
+      title.text.to_s.strip.presence || '未定'
     end
 
     def held_on(link_doc)

@@ -19,23 +19,24 @@ Layout/MultilineBlockLayout:
 Layout/LineLength:
   Max: 156
   Exclude:
-    - 'app/models/onest_scraping.rb'
-    - 'app/models/basementbar_scraping.rb'
+    - 'app/models/scraping/spotify_onest.rb'
+    - 'app/models/scraping/basementbar.rb'
 
 Metrics/AbcSize:
   Exclude:
-    - 'app/models/onest_scraping.rb'
-    - 'app/models/basementbar_scraping.rb'
+    - 'app/models/scraping/spotify_onest.rb'
+    - 'app/models/scraping/basementbar.rb'
 
 Security/Open:
   Exclude:
-    - 'app/models/onest_scraping.rb'
-    - 'app/models/basementbar_scraping.rb'
+    - 'app/models/scraping/spotify_onest.rb'
+    - 'app/models/scraping/basementbar.rb'
+    - "db/seeds.rb"
 
 Metrics/MethodLength:
   Exclude:
-    - 'app/models/onest_scraping.rb'
-    - 'app/models/basementbar_scraping.rb'
+    - 'app/models/scraping/spotify_onest.rb'
+    - 'app/models/scraping/basementbar.rb'
 
 Style/GuardClause:
   Exclude:

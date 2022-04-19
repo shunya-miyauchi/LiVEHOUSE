@@ -7,10 +7,8 @@ main.livehouses {
   padding-top: 0;
 }
 
-
-
 .container-fluid.livehouses {
-  height: 1080px;
+  height: 1800px;
   position: relative;
   .header_top {
     background-color: transparent;
@@ -29,19 +27,6 @@ main.livehouses {
       align-items: center;
       padding: 7px;
     }
-    // .header_nav li {
-    //  margin-left: 10px; 
-    // }
-    // .header_nav li:first-child {
-    //   background-color: transparent;
-    //   border: 2px solid red;
-    //   border-radius: 0.25rem;
-    // }
-    // .header_nav li:nth-of-type(2) {
-    //   background-color: transparent;
-    //   border: 2px solid white;
-    //   border-radius: 0.25rem;
-    // }
     .header_nav {
       display: flex;
       flex-wrap: wrap;
@@ -95,7 +80,7 @@ main.livehouses {
     #q_place_id_eq {
       display: inline-block;
       width: 80%;
-      height: calc(2em + 2rem + 2px);
+      height: calc(2rem + 2rem + 2px);
       font-size: 1rem;
       padding: 0.375rem 1.75rem 0.375rem 0.75rem;
       font-weight: 400;
@@ -148,5 +133,27 @@ main.livehouses {
         }
       }  
     }
+  }
+  .explanation {
+    width: 100%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 1250px;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .title {
+      font-size: 3rem;
+      text-decoration:underline;
+      text-decoration-color: red;
+      text-align: center;
+    }
+    .content {
+      text-align: center;
+      padding: 10px 0px 40px 0px;
+      font-size: 1.2rem;
+    }
+
   }
 }

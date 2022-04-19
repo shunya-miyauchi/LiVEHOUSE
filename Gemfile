@@ -23,6 +23,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'fog-aws'
 gem 'geocoder'
+gem 'kaminari'
 gem 'mini_magick'
 gem 'nokogiri'
 gem 'rails_admin', '~> 3.0'
@@ -48,6 +49,7 @@ end
 
 group :development do
   # Default
+  gem 'bullet'
   gem 'listen', '~> 3.2'
   gem 'rubocop', require: false
   gem 'spring'

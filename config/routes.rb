@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       get 'past_joins'
     end
   end
-  resources :favorites, only: %i[index show create destroy]
+  resources :favorites, only: %i[index create destroy]
   resources :joins, only: %i[create destroy]
   resources :blogs
 
