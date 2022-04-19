@@ -158,7 +158,6 @@ nav.pagination {
         background-color: transparent;
         background-clip: border-box;
         border: 1px solid white;
-        border-radius: 0.25rem;
         .card_header {
           background-color: white;
           color: black;
@@ -278,6 +277,7 @@ nav.pagination {
           #comment_content {
             background-color: transparent;
             width: 80%;
+            color: white;
           }
         }
         input {

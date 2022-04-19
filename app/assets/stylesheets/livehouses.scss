@@ -8,7 +8,7 @@ main.livehouses {
 }
 
 .container-fluid.livehouses {
-  height: 1080px;
+  height: 1800px;
   position: relative;
   .header_top {
     background-color: transparent;
@@ -133,5 +133,27 @@ main.livehouses {
         }
       }  
     }
+  }
+  .explanation {
+    width: 100%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 1250px;
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .title {
+      font-size: 3rem;
+      text-decoration:underline;
+      text-decoration-color: red;
+      text-align: center;
+    }
+    .content {
+      text-align: center;
+      padding: 10px 0px 40px 0px;
+      font-size: 1.2rem;
+    }
+
   }
 }
