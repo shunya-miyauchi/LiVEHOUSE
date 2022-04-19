@@ -1,6 +1,8 @@
-# LiVEHOUSE
-- - -
-ライブハウスを核に新しいアーティストや人との出会いに繋がるアプリ
+![Livehouse](/app/assets/images/top_logo_only.png) 
+  
+音楽を全身で感じることができるライブハウス。
+「LiVEHOUSE」は、ふと思いついた時に行きたいライブハウスを探せるアプリです。
+
 
 ## 開発言語
 - - -
@@ -17,7 +19,7 @@
 - - -
 - ransack(検索)
 - nokogiri(Webスクレイピング)
-- gmaps4rails/geocoder(Google Mapの活用）
+- Google Map API(geocoder）
 
 ## 実行手順
 - - -
