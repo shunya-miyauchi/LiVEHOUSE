@@ -5,6 +5,7 @@ class EventsController < ApplicationController
 
   def index
     return unless request.xhr?
+
     render :schedule
   end
 

@@ -5,6 +5,7 @@ class FavoritesController < ApplicationController
     @livehouses = current_user.favorite_livehouses
     @events = Event.where(livehouse_id: @livehouses.ids).date_after_today.sort_held_on.page(params[:page]).per(12)
     return unless request.xhr?
+
     render :schedule
   end
 
@@ -21,5 +22,4 @@ class FavoritesController < ApplicationController
   def set_livehouse
     @livehouse = Livehouse.find(params[:id])
   end
-
 end

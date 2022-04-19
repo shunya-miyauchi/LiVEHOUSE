@@ -23,12 +23,12 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'fog-aws'
 gem 'geocoder'
+gem 'kaminari'
 gem 'mini_magick'
 gem 'nokogiri'
 gem 'rails_admin', '~> 3.0'
 gem 'ransack'
 gem 'rexml'
-gem 'kaminari'
 
 group :development, :test do
   # Default
@@ -49,12 +49,12 @@ end
 
 group :development do
   # Default
+  gem 'bullet'
   gem 'listen', '~> 3.2'
   gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
-  gem 'bullet'
 end
 
 group :test do

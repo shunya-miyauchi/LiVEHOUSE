@@ -5,7 +5,7 @@ class Scraping::Basementbar < ApplicationRecord
     def execute
       basementbar_import
     end
-    
+
     private
 
     def basementbar_import
