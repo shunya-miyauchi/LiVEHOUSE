@@ -14,7 +14,7 @@
   </head>
 
   <body class="container-fluid <%=controller.controller_name %>">
-    <div class="row">
+    <div class="wrapper row">
       <header>
         <% if user_signed_in? %>
           <div class="header_top">
@@ -69,7 +69,9 @@
         </div>
       </main>
       <footer>
-      
+        <div class="content">
+          Copyright © 2022 miyauchi All Rights Reserved.
+        </div>
       </footer>
     </div>
   </body>
