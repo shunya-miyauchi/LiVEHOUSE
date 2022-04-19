@@ -4,11 +4,13 @@ class UsersController < ApplicationController
   before_action :set_user
 
   def show
-    @events = @user.join_events.date_after_today.sort_held_on
+    @events = @user.join_events.date_after_today.sort_held_on.page(params[:page]).per(12)
+    return unless request.xhr?
+    render 'events/schedule'
   end
 
   def past_joins
-    @events = @user.join_events.date_before_today.reverse_held_on
+    @events = @user.join_events.date_before_today.reverse_held_on.page(params[:page]).per(12)
   end
 
   private

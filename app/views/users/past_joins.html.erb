@@ -1,16 +1,17 @@
 <div class="col-lg-3">
-  <div>
-    <div>プロフィール</div>
-
-    <% if @user.image? %>
-      <div><%= image_tag @user.image.url(:thumb100) %></div>
-    <% else %>
-      <div><%= image_tag "default.png" %></div>
-    <% end %>
-    
-    <div><%= @user.name %></div>
-    <div><%= @user.display_name %></div>
-    <%= link_to "編集", edit_user_registration_path(@user.id) %>
+  <div class="user_profile row">
+    <div class="col-sm-6 col-lg-6">
+      <% if @user.image? %>
+        <%= image_tag @user.image.url(:thumb300),class:"img" %>
+      <% else %>
+        <%= image_tag "default.png",class:"img" %>
+      <% end %>
+    </div>
+    <div class="col-sm-6 col-lg-6">
+      <div><%= @user.name %></div>
+      <div><%= @user.display_name %></div>
+      <%= link_to "編集", edit_user_registration_path(@user.id) %>
+    </div>
   </div>
 
   <div>
@@ -22,37 +23,13 @@
 
 <div class="col-lg-9">
   <div>参加記録</div>
-  <% if @events.blank? %>
-    <div>参加したイベントはありません。</div>
-  <% end %>
-  <% @events.each do |event| %>
-    <div class="d-flex flex-row bd-highlight mb-1">
-      <div class="card" style="width: 8rem;">
-        <div class="card-body">
-          <div>
-            <%= event.held_on.strftime("%Y") %>
-          </div>
-          <div>
-            <%= event.held_on.strftime("%m.%d") %>
-          </div>
-          <div>
-            <%= event.held_on.strftime("%a") %>
-          </div>
-        </div>
-      </div>
-      <div class="card" style="width: 40rem;">
-        <div class="card-body detail", id="<%= event.id %>">
-          <div>
-            <%= event.title %>
-          </div>
-          <div>
-            <%= event.livehouse.name %>
-          </div>
-          <div>
-            <%= event.artist %>
-          </div>
-        </div>
-      </div>
+    <div id="schedule">
+    <% if @events.blank? %>
+      <div>参加したイベントはありません。</div>
+    <% end %>
+    <div class="schedule row" >
+      <%= render "schedule", { events: @events} %> 
     </div>
-  <% end %>
+    <%= link_to_next_page @events, 'もっとみる', remote: true, id: 'more_link' %>
+  </div>
 </div>
