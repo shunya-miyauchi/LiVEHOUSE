@@ -1,0 +1,30 @@
+<% events.each do |event| %>
+  <% if event == events.this_week[0] %>
+    <div class="col-12">今週のライブ</div>
+  <% elsif event == events.next_week[0] %>
+    <div class="col-12">来週のライブ</div>
+  <% elsif event == events.where('held_on >= ?', Date.current.since(2.week).beginning_of_week)[0] %>
+    <div class="col-12">それ以降</div>
+  <% end %>
+  <div class="col-xl-3 col-lg-4 col-md-6 mb-4 body_card">
+    <div class="schedule_card">
+      <div class="card_header">
+        <span class="year"><%= event.held_on.strftime("%Y") %></span>
+        <span class="month"><%= event.held_on.strftime("%-m.%d") %></span>
+        <span class="day"><%= event.held_on.strftime("%a") %></span>     
+      </div>
+      <div class="card_title", id="<%= event.id %>">
+        <%= event.title %>
+      </div>
+      <div class="card_artist">
+        <%= event.artist.truncate(70, separator: "/",omission: '...他') %>
+      </div>
+      <div>
+        <%= link_to "詳細",livehouse_event_path(event.livehouse_id,event.id),class: "detail" %>
+        <span id="join_<%= event.id %>">
+          <%= render 'joins/select', { event: event } %>
+        </span>
+      </div>
+    </div>
+  </div>
+<% end %>

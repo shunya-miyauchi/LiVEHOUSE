@@ -1,0 +1,80 @@
+.container-fluid.favorites {
+  // スケジュール
+  #schedule {
+    padding: 1.5rem 0;
+    .body_card {
+      height: 260px;
+      margin: 0px;
+      padding: 0 0.3rem;
+      .schedule_card {
+        height: 100%;
+        position: relative;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        background-color: transparent;
+        background-clip: border-box;
+        border: 1px solid white;
+        border-radius: 0.25rem;
+        .card_header {
+          background-color: white;
+          color: black;
+          .year {
+            font-size: 0.7rem;
+          }
+          .month {
+            font-size: 1.5rem;
+          }
+          .day {
+            font-size: 1rem;
+          }
+        }
+        .card_title {
+          margin: 1rem 1rem 0 1rem;
+          font-size: 1rem;
+          background-color: rgb(255, 49, 49);
+          // text-decoration:underline;
+          // text-decoration-color: red;
+        }
+        .card_artist {
+          font-size: 1.2rem;
+          padding: 1rem 1rem 0 1rem;
+        }
+      }
+    }
+    #more_link {
+      background-color: white;
+      color: black;
+      padding: 5px;
+      border-radius: 0.25rem;
+    }
+  }
+  // ライブハウス一覧
+  #livehouses_area {
+    overflow-y: auto;
+    padding-top: 2%;
+    width: 70%;
+    height: 10rem;
+    background-color: transparent;
+    text-align: start;
+    .favorite_group {
+      padding: 0;
+      li span {
+        display: flex;
+        align-items: center;
+      }
+      .favorite_list {
+        display: flex;
+        list-style: none;
+        text-align: start;
+        align-items: center;
+        align-content: center;
+        .favorite_item {
+          padding-left: 5%;
+          color: white;
+          font-size: 1.2rem;
+        }
+      }  
+    }
+  }
+}
