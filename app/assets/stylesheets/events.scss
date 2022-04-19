@@ -7,7 +7,8 @@ nav.pagination {
 }
 
 .container-fluid.events {
-  // ライブハウス検索
+
+// ライブハウス検索
   .livehouse_search {
     text-align: center;
     border: 1px solid white;
@@ -81,7 +82,6 @@ nav.pagination {
       }  
     }
   }
-
 
 // タブ・スケジュール検索
   .tabs {
@@ -211,6 +211,92 @@ nav.pagination {
       height: 300px;
       width: 80%;
       margin-bottom: 20px;
+    }
+  }
+
+// showページ
+// イベント詳細
+  .event_detail {
+    width: 100%;
+    text-align: center;
+    .date {
+      font-size: 1.5rem;
+      padding-bottom: 20px;
+    }
+    .title {
+      font-size: 2rem;
+      padding-bottom: 20px;
+    }
+  }
+  .table_form {
+    padding: 0;
+    table {
+      height: 100%;
+      margin: 0px;
+      color: white;
+      td {
+        vertical-align: middle;
+        font-size: 1rem;
+      }
+      th {
+        vertical-align: middle;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+// チャット
+  .comments {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: auto;
+    .comments_field {
+      display: flex;
+      justify-content: center;
+      .comments_area {
+        overflow-y: auto;
+        width: 80%;
+        height: 20rem;
+        border: 1px solid white;
+        margin-bottom: 20px;
+        ul {
+          list-style: none;
+        }
+      }
+    }
+    #comment_form {
+      width: 70%;
+      form {
+      width: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+        .field {
+          width: 100%;
+          #comment_content {
+            background-color: transparent;
+            width: 80%;
+          }
+        }
+        input {
+          font-size: 0.8rem;
+          font-family: 'Kosugi Maru', sans-serif;
+          color: #dc3545;
+          border: 1px solid red;
+          display: inline-block;
+          font-weight: 400;
+          text-align: center;
+          vertical-align: middle;
+          user-select: none;
+          background-color: transparent;
+          padding: 0.1rem 0.5rem;
+          margin-left: 1rem;
+          border-radius: 0.25rem;
+          transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+      }
     }
   }
 }

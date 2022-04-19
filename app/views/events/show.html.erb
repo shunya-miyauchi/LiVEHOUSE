@@ -1,37 +1,41 @@
-<div>
-  <div>
-    <%= @event.held_on.strftime("%Y年%m月%d日(%a)") %>
-  </div>
-  <div>
-    <%= @event.title %>
+<div class="event_detail">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="date">
+        <%= @event.held_on.strftime("%Y年%m月%d日(%a)") %>
+      </div>
+      <div class="title">
+        <%= @event.title %>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <div class="">
+  <div class="row">
+    <div class="table_form col-lg-6">
       <table class="table table-bordered">
         <tr>
           <td>開場／開演</td>
-          <td><%= @event.open %>／<%= @event.start %></td>
+          <th><%= @event.open %> ／ <%= @event.start %></th>
         </tr>
         <tr>
           <td>チケット代</td>
-          <td><%= @event.price %>円</td>
+          <th><%= @event.price %>円</th>
         </tr>
         <tr>
           <td>出演者</td>
-          <td><%= h(@event.artist).gsub("/", "</br>").html_safe %></td>
+          <th><%= h(@event.artist).gsub("/", "</br>").html_safe %></th>
         </tr>
         <tr>
-          <td>リンク</td>
-          <td><%= link_to "イベント詳細ページ", "#{@event.url}" %></td>
+          <td>URL</td>
+          <th><%= link_to "イベント詳細ページへ", "#{@event.url}" %></th>
         </tr>
       </table>
     </div>
 
-    <div>
-      <p>コメント</p>
-      <div class="overflow-auto" style="width:300px; height:300px;">
-        <div id="comments_area">
+    <div class="comments col-lg-6">
+      <p>チャット</p>
+      <div class="comments_field">
+        <div class="comments_area">
           <%= render 'index', { comments: @comments } %>
         </div>
       </div>
@@ -42,5 +46,4 @@
       <% end %>
     </div>
   </div>
-  <%= link_to "戻る", 'javascript:history.back()' %>
 </div>
