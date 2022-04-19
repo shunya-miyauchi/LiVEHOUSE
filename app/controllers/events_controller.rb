@@ -34,9 +34,9 @@ class EventsController < ApplicationController
     @q_event = @livehouse.events.ransack(params[:date_search], search_key: :date_search)
     @result_events =
       if @q_event.conditions.present?
-        @q_event.result(distinct: true).sort_held_on.page(params[:page]).per(5)
+        @q_event.result(distinct: true).sort_held_on.page(params[:page]).per(12)
       else
-        @livehouse.events.date_after_today.sort_held_on.page(params[:page]).per(5)
+        @livehouse.events.date_after_today.sort_held_on.page(params[:page]).per(12)
       end
   end
 end
