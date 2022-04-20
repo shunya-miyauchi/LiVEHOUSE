@@ -2,7 +2,7 @@
   <div class="user_profile row">
     <div class="col-sm-6 col-lg-6">
       <% if @user.image? %>
-        <%= image_tag @user.image.url(:thumb300),class:"img" %>
+        <%= image_tag @user.image.url,class:"img" %>
       <% else %>
         <%= image_tag "default.png",class:"img" %>
       <% end %>

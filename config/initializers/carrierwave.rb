@@ -24,9 +24,9 @@ CarrierWave.configure do |config|
     when 'production'
       config.fog_directory = 'livehouse-production'
       config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/livehouse-production'
-    when 'development'
-      config.fog_directory = 'livehouse-development'
-      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/livehouse-development'
+    # when 'development'
+    #   config.fog_directory = 'livehouse-development'
+    #   config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/livehouse-development'
     end
   end
 end
