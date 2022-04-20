@@ -20,16 +20,19 @@ html {
   height: 100%;
   width: 100%;
 }
+
 body {
   height: 100%;
   width: 100%;
+  font-family: 'BIZ UDPGothic', sans-serif !important;
 }
+
 .wrapper {
   height: 100%;
 }
 
 .header_top {
-  height: 50px;
+  height: 60px;
   display: flex;
   position: fixed;
   top: 0;
@@ -45,16 +48,23 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   .header_nav * {
     color: white;
-    font-family: 'Kosugi Maru', sans-serif;
-    padding-left: 5px;
+    padding-left: 15px;
   }
   .header_nav {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-end;
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
     margin-top: 0;
+    .header-item {
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
     .header_link *{
     display: block;
     padding: 0.5rem 1rem;
@@ -65,7 +75,6 @@ body {
 }
 
 main {
-  font-family: 'Kosugi Maru', sans-serif;
   // height: 2000px;
   padding-top: 80px ;
   color: white;
