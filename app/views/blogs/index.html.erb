@@ -3,7 +3,7 @@
     <div>プロフィール</div>
 
     <% if current_user.image? %>
-      <div><%= image_tag current_user.image.url(:thumb300) %></div>
+      <div><%= image_tag current_user.image.url %></div>
     <% else %>
       <div><%= image_tag "default.png" %></div>
     <% end %>
