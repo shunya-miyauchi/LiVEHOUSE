@@ -1,6 +1,10 @@
 ja:
   activerecord:
     models:
+      blog: ブログ
+      comment: コメント
+      favorite: お気に入り
+      join: 参加
       event: イベント
       livehouse: ライブハウス
       user: ユーザー

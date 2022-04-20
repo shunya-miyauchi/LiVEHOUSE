@@ -1,11 +1,4 @@
 ja:
-  activerecord:
-    models:
-      event: Event
-      livehouse: Livehouse
-      comment: Comment
-      favorite: Favorite
-      user: User
   admin:
     js:
       true: True
