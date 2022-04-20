@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   def show
     @events = @user.join_events.includes(:livehouse).date_after_today.sort_held_on.page(params[:page]).per(12)
     return unless request.xhr?
-
     render 'schedule'
   end
 
