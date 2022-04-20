@@ -48,17 +48,17 @@ Livehouse.create!([
 end
 
 # events
-from = Time.parse('2022/4/1')
-to = Time.parse('2022/4/30')
-open = 1900
-start = 2100
+from = Time.parse('2022/4/21')
+to = Time.parse('2022/5/30')
+open = 10
+start = 59
 5.times do |_n|
   Livehouse.all.each_with_index do |livehouse, idx|
     Event.create!(
       title: "タイトル#{idx + 1}",
       held_on: Random.rand(from..to),
-      open: Random.rand(open..start),
-      start: Random.rand(open..start),
+      open: "19:#{Random.rand(open..start)}",
+      start: "20:#{Random.rand(open..start)}",
       price: 3000,
       artist: "ミヤウチ#{idx + 1}",
       url: 'https://diveintocode.jp/',
