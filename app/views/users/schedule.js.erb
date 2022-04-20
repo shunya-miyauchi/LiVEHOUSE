@@ -1,3 +1,5 @@
 $('#more_link').remove();
-$('.schedule').append("<%= escape_javascript(render partial:'schedule',locals: { events: @events } ) %>")
-$('.schedule').after("<%= escape_javascript(link_to_next_page(@events, 'もっと見る', remote: true, id: 'more_link')) %>");
+$('.schedule_future').append("<%= escape_javascript(render partial:'schedule',locals: { events: @events_future } ) %>");
+$('.schedule_future').after("<%= escape_javascript(link_to_next_page(@events_future, 'もっと見る', remote: true, id: 'more_link')) %>");
+$('.schedule_past').append("<%= escape_javascript(render partial:'schedule',locals: { events: @events_past } ) %>");
+$('.schedule_past').after("<%= escape_javascript(link_to_next_page(@events_past, 'もっと見る', remote: true, id: 'more_link')) %>");
