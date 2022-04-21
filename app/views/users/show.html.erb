@@ -23,7 +23,6 @@
   <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
     <a class="nav-link active" id="v-pills-future-tab" data-toggle="pill" href="#v-pills-future" role="tab" aria-controls="v-pills-future" aria-selected="true">ライブ予定</a>
     <a class="nav-link" id="v-pills-past-tab" data-toggle="pill" href="#v-pills-past" role="tab" aria-controls="v-pills-past" aria-selected="false">参戦記録</a>
-    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">ブログ</a>
   </div>
 
   <!-- ライブハウス検索窓 -->
@@ -71,7 +70,7 @@
             <div class="schedule_future row" >
               <%= render "schedule", { events: @events_future} %> 
             </div>
-            <%= link_to_next_page @events_future, 'もっとみる', remote: true, id: 'more_link' %>
+            <%= link_to_next_page @events_future, 'さらに表示', remote: true, id: 'more_link' %>
         </div>
       </div>
     </div>
@@ -100,55 +99,7 @@
           <div class="schedule_past row" >
             <%= render "schedule", { events: @events_past} %> 
           </div>
-          <%= link_to_next_page @events_future, 'もっとみる', remote: true, id: 'more_link' %>
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-      <div class="row">
-        <div class="title_icon col-12">
-          <div class="title">ブログ</div>
-          <%= link_to new_blog_path do %>
-            <span class="material-icons">post_add</span>
-          <% end %>
-        </div>
-      </div>
-      <div class="col-12">
-        <% if current_user.blogs.blank? %>
-          <div>まだブログの作成がありません。</div>
-        <% end %>
-        <div class="row">
-          <% current_user.blogs.reverse_each do |blog| %>
-            <div class="col-6 body_card">
-              <div class="blog_card">
-                <div class="card_header">
-                  <div class="title"><%= blog.title %></div>
-                  <div class="dropdown">
-                    <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                      <span class="material-icons">expand_circle_down</span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <%= link_to "詳細",blog_path(blog.id),class:"dropdown-item detail" %>
-                      <%= link_to "編集", edit_blog_path(blog.id),class:"dropdown-item dit" %>
-                      <%= link_to "削除", blog_path(blog.id), method: :delete,class:"dropdown-item delete" %>
-                    </div>
-                </div>
-              
-                </div>
-                <div class="card_body">
-                  <div class="content"><%= blog.content %></div>
-                </div>
-                <div class="card_footer">
-                  <div class="event_held_on"><%= blog.event.held_on.strftime("%y/%m/%d") %></div>
-                  <div class="event_title"><%= blog.event.title %></div>
-                  <div class="blog_create">created_at:<%= blog.created_at.strftime(" %y/%m/%d %H:%M") %></div>
-                </div>
-              </div>
-            </div>
-          <% end %>
+          <%= link_to_next_page @events_future, 'さらに表示', remote: true, id: 'more_link' %>
         </div>
       </div>
     </div>

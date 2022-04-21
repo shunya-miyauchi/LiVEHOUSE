@@ -1,0 +1,28 @@
+      <% blogs.reverse_each do |blog| %>
+        <div class="col-6 body_card">
+          <div class="blog_card">
+            <div class="card_header">
+              <div class="title"><%= blog.title %></div>
+              <div class="dropdown">
+                <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                  <span class="material-icons">expand_circle_down</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <%= link_to "詳細",blog_path(blog.id),class:"dropdown-item detail" %>
+                  <%= link_to "編集", edit_blog_path(blog.id),class:"dropdown-item dit" %>
+                  <%= link_to "削除", blog_path(blog.id), method: :delete,class:"dropdown-item delete" %>
+                </div>
+            </div>
+          
+            </div>
+            <div class="card_body">
+              <div class="content"><%= blog.content %></div>
+            </div>
+            <div class="card_footer">
+              <div class="event_held_on"><%= blog.event.held_on.strftime("%y/%m/%d") %></div>
+              <div class="event_title"><%= blog.event.title %></div>
+              <div class="blog_create">created_at:<%= blog.created_at.strftime(" %y/%m/%d %H:%M") %></div>
+            </div>
+          </div>
+        </div>
+      <% end %>

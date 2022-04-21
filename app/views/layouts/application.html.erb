@@ -25,6 +25,7 @@
               <% if alert %>
                 <p class="alert alert-error"><%= alert %></p>
               <% end %>
+              
               <ul class="header_nav">
                 <li class="header-item">
                   <%= link_to "トップ", root_path, class: "header-link" %>
@@ -34,6 +35,9 @@
                 </li>
                 <li class="header-item">
                   <%= link_to "お気に入り", favorites_path, class: "header-link"  %>
+                </li>
+                <li class="header-item">
+                  <%= link_to "ブログ", blogs_path, class: "header-link"  %>
                 </li>
                 <li class="header-item">
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-link"  %>

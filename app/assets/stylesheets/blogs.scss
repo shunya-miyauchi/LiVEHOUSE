@@ -1,8 +1,5 @@
 // ブログ一覧
-.container-fluid.users {
-  #v-pills-tabContent {
-    #v-pills-messages {
-      padding: 1.5rem 0;
+.container-fluid.blogs {
       .title_icon {
         display: flex;
         align-items: center;
@@ -18,9 +15,10 @@
         }
       }
       .body_card {
-        padding: 20px 0px 0px 5px;
+        padding: 10px 0px 10px 5px;
         .blog_card {
           border: 1px solid white;
+          border-radius: 0.25rem;
           width: 98%;
           height: 150px;
           display: flex;
@@ -69,8 +67,7 @@
         }
       }
     }
-  }
-}
+
 
 // 新規投稿
 .container-fluid.blogs {
@@ -387,5 +384,9 @@
       font-size: 1rem;
       margin: 0px 0.5rem;
     }
+  }
+  #more_link {
+    color: white;
+    border-radius: 0.25rem;
   }
 }

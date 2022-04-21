@@ -3,7 +3,11 @@ class BlogsController < ApplicationController
   before_action :q_livehouse
 
   def index
-    @blogs = Blog.includes(:event).reverse_created_at
+    @blogs = Blog.includes(:event).reverse_created_at.page(params[:page]).per(5)
+    respond_to do |format|
+      format.html {  }
+      format.js {render :schedule }
+    end
   end
 
   def new
