@@ -26,6 +26,7 @@ Metrics/AbcSize:
   Exclude:
     - 'app/models/scraping/spotify_onest.rb'
     - 'app/models/scraping/basementbar.rb'
+    - 'app/controllers/users_controller.rb'
 
 Security/Open:
   Exclude:
@@ -37,7 +38,12 @@ Metrics/MethodLength:
   Exclude:
     - 'app/models/scraping/spotify_onest.rb'
     - 'app/models/scraping/basementbar.rb'
+    - 'app/controllers/users_controller.rb'
 
 Style/GuardClause:
   Exclude:
     - 'app/models/ability.rb'
+
+CombinableLoops:
+  Exclude:
+    - 'db/seeds.rb'
