@@ -45,7 +45,7 @@
       text-align    : center;      
       cursor        : pointer;    
       padding       : 12px 13px;   
-      margin-top: 10px;
+      margin: 10px 0px 15px 0px;
       background    : red;
       color         : white;
       line-height   : 1em;    
@@ -57,5 +57,9 @@
       color         : #ff0004;     
       background    : #ffffff;    
     }
+  }
+  .recoverable {
+    color: red;
+    font-size: 1.2rem;
   }
 }
