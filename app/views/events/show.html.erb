@@ -1,11 +1,17 @@
 <div class="event_detail">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="top col-sm-6">
       <div class="date">
-        <%= @event.held_on.strftime("%Y年%m月%d日(%a)") %>
+        <span class="year"><%= @event.held_on.strftime("%Y") %></span>
+        <span class="day"><%= @event.held_on.strftime("%-m.%d") %></span>
+        <span class="week"><%= @event.held_on.strftime("%a") %></span> 
       </div>
+      <hr>
       <div class="title">
         <%= @event.title %>
+      </div>
+      <div class="livehouse_name">
+        at.<%= @event.livehouse.name %>
       </div>
     </div>
   </div>
@@ -15,26 +21,26 @@
       <table class="table table-bordered">
         <tr>
           <td>開場／開演</td>
-          <th><%= @event.open %> ／ <%= @event.start %></th>
+          <td><%= @event.open %> ／ <%= @event.start %></td>
         </tr>
         <tr>
           <td>チケット代</td>
-          <th><%= @event.price %>円</th>
+          <td><%= @event.price %>円</td>
         </tr>
         <tr>
           <td>出演者</td>
-          <th><%= h(@event.artist).gsub("/", "</br>").html_safe %></th>
+          <td><%= h(@event.artist).gsub("/", "</br>").html_safe %></td>
         </tr>
         <tr>
           <td>URL</td>
-          <th><%= link_to "イベント詳細ページへ", "#{@event.url}" %></th>
+          <td><%= link_to "イベント詳細ページ", "#{@event.url}" %></td>
         </tr>
       </table>
     </div>
 
     <div class="comments col-lg-6">
-      <p>チャット</p>
       <div class="comments_field">
+        <div class="comment_title">チャット</div>
         <div class="comments_area">
           <%= render 'index', { comments: @comments } %>
         </div>

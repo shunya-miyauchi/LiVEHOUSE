@@ -1,29 +1,36 @@
 <% result_events.each do |event| %>
-  <% if event == result_events.this_week[0] %>
-    <div class="col-12">今週のライブ</div>
+  <% if event == result_events[0] %>
+    <div class="col-12 this_week">今週のライブ</div>
   <% elsif event == result_events.next_week[0] %>
-    <div class="col-12">来週のライブ</div>
-  <% elsif event == result_events.where('held_on >= ?', Date.current.since(2.week).beginning_of_week)[0] %>
-    <div class="col-12">それ以降</div>
+    <div class="col-12 next_week">来週のライブ</div>
   <% end %>
   <div class="col-xl-3 col-lg-4 col-md-6 mb-4 body_card">
     <div class="schedule_card">
       <div class="card_header">
-        <span class="year"><%= event.held_on.strftime("%Y") %></span>
-        <span class="month"><%= event.held_on.strftime("%-m.%d") %></span>
-        <span class="day"><%= event.held_on.strftime("%a") %></span>     
+        <div class="date">
+          <span class="year"><%= event.held_on.strftime("%Y") %></span>
+          <span class="month"><%= event.held_on.strftime("%-m.%d") %></span>
+          <span class="day"><%= event.held_on.strftime("%a") %></span> 
+        </div>
+        <div id="join_<%= event.id %>">
+          <%= render 'joins/select', { event: event } %>
+        </div>    
       </div>
       <div class="card_title", id="<%= event.id %>">
         <%= event.title %>
       </div>
+      <div class="card_livehouse">
+        <span>at.<%= event.livehouse.name %></span>
+      </div>
+      <div class="card_time">
+        <span>OPEN/START</span>
+        <span><%= event.open %>/<%= event.start %></span>
+      </div>
       <div class="card_artist">
         <%= event.artist.truncate(70, separator: "/",omission: '...他') %>
       </div>
-      <div>
+      <div class="card_select">
         <%= link_to "詳細",livehouse_event_path(event.livehouse_id,event.id),class: "detail" %>
-        <span id="join_<%= event.id %>">
-          <%= render 'joins/select', { event: event } %>
-        </span>
       </div>
     </div>
   </div>

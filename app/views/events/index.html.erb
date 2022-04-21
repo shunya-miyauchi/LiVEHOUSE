@@ -1,12 +1,14 @@
 <div class="col-lg-3">
+
+<!-- ライブハウス検索窓 -->
   <%= search_form_for @q_livehouse, url: livehouse_events_path(@livehouse) do |f| %>
-    <div><%= f.label "ライブハウス検索" %></div>
     <div>
-      <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area %>
+      <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
     </div>
     <%= f.submit '検索', class: "search_btn" %>
   <% end %>
 
+<!-- ライブハウス検索結果 -->
   <div id="livehouses_area">
     <ul class="favorite_group">
       <% @result_livehouses.each do |livehouse| %>
@@ -21,6 +23,8 @@
 
 
 <div class="col-lg-9">
+
+<!-- タブ -->
   <div class="tabs row">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
@@ -29,6 +33,8 @@
       <li class="nav-item" role="presentation">
         <a class="nav-link" id="livehouse-tab" data-toggle="tab" href="#livehouse" role="tab" aria-controls="livehouse" aria-selected="false"><%= @livehouse.name %></a>
       </li>
+
+<!-- 期間検索 -->
       <%= search_form_for @q_event, as: :date_search, url: livehouse_events_path(@livehouse,q: {place_id_eq: @livehouse.place_id}) do |f| %>
         <div class="search_form">
           <%= f.date_field :held_on_gteq %>
@@ -40,6 +46,7 @@
     </ul>
   </div>
 
+<!-- スケジュール一覧 -->
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
         <div class="schedule row" >
@@ -48,6 +55,7 @@
         <%= link_to_next_page @result_events, 'もっとみる', remote: true, id: 'more_link' %>
     </div>
 
+<!-- ライブハウス情報 -->
     <div class="tab-pane fade" id="livehouse" role="tabpanel" aria-labelledby="livehouse-tab">
       <div class="row"> 
         <div class="col-lg-5">
@@ -71,6 +79,8 @@
     </div>
   </div>
 </div>
+
+
 
 <script>
   function initMap(){
