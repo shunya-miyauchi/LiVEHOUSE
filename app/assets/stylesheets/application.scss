@@ -25,6 +25,10 @@ body {
   height: 100%;
   width: 100%;
   font-family: 'BIZ UDPGothic', sans-serif !important;
+  .col-lg-3 {
+    border-right: thin solid rgba(255, 255, 255, 0.39);
+    padding: 0 2px;
+  }
 }
 
 .wrapper {
@@ -50,6 +54,11 @@ body {
     color: white;
     padding-left: 15px;
   }
+  .alert {
+    padding: 0px 0px 0px 15px;
+    margin: 0px;
+    color: red;
+  }
   .header_nav {
     display: flex;
     flex-wrap: wrap;
@@ -62,7 +71,7 @@ body {
     .header-item {
       display: flex;
       align-items: center;
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: bold;
     }
     .header_link *{
