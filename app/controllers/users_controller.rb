@@ -7,14 +7,14 @@ class UsersController < ApplicationController
 
   def show
     respond_to do |format|
-      format.html {  }
-      format.js {
+      format.html {}
+      format.js do
         if params[:q].present?
           render :index
         else
           render :schedule
         end
-        }
+      end
     end
   end
 
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
       @events_future =
         @user.join_events.includes(:livehouse).date_after_today.sort_held_on.page(params[:page]).per(12)
       @events_past =
-        @user.join_events.includes(:livehouse).date_before_today.sort_held_on.page(params[:page]).per(12)      
+        @user.join_events.includes(:livehouse).date_before_today.sort_held_on.page(params[:page]).per(12)
     end
   end
 end
