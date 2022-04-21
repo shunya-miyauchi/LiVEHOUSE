@@ -79,7 +79,7 @@
 
 
     <div class="tab-pane fade" id="v-pills-past" role="tabpanel" aria-labelledby="v-pills-past-tab">
-      <div class="row">
+      <div class="">
         <div class="title_search col-12">
           <div class="title">参戦記録</div>
           <%= search_form_for @q_event, as: :date_search, url: user_path(current_user.id) do |f| %>
@@ -92,7 +92,7 @@
           <% end %>
         </div>
       </div>
-      <div class="row">
+      <div class="">
         <div class="col-12">
           <% if @events_past.blank? %>
             <div>参加したイベントはありません。</div>
@@ -121,7 +121,7 @@
           <div>まだブログの作成がありません。</div>
         <% end %>
         <div class="row">
-          <% current_user.blogs.each do |blog| %>
+          <% current_user.blogs.reverse_each do |blog| %>
             <div class="col-6 body_card">
               <div class="blog_card">
                 <div class="card_header">
