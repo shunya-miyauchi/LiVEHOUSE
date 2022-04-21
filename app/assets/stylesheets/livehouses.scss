@@ -176,27 +176,65 @@ body.container-fluid.passwords {
         }
       }
     }
+  
 
 // 説明部分(トップ)
     .explanation {
       width: 100%;
       position: absolute;
       transform: translate(-50%,-50%);
-      top: 650px;
+      top: 660px;
       left: 50%;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      .title {
-        font-size: 3rem;
-        text-decoration:underline;
-        text-decoration-color: red;
+      .about,
+      .how_to,
+      .membership {
+        display: inline-block;
+        font-size: 2rem;
+
         text-align: center;
+        padding-top: 4rem;
       }
-      .content {
+      hr {
+        border-top: 2px solid #fa0000;
+        width: 50%;
+        margin: 0 auto 1rem auto;
+        text-align: start;
+
+      }
+      .about_content,
+      .how_to_content,
+      .membership_content {
         text-align: center;
-        padding: 10px 0px 40px 0px;
-        font-size: 1.2rem;
+        margin: 0;
+        padding-top: 10px 0px 40px 0px;   
+      }
+      .about_1,
+      .about_2,
+      .about_3 {
+        padding: 5px 0;
+      }
+      .about_4 {
+        font-size: 1.7rem;
+        padding-top: 5px;
+      }
+      .how_to_1,
+      .how_to_2,
+      .how_to_3 {
+        padding: 5px 0;
+      }
+      .membership_1 {
+        padding: 10px 0;
+      }
+      .membership_2,
+      .membership_4,
+      .membership_6,
+      .membership_8 {
+        padding: 15px 0 3px 0;
+        font-size: 1.3rem;
+        
       }
     }
   }
