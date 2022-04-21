@@ -235,6 +235,7 @@
           background-clip: border-box;
           border: 1px solid white;
           border-radius: 0.25rem;
+          margin-top: 10px;
           .card_header {
             background-color: white;
             color: black;
@@ -252,8 +253,8 @@
             .material-icons {
               position: absolute;
               transform: translate(-50%,-50%);
-              right: 2%;
-              top: 7%;
+              right: 3%;
+              top: 10%;
               font-size: 1.5rem;
             }
           }
