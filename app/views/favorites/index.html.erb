@@ -1,5 +1,8 @@
 <div class="col-lg-3">
+
+<!-- ライブハウス一覧 -->
   <div id="livehouses_area">
+    <div class="title">お気に入り</div>
     <ul class="favorite_group">
       <% @livehouses.each do |livehouse| %>
         <li class="favorite_list">
@@ -20,7 +23,7 @@
         <div class="schedule row" >
           <%= render "schedule", {events: @events} %> 
         </div>
-        <%= link_to_next_page @events, 'もっとみる', remote: true, id: 'more_link' %>
+        <%= link_to_next_page @events, 'さらに表示', remote: true, id: 'more_link' %>
       </div>
     <% end %>
   </div>

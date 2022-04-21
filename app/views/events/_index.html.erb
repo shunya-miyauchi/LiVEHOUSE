@@ -1,11 +1,23 @@
 <ul>
-  <% comments.each do |comment| %>
+  <% comments.reverse_each do |comment| %>
     <% if comment.id.present? %>
-      <li>
-        <p>@<%= comment.user.display_name %></p>
-      </li>
-      <li>
-        <p><%= comment.content %></p>
+      <li class="user">
+        <% if comment.user.image? %>
+          <%= image_tag comment.user.image.url,class:"img" %>
+        <% else %>
+          <%= image_tag "default.png",class:"img" %>
+        <% end %>
+        <div class="name_content">
+          <div class="article">
+            <% if current_user == comment.user %>
+              <div class="comment_name_red">@<%= comment.user.display_name %></div>
+            <% else %>
+              <div class="comment_name">@<%= comment.user.display_name %></div>
+            <% end %>
+            <div class="comment_time"><%= comment.created_at.strftime(" %y/%m/%d %H:%M") %></div>
+          </div>
+          <p class="comment_content"><%= comment.content %></p>
+        </div>
       </li>
     <% end %>
   <% end %>

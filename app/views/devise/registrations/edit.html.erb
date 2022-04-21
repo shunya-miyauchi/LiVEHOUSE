@@ -1,28 +1,36 @@
-<h2><%= t('.title', resource: resource.model_name.human) %></h2>
+<%= image_tag "top_img.png", class: "top_img" %>
+
+<div class="edit col-sm-6 col-lg-6 col-xl-5"> 
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name %><br />
+  <div class="title">
+    <%= t('.title', resource: resource.model_name.human) %>
+  </div>
+  
+  <div class="name">
+    <div><%= f.label :name, "お名前" %></div>
+    <%= render "devise/shared/error_messages", resource: resource, attribute: :name %>
     <%= f.text_field :name, autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :display_name %><br />
+  <div class="display_name">
+    <div><%= f.label :display_name %></div>
+    <div class="notes">半角英数字,アンダースコア(_)のみ</div>
+    <%= render "devise/shared/error_messages", resource: resource, attribute: :display_name %>
     <%= f.text_field :display_name %>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="email">
+    <div><%= f.label :email %></div>
+    <%= render "devise/shared/error_messages", resource: resource, attribute: :email %>
+    <%= f.email_field :email, autocomplete: "email" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
   <% end %>
 
-  <div class="field">
+  <div class="password">
     <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
@@ -31,28 +39,29 @@
     <% end %>
   </div>
 
-  <div class="field">
+  <div class="password_confirmation">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :image, "アイコン画像(jpg,jpeg,gif,png)" %><br />
+  <div class="image">
     <% if @user.image? %>
-      <div><%= image_tag @user.image.url %></div>
+      <div class="icon"><%= image_tag @user.image.url %></div>
     <% else %>
-      <div><%= image_tag "default.png" %></div>
+      <div class="icon"><%= image_tag "default.png" %></div>
     <% end %>  
-    <%= f.file_field :image %>
+    <div class="select">
+      <%= f.label :image, "アイコン画像選択" %>
+      <div class="notes">JPG,JPEG,GIF,PNGのみ</div>
+      <%= f.file_field :image %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit t('.update') %>
+  <div class="submit">
+    <%= f.submit t('.update'),class:"button" %>
   </div>
 <% end %>
 
-<h3><%= t('.cancel_my_account') %></h3>
+<p><%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "delete_btn" %></p>
 
-<p><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
-
-<%= link_to t('devise.shared.links.back'), :back %>
+<%= link_to t('devise.shared.links.back'), :back, class: "back_btn" %>
