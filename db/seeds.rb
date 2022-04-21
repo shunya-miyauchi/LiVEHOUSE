@@ -40,7 +40,7 @@ Livehouse.create!([
 5.times do |n|
   User.create!(
     name: Faker::Name.last_name,
-    display_name: Faker::Twitter.screen_name,
+    display_name: "miyauchi#{n+1}",
     email: Faker::Internet.email,
     password: Faker::Internet.password(min_length: 8),
     image: File.open("./public/images/image#{n + 1}.png")
