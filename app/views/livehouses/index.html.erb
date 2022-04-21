@@ -1,7 +1,12 @@
+<!-- 背景画像 -->
 <%= image_tag "top_img.png", class: "top_img" %>
+
+<!-- トップロゴ -->
 <%= image_tag "top_logo.png", class: "top_logo" %>
 
 <div class="search_form col-sm-7 col-xl-5 ">
+
+<!-- ライブハウス検索窓 -->
   <%= search_form_for @q_livehouse, url: livehouses_path, remote: true do |f| %>
     <div class="search_livehouse">
       <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
@@ -9,6 +14,7 @@
     </div>
   <% end %>
 
+<!-- ライブハウス検索結果 -->
   <div id="livehouses_area">
     <%= render 'index', { result_livehouses: @result_livehouses, q_livehouse: @q_livehouse } %>
   </div>

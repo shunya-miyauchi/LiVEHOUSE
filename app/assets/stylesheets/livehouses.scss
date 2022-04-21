@@ -13,7 +13,7 @@ body.container-fluid.passwords {
     position: absolute;
     transform: translate(-50%,-50%);
     color:red;
-    top: 150px;
+    top: 100px;
     left: 50%;
     z-index: 100;
   }
@@ -144,6 +144,7 @@ body.container-fluid.passwords {
         height: 8rem;
         .favorite_group {
           padding: 0;
+          margin: 10px 0px;
           width: 100%;
           li span {
             display: flex;
@@ -153,7 +154,7 @@ body.container-fluid.passwords {
             display: flex;
             list-style: none;
             text-align: start;
-            padding: 4px 0px;
+            padding: 2px 0px;
             margin-left: 30px;
             align-items: center;
             align-content: center;
