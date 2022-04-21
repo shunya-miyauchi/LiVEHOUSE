@@ -23,6 +23,7 @@
         background-color: transparent;
         background-clip: border-box;
         border: 1px solid white;
+        border-radius: 0.25rem;
         .card_header {
           background-color: white;
           color: black;
@@ -86,9 +87,7 @@
       }
     }
     #more_link {
-      background-color: white;
-      color: black;
-      padding: 5px;
+      color: white;
       border-radius: 0.25rem;
     }
   }

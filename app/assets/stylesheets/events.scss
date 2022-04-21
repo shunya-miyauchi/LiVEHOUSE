@@ -171,6 +171,7 @@ nav.pagination {
         background-color: transparent;
         background-clip: border-box;
         border: 1px solid white;
+        border-radius: 0.25rem;
         .card_header {
           background-color: white;
           color: black;
@@ -235,9 +236,7 @@ nav.pagination {
     }
   }
   #more_link {
-    background-color: white;
-    color: black;
-    padding: 5px;
+    color: white;
     border-radius: 0.25rem;
   }
 
@@ -384,6 +383,10 @@ nav.pagination {
                 display: flex;
                 align-items: center;
                 margin-top: 5px;
+                .comment_name_red {
+                  color: red;
+                  font-size: 0.5rem;
+                }
                 .comment_name {
                   color: black;
                   font-size: 0.5rem;
