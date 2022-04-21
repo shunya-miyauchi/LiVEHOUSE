@@ -22,7 +22,7 @@
   <!-- サイドバー選択 -->
   <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
     <a class="nav-link active" id="v-pills-future-tab" data-toggle="pill" href="#v-pills-future" role="tab" aria-controls="v-pills-future" aria-selected="true">ライブ予定</a>
-    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">参戦記録</a>
+    <a class="nav-link" id="v-pills-past-tab" data-toggle="pill" href="#v-pills-past" role="tab" aria-controls="v-pills-past" aria-selected="false">参戦記録</a>
     <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">ブログ</a>
   </div>
 
@@ -41,44 +41,116 @@
 </div>
 
 <div class="col-lg-9">
-  <div class="article_top row">
-    <div class="title">ライブ予定</div>
-    <!-- 期間検索 -->
-    <%= search_form_for @q_event, as: :date_search, url: user_path(current_user.id) do |f| %>
-      <div class="search_form">
-        <%= f.date_field :held_on_gteq %>
-        <div class="line" >〜</div>
-        <%= f.date_field :held_on_lteq %>
-        <%= f.submit '検索', class: "search_btn" %>
-      </div>
-    <% end %>
-  </div>
 
 
 <!-- ライブ予定一覧 -->
 <div class="row">
   <div class="tab-content" id="v-pills-tabContent">
+
+
     <div class="tab-pane fade show active" id="v-pills-future" role="tabpanel" aria-labelledby="v-pills-future-tab">
-      <% if @events_future.blank? %>
-        <div>参加予定のイベントはありません。</div>
-      <% end %>
-      <div class="schedule_future row" >
-        <%= render "schedule", { events: @events_future} %> 
+      
+      <div class="">
+        <div class="title_search col-12">
+          <div class="title">ライブ予定</div>
+          <%= search_form_for @q_event, as: :date_search, url: user_path(current_user.id) do |f| %>
+            <div class="search_form">
+              <%= f.date_field :held_on_gteq %>
+              <div class="line" >〜</div>
+              <%= f.date_field :held_on_lteq %>
+              <%= f.submit '検索', class: "search_btn" %>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <%= link_to_next_page @events_future, 'もっとみる', remote: true, id: 'more_link' %>
+      <div class="">
+        <div class="schedule col-12">
+          <% if @events_future.blank? %>
+            <div>参加予定のイベントはありません。</div>
+          <% end %>
+            <div class="schedule_future row" >
+              <%= render "schedule", { events: @events_future} %> 
+            </div>
+            <%= link_to_next_page @events_future, 'もっとみる', remote: true, id: 'more_link' %>
+        </div>
+      </div>
     </div>
 
-    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-      <% if @events_past.blank? %>
-        <div>参加したイベントはありません。</div>
-      <% end %>
-      <div class="schedule_past row" >
-        <%= render "schedule", { events: @events_past} %> 
+
+
+    <div class="tab-pane fade" id="v-pills-past" role="tabpanel" aria-labelledby="v-pills-past-tab">
+      <div class="row">
+        <div class="title_search col-12">
+          <div class="title">参戦記録</div>
+          <%= search_form_for @q_event, as: :date_search, url: user_path(current_user.id) do |f| %>
+            <div class="search_form">
+              <%= f.date_field :held_on_gteq %>
+              <div class="line" >〜</div>
+              <%= f.date_field :held_on_lteq %>
+              <%= f.submit '検索', class: "search_btn" %>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <%= link_to_next_page @events_past, 'もっとみる', remote: true, id: 'more_link' %>
+      <div class="row">
+        <div class="col-12">
+          <% if @events_past.blank? %>
+            <div>参加したイベントはありません。</div>
+          <% end %>
+          <div class="schedule_past row" >
+            <%= render "schedule", { events: @events_past} %> 
+          </div>
+          <%= link_to_next_page @events_future, 'もっとみる', remote: true, id: 'more_link' %>
+        </div>
+      </div>
     </div>
+
+
 
     <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+      <div class="row">
+        <div class="title_icon col-12">
+          <div class="title">ブログ</div>
+          <%= link_to new_blog_path do %>
+            <span class="material-icons">post_add</span>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-12">
+        <% if current_user.blogs.blank? %>
+          <div>まだブログの作成がありません。</div>
+        <% end %>
+        <div class="row">
+          <% current_user.blogs.each do |blog| %>
+            <div class="col-6 body_card">
+              <div class="blog_card">
+                <div class="card_header">
+                  <div class="title"><%= blog.title %></div>
+                  <div class="dropdown">
+                    <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                      <span class="material-icons">expand_circle_down</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <%= link_to "詳細",blog_path(blog.id),class:"dropdown-item detail" %>
+                      <%= link_to "編集", edit_blog_path(blog.id),class:"dropdown-item dit" %>
+                      <%= link_to "削除", blog_path(blog.id), method: :delete,class:"dropdown-item delete" %>
+                    </div>
+                </div>
+              
+                </div>
+                <div class="card_body">
+                  <div class="content"><%= blog.content %></div>
+                </div>
+                <div class="card_footer">
+                  <div class="event_held_on"><%= blog.event.held_on.strftime("%y/%m/%d") %></div>
+                  <div class="event_title"><%= blog.event.title %></div>
+                  <div class="blog_create">created_at:<%= blog.created_at.strftime(" %y/%m/%d %H:%M") %></div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
