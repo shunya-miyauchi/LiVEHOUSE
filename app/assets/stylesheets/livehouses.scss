@@ -32,6 +32,8 @@ body.container-fluid.passwords {
     transform: translate(-50%,-50%);
     top: 380px;
     left: 50%;
+    max-width: 100%;
+    height: auto;
   }
 
 // ヘッダー
@@ -176,7 +178,7 @@ body.container-fluid.passwords {
       width: 100%;
       position: absolute;
       transform: translate(-50%,-50%);
-      top: 1250px;
+      top: 650px;
       left: 50%;
       display: flex;
       flex-direction: column;
