@@ -43,12 +43,12 @@ class UsersController < ApplicationController
       @events_future =
         @q_event.result(distinct: true).date_after_today.sort_held_on.page(params[:page]).per(12)
       @events_past =
-        @q_event.result(distinct: true).date_before_today.sort_held_on.page(params[:page]).per(12)
+        @q_event.result(distinct: true).date_before_today.reverse_held_on.page(params[:page]).per(12)
     else
       @events_future =
         @user.join_events.includes(:livehouse).date_after_today.sort_held_on.page(params[:page]).per(12)
       @events_past =
-        @user.join_events.includes(:livehouse).date_before_today.sort_held_on.page(params[:page]).per(12)
+        @user.join_events.includes(:livehouse).date_before_today.reverse_held_on.page(params[:page]).per(12)
     end
   end
 end
