@@ -18,7 +18,7 @@ class BlogsController < ApplicationController
   def create
     @blog = current_user.blogs.build(blog_params)
     if @blog.save
-      redirect_to user_path(current_user), notice: 'ブログ投稿'
+      redirect_to blogs_path, notice: 'ブログ投稿'
     else
       flash.now[:alert] = '保存できません。'
       render :new
@@ -41,7 +41,7 @@ class BlogsController < ApplicationController
   def destroy
     @blog.destroy
     flash[:notice] = '削除しました。'
-    redirect_to user_path(current_user)
+    redirect_to blogs_path
   end
 
   private
