@@ -47,62 +47,62 @@ Livehouse.create!([
   )
 end
 
-# events
-5.times do |_n|
-  Livehouse.all.each do |livehouse|
-    Event.create!(
-      title: Faker::Music::RockBand.name,
-      held_on: Faker::Date.between(from: '2022-4-1', to: '2022-5-31'),
-      open: "19:#{Faker::Number.within(range: 10..30)}",
-      start: "20:#{Faker::Number.within(range: 10..30)}",
-      price: Faker::Number.number(digits: 4),
-      artist: Faker::JapaneseMedia::OnePiece.character,
-      url: 'https://diveintocode.jp/',
-      livehouse_id: livehouse.id
-    )
-  end
-end
+# # events
+# 5.times do |_n|
+#   Livehouse.all.each do |livehouse|
+#     Event.create!(
+#       title: Faker::Music::RockBand.name,
+#       held_on: Faker::Date.between(from: '2022-4-1', to: '2022-5-31'),
+#       open: "19:#{Faker::Number.within(range: 10..30)}",
+#       start: "20:#{Faker::Number.within(range: 10..30)}",
+#       price: Faker::Number.number(digits: 4),
+#       artist: Faker::JapaneseMedia::OnePiece.character,
+#       url: 'https://diveintocode.jp/',
+#       livehouse_id: livehouse.id
+#     )
+#   end
+# end
 
-# blogs
-User.all.each do |user|
-  Event.all.each do |event|
-    Blog.create!(
-      title: Faker::Games::Pokemon.name,
-      content: Faker::Book.title,
-      images: [open("#{Rails.root}/public/images/image1.png")],
-      user_id: user.id,
-      event_id: event.id
-    )
-  end
-end
+# # blogs
+# User.all.each do |user|
+#   Event.all.each do |event|
+#     Blog.create!(
+#       title: Faker::Games::Pokemon.name,
+#       content: Faker::Book.title,
+#       images: [open("#{Rails.root}/public/images/image1.png")],
+#       user_id: user.id,
+#       event_id: event.id
+#     )
+#   end
+# end
 
-# comments
-User.all.each do |user|
-  Event.all.each do |event|
-    Comment.create!(
-      content: Faker::Games::Pokemon.name,
-      user_id: user.id,
-      event_id: event.id
-    )
-  end
-end
+# # comments
+# User.all.each do |user|
+#   Event.all.each do |event|
+#     Comment.create!(
+#       content: Faker::Games::Pokemon.name,
+#       user_id: user.id,
+#       event_id: event.id
+#     )
+#   end
+# end
 
-# favorites
-User.all.each do |user|
-  Livehouse.all.each do |livehouse|
-    Favorite.create!(
-      user_id: user.id,
-      livehouse_id: livehouse.id
-    )
-  end
-end
+# # favorites
+# User.all.each do |user|
+#   Livehouse.all.each do |livehouse|
+#     Favorite.create!(
+#       user_id: user.id,
+#       livehouse_id: livehouse.id
+#     )
+#   end
+# end
 
-# joins
-User.all.each do |user|
-  Event.all.each do |event|
-    Join.create!(
-      user_id: user.id,
-      event_id: event.id
-    )
-  end
-end
+# # joins
+# User.all.each do |user|
+#   Event.all.each do |event|
+#     Join.create!(
+#       user_id: user.id,
+#       event_id: event.id
+#     )
+#   end
+# end
