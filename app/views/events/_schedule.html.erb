@@ -1,7 +1,7 @@
 <% result_events.each do |event| %>
-  <% if event == result_events[0] %>
+  <% if result_events.this_week.present? && event == result_events[0] %>
     <div class="col-12 this_week">今週のライブ</div>
-  <% elsif event == result_events.next_week[0] %>
+  <% elsif result_events.next_week.present? && event == result_events.next_week[0] %>
     <div class="col-12 next_week">来週のライブ</div>
   <% end %>
   <div class="col-xl-3 col-lg-4 col-md-6 mb-4 body_card">
