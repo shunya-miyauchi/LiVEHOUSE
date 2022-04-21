@@ -6,11 +6,11 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta name=”viewport” content=”width=device-width, initial-scale=1”>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hina+Mincho&family=Kosugi&family=Kosugi+Maru&family=Noto+Sans+JP&family=Rampart+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
   </head>
 
   <body class="container-fluid <%=controller.controller_name %>">
@@ -18,6 +18,13 @@
       <header>
         <% if user_signed_in? %>
           <div class="header_top">
+              <%= image_tag "top_logo_only.png", class: "logo_only" %>
+              <% if notice %>
+                <p class="alert alert-notice"><%= notice %></p>
+              <% end %>
+              <% if alert %>
+                <p class="alert alert-error"><%= alert %></p>
+              <% end %>
               <ul class="header_nav">
                 <li class="header-item">
                   <%= link_to "トップ", root_path, class: "header-link" %>
@@ -40,7 +47,17 @@
           </div>
         <% else %>
           <div class="header_top">
+            <%= image_tag "top_logo_only.png", class: "logo_only" %>
+            <% if notice %>
+              <p class="alert alert-notice"><%= notice %></p>
+            <% end %>
+            <% if alert %>
+              <p class="alert alert-error"><%= alert %></p>
+            <% end %>
             <ul class="header_nav">
+              <li class="header-item">
+                <%= link_to "トップ", root_path, class: "header-link" %>
+              </li>
               <li class="header-item">
                 <%= link_to "新規登録", new_user_registration_path, class: "header-link" %>
               </li>
@@ -59,12 +76,6 @@
       </header>
       <main class="container-fluid <%=controller.controller_name %>">
         <div class="row">
-          <% if notice %>
-            <p class="alert alert-notice"><%= notice %></p>
-          <% end %>
-          <% if alert %>
-            <p class="alert alert-error"><%= alert %></p>
-          <% end %>
           <%= yield %>
         </div>
       </main>
