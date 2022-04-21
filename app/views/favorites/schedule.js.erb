@@ -1,3 +1,3 @@
 $('#more_link').remove();
 $('.schedule').append("<%= escape_javascript(render partial:'schedule',locals: { events: @events } ) %>")
-$('.schedule').after("<%= escape_javascript(link_to_next_page(@events, 'もっと見る', remote: true, id: 'more_link')) %>");
+$('.schedule').after("<%= escape_javascript(link_to_next_page(@events, 'さらに表示', remote: true, id: 'more_link')) %>");
