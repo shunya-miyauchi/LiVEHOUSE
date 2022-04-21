@@ -9,7 +9,11 @@
         <% end %>
         <div class="name_content">
           <div class="article">
-            <div class="comment_name">@<%= comment.user.display_name %></div>
+            <% if current_user == comment.user %>
+              <div class="comment_name_red">@<%= comment.user.display_name %></div>
+            <% else %>
+              <div class="comment_name">@<%= comment.user.display_name %></div>
+            <% end %>
             <div class="comment_time"><%= comment.created_at.strftime(" %y/%m/%d %H:%M") %></div>
           </div>
           <p class="comment_content"><%= comment.content %></p>
