@@ -16,7 +16,7 @@ RSpec.describe 'アイコン画像', type: :system do
       fill_in 'メールアドレス', with: 'aaa@gmail.com'
       fill_in 'パスワード', with: '123456'
       fill_in 'パスワード(確認用)', with: '123456'
-      attach_file 'アイコン画像(jpg,jpeg,gif,png)', "#{Rails.root}/spec/factories/images/qujila-flower.png"
+      attach_file('画像選択', "#{Rails.root}/spec/factories/images/qujila-flower.png", make_visible: true)
       click_on 'アカウント登録'
       expect(page).to have_content 'アカウント登録が完了しました'
       expect(User.where(email: 'aaa@gmail.com').count).to eq 1
@@ -57,12 +57,12 @@ RSpec.describe 'アイコン画像', type: :system do
       sign_in user
       visit user_path(user.id)
       click_on '編集'
-      attach_file 'アイコン画像(jpg,jpeg,gif,png)', "#{Rails.root}/spec/factories/images/ushibeaf.png"
+      attach_file('画像選択', "#{Rails.root}/spec/factories/images/qujila-flower.png", make_visible: true)
       click_on '更新'
       expect(page).to have_content 'たかはし'
       expect(page).to have_content 'takahashi'
-      expect(page).to have_selector("img[src$='ushibeaf.png']")
-      expect(page).not_to have_selector("img[src$='qujila-flower.png']")
+      expect(page).not_to have_selector("img[src$='ushibeaf.png']")
+      expect(page).to have_selector("img[src$='qujila-flower.png']")
     end
   end
 end
