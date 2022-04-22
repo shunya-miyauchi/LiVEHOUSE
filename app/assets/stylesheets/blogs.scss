@@ -211,6 +211,11 @@
   }
   .blog_new {
     text-align: center;
+    #error_explanation {
+      padding: 0px 0px 0px 15px;
+      margin: 0px;
+      color: red;
+    }
     .title {
       display: inline-block;
       width: 30%;
