@@ -1,7 +1,7 @@
 <div class="col-lg-3">
 
 <!-- ライブハウス検索窓 -->
-  <%= search_form_for @q_livehouse, url: livehouse_events_path(@livehouse) do |f| %>
+  <%= search_form_for @q_livehouse, as: :q_livehouse, url: livehouse_events_path(@livehouse) do |f| %>
     <div>
       <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
     </div>
@@ -11,9 +11,9 @@
 <!-- ライブハウス検索結果 -->
   <div id="livehouses_area">
     <ul class="favorite_group">
-      <% @result_livehouses.each do |livehouse| %>
+      <% @livehouses.each do |livehouse| %>
         <li class="favorite_list">
-          <span id="favorite_<%= livehouse.id %>"><%= render 'events/livehouse', { livehouse: livehouse } %></span>
+          <span id="favorite_<%= livehouse.id %>"><%= render 'livehouse', { livehouse: livehouse } %></span>
           <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id}),class: "favorite_item" %>
         </li>
       <% end %>
@@ -35,7 +35,7 @@
       </li>
 
 <!-- 期間検索 -->
-      <%= search_form_for @q_event, as: :date_search, url: livehouse_events_path(@livehouse,q: {place_id_eq: @livehouse.place_id}) do |f| %>
+      <%= search_form_for @q_event, as: :q_event, url: livehouse_events_path(@livehouse) do |f| %>
         <div class="search_form">
           <%= f.date_field :held_on_gteq %>
           <div class="line" >〜</div>
@@ -50,9 +50,9 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
         <div class="schedule row" >
-          <%= render "schedule", {result_events: @result_events} %> 
+          <%= render "schedule", {events: @events} %> 
         </div>    
-        <%= link_to_next_page @result_events, 'さらに表示', remote: true, id: 'more_link' %>
+        <%= link_to_next_page @events, 'さらに表示', remote: true, id: 'more_link' %>
     </div>
 
 <!-- ライブハウス情報 -->
