@@ -1,2 +1,2 @@
-$(".comments_area").html("<%= j(render 'events/index', { comments: @comment.event.comments }) %>");
+$(".comments_area").html("<%= j(render 'events/index', { comments: @comment.event.comments.sort_created_at }) %>");
 $("textarea").val('');
