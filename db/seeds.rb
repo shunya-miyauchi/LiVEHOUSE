@@ -41,68 +41,58 @@ Livehouse.create!([
   User.create!(
     name: Faker::Name.last_name,
     display_name: "miyauchi#{n+1}",
-    email: Faker::Internet.email,
-    password: Faker::Internet.password(min_length: 8),
+    email: "aaa#{n+1}@gmail.com",
+    password: 123456,
     image: File.open("./public/images/image#{n + 1}.png")
   )
 end
 
 # events
 5.times do |_n|
-  Livehouse.all.each do |livehouse|
+  Livehouse.all.ids.sort.each do |livehouse_id|
     Event.create!(
-      title: Faker::Music::RockBand.name,
+      title: Faker::Book.title,
       held_on: Faker::Date.between(from: '2022-4-1', to: '2022-5-31'),
       open: "19:#{Faker::Number.within(range: 10..30)}",
       start: "20:#{Faker::Number.within(range: 10..30)}",
-      price: Faker::Number.number(digits: 4),
-      artist: Faker::JapaneseMedia::OnePiece.character,
+      price: 3000,
+      artist: Faker::Music::RockBand.name,
       url: 'https://diveintocode.jp/',
-      livehouse_id: livehouse.id
+      livehouse_id: livehouse_id
     )
   end
 end
 
 # blogs
-User.all.each do |user|
-  Event.all.each do |event|
+# comments
+# joins
+User.all.ids.sort.each do |user_id|
+  Event.all.ids.sort.each do |event_id|
     Blog.create!(
       title: Faker::Games::Pokemon.name,
-      content: Faker::Book.title,
+      content: "あああああああああああああああああああああああああああああああ",
       images: [open("#{Rails.root}/public/images/image1.png")],
-      user_id: user.id,
-      event_id: event.id
+      user_id: user_id,
+      event_id: event_id
     )
-  end
-end
-
-# comments
-User.all.each do |user|
-  Event.all.each do |event|
     Comment.create!(
       content: Faker::Games::Pokemon.name,
-      user_id: user.id,
-      event_id: event.id
+      user_id: user_id,
+      event_id: event_id
+    )
+    Join.create!(
+      user_id: user_id,
+      event_id: event_id
     )
   end
 end
 
 # favorites
-User.all.each do |user|
-  Livehouse.all.each do |livehouse|
+User.all.ids.sort.each do |user_id|
+  Livehouse.all.ids.sort.each do |livehouse_id|
     Favorite.create!(
-      user_id: user.id,
-      livehouse_id: livehouse.id
-    )
-  end
-end
-
-# joins
-User.all.each do |user|
-  Event.all.each do |event|
-    Join.create!(
-      user_id: user.id,
-      event_id: event.id
+      user_id: user_id,
+      livehouse_id: livehouse_id
     )
   end
 end
