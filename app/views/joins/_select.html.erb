@@ -1,11 +1,7 @@
 <% if user_signed_in? %>
   <% if current_user.joins_by?(event.id) %>
-    <%= link_to join_path(id: event.id), method: :delete, remote: true do %>
-      <span class="material-icons">check_box</span>
-    <% end %>
+    <%= link_to "不参加", join_path(id: event.id), method: :delete, remote: true, class: "unjoin" %>
   <% else %>
-    <%= link_to joins_path(id: event.id), method: :post, remote: true do %>
-      <span class="material-icons">check_box_outline_blank</span>
-    <% end %>
+    <%= link_to "参加", joins_path(id: event.id), method: :post, remote: true, class:"join" %>
   <% end %>
 <% end %>

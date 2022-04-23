@@ -1,28 +1,53 @@
-<div class="col-lg-3">
+<div class="col-md-3">
+
+  <!-- 期間検索 -->
+  <%= search_form_for @q_event, as: :q_event, url: livehouse_events_path(@livehouse) do |f| %>
+    <div class="search_title">期間検索</div>
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="search_form">
+          <%= f.date_field :held_on_gteq %>
+          <div class="line" >×</div>
+          <%= f.date_field :held_on_lteq %>
+        </div>
+      </div>
+      <div class="search_btn col-lg-2">
+        <%= f.submit '検索', class: "btn" %>
+      </div>
+    </div>
+  <% end %>
+
 
 <!-- ライブハウス検索窓 -->
   <%= search_form_for @q_livehouse, as: :q_livehouse, url: livehouse_events_path(@livehouse) do |f| %>
-    <div>
-      <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
+    <div class="search_title">ライブハウス検索</div>
+    <div class="row">
+      <div class="col-lg-10">
+        <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
+      </div>
+      <div class="livehouse_search_btn col-lg-2">
+        <%= f.submit '検索', class: "livehouse_btn" %>
+      </div>
     </div>
-    <%= f.submit '検索', class: "search_btn" %>
   <% end %>
 
 <!-- ライブハウス検索結果 -->
-  <div id="livehouses_area">
-    <ul class="favorite_group">
-      <% @livehouses.each do |livehouse| %>
-        <li class="favorite_list">
-          <span id="favorite_<%= livehouse.id %>"><%= render 'livehouse', { livehouse: livehouse } %></span>
-          <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id}),class: "favorite_item" %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+    <div class="row">
+      <div id="livehouses_area">
+        <ul class="favorite_group">
+          <% @livehouses.each do |livehouse| %>
+            <li class="favorite_list">
+              <span id="favorite_<%= livehouse.id %>"><%= render 'livehouse', { livehouse: livehouse } %></span>
+              <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id}),class: "favorite_item" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
 </div>
 
 
-<div class="col-lg-9">
+<div class="col-md-9">
 
 <!-- タブ -->
   <div class="tabs row">
@@ -33,16 +58,6 @@
       <li class="nav-item" role="presentation">
         <a class="nav-link" id="livehouse-tab" data-toggle="tab" href="#livehouse" role="tab" aria-controls="livehouse" aria-selected="false"><%= @livehouse.name %></a>
       </li>
-
-<!-- 期間検索 -->
-      <%= search_form_for @q_event, as: :q_event, url: livehouse_events_path(@livehouse) do |f| %>
-        <div class="search_form">
-          <%= f.date_field :held_on_gteq %>
-          <div class="line" >〜</div>
-          <%= f.date_field :held_on_lteq %>
-          <%= f.submit '検索', class: "search_btn" %>
-        </div>
-      <% end %>
     </ul>
   </div>
 
