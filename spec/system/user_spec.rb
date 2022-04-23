@@ -47,6 +47,28 @@ RSpec.describe 'ユーザー管理', type: :system do
     end
   end
 
+  describe 'アクセス制限機能' do
+    let!(:user) { FactoryBot.create(:user) }
+    let!(:user_second) { FactoryBot.create(:user_second) }
+    context 'ログインしている場合' do
+      before do
+        sign_in user
+      end
+      it '他のマイページにアクセスするとトップページに遷移する' do
+        visit user_path(user_second)
+        expect(page).to have_content 'アクセスできません。' 
+        expect(current_path).to eq root_path
+      end
+    end
+    context 'ログインしていない場合' do
+      it '直接マイページにアクセスするとログインページに遷移する' do
+        visit user_path(user)
+        expect(page).to have_content 'ログインもしくはアカウント登録してください。'
+        expect(current_path).to eq new_user_session_path
+      end
+    end
+  end
+
   describe '管理ユーザー機能' do
     let!(:user) { FactoryBot.create(:user, admin: true) }
     let!(:user_second) { FactoryBot.create(:user_second) }

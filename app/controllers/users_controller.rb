@@ -17,19 +17,11 @@ class UsersController < ApplicationController
       end
     end
   end
-
-  def past_joins
-    @events = @user.join_events.includes(:livehouse).date_before_today.reverse_held_on.page(params[:page]).per(12)
-  end
-
+  
   private
 
   def set_user
     @user = User.find(params[:id])
-  end
-
-  def correct_user?
-    current_user.id.to_s == params[:id]
   end
 
   def q_livehouse

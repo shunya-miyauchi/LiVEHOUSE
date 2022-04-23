@@ -4,5 +4,5 @@ class Comment < ApplicationRecord
 
   validates :content, presence: true
 
-  scope :sort_created_at, -> { order(created_at: 'ASC') }
+  scope :reverse_created_at, -> { order(created_at: 'DESC') }
 end
