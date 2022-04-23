@@ -6,9 +6,9 @@ FactoryBot.define do
     place_id { '15' }
   end
   factory :livehouse_second, class: Livehouse do
-    name { '心斎橋Pangea' }
-    address { '大阪府大阪市中央区西心斎橋2-10-34' }
-    url { 'https://livepangea.com/' }
-    place_id { '42' }
+    name { 'Spotify O-nest' }
+    address { '東京都渋谷区円山町2-3 6F' }
+    url { 'https://shibuya-o.com/nest/' }
+    place_id { '14' }
   end
 end
