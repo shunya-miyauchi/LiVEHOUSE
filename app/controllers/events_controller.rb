@@ -12,7 +12,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.includes(:livehouse).find(params[:id])
-    @comments = @event.comments.includes(:user).sort_created_at
+    @comments = @event.comments.includes(:user).reverse_created_at
     @comment = Comment.new
   end
 

@@ -1,5 +1,5 @@
 <ul>
-  <% comments.reverse_each do |comment| %>
+  <% comments.each do |comment| %>
     <% if comment.id.present? %>
       <li class="user">
         <% if comment.user.image? %>
