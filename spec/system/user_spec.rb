@@ -11,7 +11,7 @@ RSpec.describe 'ユーザー管理', type: :system do
     context '会員登録した場合' do
       it 'トップ画面に遷移する' do
         visit new_user_registration_path
-        fill_in '名前', with: 'たかはし'
+        fill_in 'お名前', with: 'たかはし'
         fill_in 'ユーザー名', with: 'takahashi'
         fill_in 'メールアドレス', with: 'aaa@gmail.com'
         fill_in 'パスワード', with: '123456'

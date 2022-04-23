@@ -15,14 +15,14 @@ RSpec.describe 'お気に入り', type: :system do
       end
       context 'お気に入りボタンを押した場合' do
         before do
-          all("#favorite_#{livehouse.id}")[0].click_link 'お気に入り'
+          all("#favorite_#{livehouse.id}")[0].click_on 'favorite_border'
         end
         it '非同期でボタン表示が変わる' do
-          expect(page).not_to have_selector 'li', text: 'お気に入り'
-          expect(page).to have_selector 'li', text: '外す'
+          expect(page).to have_selector 'li', text: 'favorite'
+          expect(page).not_to have_selector 'li', text: 'favorite_border'
         end
         it 'favoritesテーブルに登録される' do
-          sleep 0.01
+          sleep 0.1
           expect(Favorite.where(user_id: user.id).count).to eq 1
         end
       end
@@ -32,13 +32,13 @@ RSpec.describe 'お気に入り', type: :system do
           visit current_path
         end
         it '非同期でボタン表示が変わる' do
-          all("#favorite_#{livehouse.id}")[0].click_link '外す'
-          expect(page).not_to have_selector 'li', text: '外す'
-          expect(page).to have_selector 'li', text: 'お気に入り'
+          all("#favorite_#{livehouse.id}")[0].click_link 'favorite'
+          expect(page).to have_selector 'li', text: 'favorite_border'
         end
         it 'favoritesテーブルから削除される' do
-          all("#favorite_#{livehouse.id}")[0].click_link '外す'
-          expect(page).to have_selector 'li', text: 'お気に入り'
+          all("#favorite_#{livehouse.id}")[0].click_link 'favorite'
+          expect(page).to have_selector 'li', text: 'favorite_border'
+          sleep 0.1
           expect(Favorite.where(user_id: user.id).count).to eq 0
         end
       end
@@ -48,8 +48,8 @@ RSpec.describe 'お気に入り', type: :system do
         visit root_path
       end
       it 'お気に入りボタンは表示されない' do
-        expect(page).not_to have_content 'お気に入り'
-        expect(page).not_to have_content '外す'
+        expect(page).not_to have_content 'favorite_border'
+        expect(page).not_to have_content 'favorite'
       end
     end
   end
@@ -70,12 +70,12 @@ RSpec.describe 'お気に入り', type: :system do
         expect(page).to have_content '心斎橋Pangea'
       end
       it 'お気に入りライブハウスのスケジュールが参照できる' do
-        visit favorite_path(livehouse.id)
+        visit favorites_path
         expect(page).to have_content 'タイトル１'
         expect(page).to have_content 'タイトル２'
       end
       it 'お気に入りを外すと、一覧から消える' do
-        all("#favorite_#{livehouse.id}")[0].click_link '外す'
+        all("#favorite_#{livehouse.id}")[0].click_link 'favorite'
         visit current_path
         expect(page).not_to have_content '下北沢BASEMENT BAR'
         expect(page).to have_content '心斎橋Pangea'

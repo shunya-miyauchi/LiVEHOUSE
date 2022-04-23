@@ -9,6 +9,9 @@ ja:
       livehouse: ライブハウス
       user: ユーザー
     attributes:
+      blog:
+        title: タイトル
+        content: 本文
       event:
         title: タイトル
         held_on: 開催日

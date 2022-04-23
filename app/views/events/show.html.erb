@@ -40,14 +40,14 @@
 
     <div class="comments col-lg-5">
       <div class="comments_field">
-        <div class="comment_title">チャット</div>
+        <div class="comment_title">コメント</div>
         <div class="comments_area">
           <%= render 'index', { comments: @comments } %>
         </div>
       </div>
       <% if user_signed_in? %>
         <div id="comment_form">
-          <%= render 'form', { livehouse: @livehouse, event: @event, comment: @comment } %>
+          <%= render 'form', { livehouse: @event.livehouse, event: @event, comment: @comment } %>
         </div>
       <% end %>
     </div>

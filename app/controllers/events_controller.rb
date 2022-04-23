@@ -1,29 +1,31 @@
 class EventsController < ApplicationController
-  before_action :set_event
+  before_action :set_livehouse
   before_action :q_livehouse
   before_action :q_event
 
   def index
-    return unless request.xhr?
-
-    render :schedule
+    respond_to do |format|
+      format.html {}
+      format.js { render :schedule }
+    end
   end
 
   def show
-    @event = Event.find(params[:id])
-    @comments = @event.comments.includes(:user)
+    @event = Event.includes(:livehouse).find(params[:id])
+    @comments = @event.comments.includes(:user).sort_created_at
     @comment = Comment.new
   end
 
   private
 
-  def set_event
+  def set_livehouse
     @livehouse = Livehouse.find(params[:livehouse_id])
   end
 
+  # ライブハウス検索
   def q_livehouse
-    @q_livehouse = Livehouse.ransack(params[:q])
-    @result_livehouses =
+    @q_livehouse = Livehouse.ransack(params[:q_livehouse], search_key: :q_livehouse)
+    @livehouses =
       if @q_livehouse.conditions.present?
         @q_livehouse.result(distinct: true)
       else
@@ -31,9 +33,10 @@ class EventsController < ApplicationController
       end
   end
 
+  # 期間検索
   def q_event
-    @q_event = @livehouse.events.ransack(params[:date_search], search_key: :date_search)
-    @result_events =
+    @q_event = @livehouse.events.ransack(params[:q_event], search_key: :q_event)
+    @events =
       if @q_event.conditions.present?
         @q_event.result(distinct: true).sort_held_on.page(params[:page]).per(12)
       else

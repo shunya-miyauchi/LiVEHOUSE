@@ -31,7 +31,7 @@ class BlogsController < ApplicationController
 
   def update
     if @blog.update(blog_params)
-      redirect_to user_path(current_user)
+      redirect_to blogs_path
     else
       flash.now[:alert] = '変更できません。'
       render :edit

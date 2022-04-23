@@ -1,4 +1,5 @@
 # livehouse
+@livehouses =
 Livehouse.create!([
                     {
                       name: '下北沢BASEMENT BAR',
@@ -37,50 +38,54 @@ Livehouse.create!([
                   ])
 
 # users
+@users = []
 5.times do |n|
+  @users <<
   User.create!(
     name: Faker::Name.last_name,
-    display_name: "miyauchi#{n+1}",
-    email: Faker::Internet.email,
-    password: Faker::Internet.password(min_length: 8),
+    display_name: Faker::Internet.username(specifier: 5..15),
+    email: Faker::Internet.safe_email,
+    password: 123456,
     image: File.open("./public/images/image#{n + 1}.png")
   )
 end
 
 # events
+@events = []
 5.times do |_n|
-  Livehouse.all.each do |livehouse|
+  @livehouses.each do |livehouse|
+    @events <<
     Event.create!(
-      title: Faker::Music::RockBand.name,
+      title: Faker::Book.title,
       held_on: Faker::Date.between(from: '2022-4-1', to: '2022-5-31'),
-      open: "19:#{Faker::Number.within(range: 10..30)}",
+      open: "19:00",
       start: "20:#{Faker::Number.within(range: 10..30)}",
-      price: Faker::Number.number(digits: 4),
-      artist: Faker::JapaneseMedia::OnePiece.character,
+      price: 3000,
+      artist: Faker::Music::RockBand.name,
       url: 'https://diveintocode.jp/',
       livehouse_id: livehouse.id
     )
-  end
+end
 end
 
 # blogs
-User.all.each do |user|
-  Event.all.each do |event|
+# comments
+# joins
+@users.each do |user|
+  @events.each do |event|
     Blog.create!(
       title: Faker::Games::Pokemon.name,
-      content: Faker::Book.title,
+      content: "あああああああああああああああああああああああああああああああ",
       images: [open("#{Rails.root}/public/images/image1.png")],
       user_id: user.id,
       event_id: event.id
     )
-  end
-end
-
-# comments
-User.all.each do |user|
-  Event.all.each do |event|
     Comment.create!(
       content: Faker::Games::Pokemon.name,
+      user_id: user.id,
+      event_id: event.id
+    )
+    Join.create!(
       user_id: user.id,
       event_id: event.id
     )
@@ -88,21 +93,11 @@ User.all.each do |user|
 end
 
 # favorites
-User.all.each do |user|
-  Livehouse.all.each do |livehouse|
+@users.each do |user|
+  @livehouses.each do |livehouse|
     Favorite.create!(
       user_id: user.id,
       livehouse_id: livehouse.id
-    )
-  end
-end
-
-# joins
-User.all.each do |user|
-  Event.all.each do |event|
-    Join.create!(
-      user_id: user.id,
-      event_id: event.id
     )
   end
 end

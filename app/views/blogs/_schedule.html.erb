@@ -15,7 +15,7 @@
     
       </div>
       <div class="card_body">
-        <div class="content"><%= blog.content %></div>
+        <div class="content"><%= blog.content.truncate(50,omission: '...') %></div>
       </div>
       <div class="card_footer">
         <div class="event_held_on"><%= blog.event.held_on.strftime("%y/%m/%d") %></div>

@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :display_name,
             uniqueness: true,
             length: { minimum: 5, maximum: 15 },
-            format: { with: /\A[a-z0-9_]{5,15}\z/ }
+            format: { with: /\A[a-z0-9_.]{5,15}\z/ }
 
   def favorites_by?(livehouse_id)
     favorites.find_by(livehouse_id: livehouse_id).present?

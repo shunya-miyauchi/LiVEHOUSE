@@ -17,10 +17,10 @@ RSpec.describe 'イベント参加記録', type: :system do
       end
       context 'イベント参加ボタンを押した場合' do
         before do
-          all("#join_#{event.id}")[0].click_link '参加'
+          all("#join_#{event.id} .material-icons")[0].click 
         end
         it '非同期でボタン表示が変わる' do
-          expect(page).to have_selector "#join_#{event.id}", text: '不参加'
+          expect(page).to have_selector "#join_#{event.id}", text: 'check_box'
         end
         it 'joinsテーブルに登録される' do
           sleep 0.1
@@ -31,10 +31,10 @@ RSpec.describe 'イベント参加記録', type: :system do
         before do
           FactoryBot.create(:join, user_id: user.id, event_id: event.id)
           visit current_path
-          all("#join_#{event.id}")[0].click_link '不参加'
+          all("#join_#{event.id} .material-icons")[0].click
         end
         it '非同期でボタン表示が変わる' do
-          expect(page).to have_selector "#join_#{event.id}", text: '参加'
+          expect(page).to have_selector "#join_#{event.id}", text: 'check_box_outline_blank'
         end
         it 'joinsテーブルから削除される' do
           sleep 0.1
@@ -47,8 +47,8 @@ RSpec.describe 'イベント参加記録', type: :system do
         visit livehouse_events_path(livehouse)
       end
       it 'お気に入りボタンは表示されない' do
-        expect(page).not_to have_content '参加'
-        expect(page).not_to have_content '不参加'
+        expect(page).not_to have_content 'check_box_outline_blank'
+        expect(page).not_to have_content 'check_box'
       end
     end
   end
@@ -72,7 +72,7 @@ RSpec.describe 'イベント参加記録', type: :system do
         expect(page).not_to have_content 'タイトル１'
       end
       it 'イベント参加を外すと、一覧から消える' do
-        all("#join_#{event_second.id}")[0].click_link '不参加'
+        all("#join_#{event_second.id} .material-icons")[0].click
         visit current_path
         expect(page).not_to have_content 'タイトル２'
       end
