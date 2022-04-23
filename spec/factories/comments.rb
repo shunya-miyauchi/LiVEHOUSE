@@ -9,4 +9,9 @@ FactoryBot.define do
     event_id { event_id }
     content { 'コメント２' }
   end
+  factory :comment_third, class: Comment do
+    user_id { user_id }
+    event_id { event_id }
+    content { 'コメント３' }
+  end
 end
