@@ -67,7 +67,7 @@ RSpec.describe 'お気に入り', type: :system do
       end
       it 'お気に入りのライブハウス一覧が表示される' do
         expect(page).to have_content '下北沢BASEMENT BAR'
-        expect(page).to have_content '心斎橋Pangea'
+        expect(page).to have_content 'Spotify O-nest'
       end
       it 'お気に入りライブハウスのスケジュールが参照できる' do
         visit favorites_path
@@ -78,7 +78,7 @@ RSpec.describe 'お気に入り', type: :system do
         all("#favorite_#{livehouse.id}")[0].click_link 'favorite'
         visit current_path
         expect(page).not_to have_content '下北沢BASEMENT BAR'
-        expect(page).to have_content '心斎橋Pangea'
+        expect(page).to have_content 'Spotify O-nest'
       end
     end
     context 'お気に入りが登録されていない場合' do

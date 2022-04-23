@@ -57,7 +57,7 @@ RSpec.describe 'ライブハウス情報管理', type: :system do
         end
         it 'その地域のライブハウス名が表示される' do
           expect(page).to have_content '下北沢BASEMENT BAR'
-          expect(page).not_to have_content '心斎橋Pangea'
+          expect(page).not_to have_content 'Spotify O-nest'
         end
       end
       context '検索されたライブハウス名をクリックする' do
@@ -80,19 +80,19 @@ RSpec.describe 'ライブハウス情報管理', type: :system do
       end
       context '地域を選択し、検索する' do
         before do
-          select '大阪府/ 心斎橋•難波', from: 'q_livehouse[place_id_eq]'
+          select '東京都/ 渋谷•原宿周辺', from: 'q_livehouse[place_id_eq]'
           find(".livehouse_search").click_button "検索"
         end
         it 'その地域のライブハウス名が表示される' do
           expect(page).not_to have_selector '#livehouses_area', text: '下北沢BASEMENT BAR'
-          expect(page).to have_selector '#livehouses_area', text:'心斎橋Pangea'
+          expect(page).to have_selector '#livehouses_area', text:'Spotify O-nest'
         end
       end
       context '検索されたライブハウス名をクリックする' do
         before do
-          select '大阪府/ 心斎橋•難波', from: 'q_livehouse[place_id_eq]'
+          select '東京都/ 渋谷•原宿周辺', from: 'q_livehouse[place_id_eq]'
           find(".livehouse_search").click_button "検索"
-          click_link '心斎橋Pangea'
+          click_link 'Spotify O-nest'
         end
         it 'そのライブハウスのスケジュールが表示される' do
           expect(page).not_to have_selector '.card_title', text: 'タイトル２'
@@ -112,7 +112,7 @@ RSpec.describe 'ライブハウス情報管理', type: :system do
         end
         it 'その地域のライブハウス名が表示される' do
           expect(page).to have_content '下北沢BASEMENT BAR'
-          expect(page).not_to have_content '心斎橋Pangea'
+          expect(page).not_to have_content 'Spotify O-nest'
         end
       end
       context '検索されたライブハウス名をクリックする' do
