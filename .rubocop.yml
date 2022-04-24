@@ -18,6 +18,10 @@ Metrics/BlockLength:
     - "config/initializers/carrierwave.rb"
     - "config/environments/development.rb"
 
+Layout/AssignmentIndentation:
+  Exclude:
+    - "db/seeds.rb"
+
 # Assignment: 変数への代入
 # Branch: メソッド呼び出し
 # Condition: 条件文

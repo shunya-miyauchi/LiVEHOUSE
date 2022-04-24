@@ -1,32 +1,11 @@
 <div class="col-lg-3">
-<!-- プロフィール -->
-  <div class="row">
-    <div class="user_profile">
-      <div class="col-lg-5">
-        <% if current_user.image? %>
-          <%= image_tag current_user.image.url,class:"img" %>
-        <% else %>
-          <%= image_tag "default.png",class:"img" %>
-        <% end %>
-      </div>
-      <div class="col-lg-7">
-        <div class="article">
-          <div class="name"><%= current_user.name %></div>
-          <div class="display_name">@<%= current_user.display_name %></div>
-          <%= link_to "編集", edit_user_registration_path(current_user.id), class: "edit_btn" %>
-        </div>
-      </div>
-    </div>
-  </div>
+
+  <!-- プロフィール -->
+  <%= render 'profile' %>
 
 
   <!-- ライブハウス検索窓 -->
-  <%= search_form_for @q_livehouse, url: user_path(current_user.id), remote: true do |f| %>
-    <div class="search_livehouse">
-      <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
-      <%= f.submit '検索', class: "search_btn" %>
-    </div>
-  <% end %>
+  <%= render 'search' %>
 
   <!-- ライブハウス検索結果 -->
   <div id="livehouses_area">

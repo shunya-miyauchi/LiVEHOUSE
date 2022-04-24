@@ -11,8 +11,7 @@ RSpec.describe Blog, type: :model do
                                 user_id: user.id,
                                 event_id: event.id,
                                 title: '',
-                                content: 'あああ'
-                              )
+                                content: 'あああ')
         expect(blog).not_to be_valid
       end
     end

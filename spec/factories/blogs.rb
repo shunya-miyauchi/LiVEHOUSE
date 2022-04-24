@@ -12,6 +12,6 @@ FactoryBot.define do
   factory :blog_third, class: Blog do
     title { 'タイトルう' }
     content { '本文う' }
-    images { [ Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/factories/images/ushibeaf.png'), 'spec/factories/images/qujila-flower.png') ] }
+    images { [Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/factories/images/ushibeaf.png'), 'spec/factories/images/qujila-flower.png')] }
   end
 end

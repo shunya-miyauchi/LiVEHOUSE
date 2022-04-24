@@ -17,7 +17,20 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
+  def past_joins
+    respond_to do |format|
+      format.html {}
+      format.js do
+        if params[:q].present?
+          render :index
+        else
+          render :schedule
+        end
+      end
+    end
+  end
+
   private
 
   def set_user

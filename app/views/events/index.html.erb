@@ -1,102 +1,60 @@
-<div class="col-lg-3">
+<div class="col-md-3">
+  <!-- ライブハウス名 --> 
+  <div class="livehouse_top_name"><%= @livehouse.name %></div>
+
+  <!-- 期間検索 -->
+  <%= search_form_for @q_event, as: :q_event, url: livehouse_events_path(@livehouse) do |f| %>
+    <div class="search_title">期間検索</div>
+    <div class="row">
+      <div class="col-lg-10">
+        <div class="search_form">
+          <%= f.date_field :held_on_gteq %>
+          <div class="line" >×</div>
+          <%= f.date_field :held_on_lteq %>
+        </div>
+      </div>
+      <div class="search_btn col-lg-2">
+        <%= f.submit '検索', class: "btn" %>
+      </div>
+    </div>
+  <% end %>
+
 
 <!-- ライブハウス検索窓 -->
   <%= search_form_for @q_livehouse, as: :q_livehouse, url: livehouse_events_path(@livehouse) do |f| %>
-    <div>
-      <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
+    <div class="search_title">ライブハウス検索</div>
+    <div class="row">
+      <div class="col-lg-10">
+        <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
+      </div>
+      <div class="livehouse_search_btn col-lg-2">
+        <%= f.submit '検索', class: "livehouse_btn" %>
+      </div>
     </div>
-    <%= f.submit '検索', class: "search_btn" %>
   <% end %>
 
 <!-- ライブハウス検索結果 -->
-  <div id="livehouses_area">
-    <ul class="favorite_group">
-      <% @livehouses.each do |livehouse| %>
-        <li class="favorite_list">
-          <span id="favorite_<%= livehouse.id %>"><%= render 'livehouse', { livehouse: livehouse } %></span>
-          <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id}),class: "favorite_item" %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
-
-
-<div class="col-lg-9">
-
-<!-- タブ -->
-  <div class="tabs row">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <a class="nav-link active" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true">スケジュール</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="livehouse-tab" data-toggle="tab" href="#livehouse" role="tab" aria-controls="livehouse" aria-selected="false"><%= @livehouse.name %></a>
-      </li>
-
-<!-- 期間検索 -->
-      <%= search_form_for @q_event, as: :q_event, url: livehouse_events_path(@livehouse) do |f| %>
-        <div class="search_form">
-          <%= f.date_field :held_on_gteq %>
-          <div class="line" >〜</div>
-          <%= f.date_field :held_on_lteq %>
-          <%= f.submit '検索', class: "search_btn" %>
-        </div>
-      <% end %>
-    </ul>
-  </div>
-
-<!-- スケジュール一覧 -->
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
-        <div class="schedule row" >
-          <%= render "schedule", {events: @events} %> 
-        </div>    
-        <%= link_to_next_page @events, 'さらに表示', remote: true, id: 'more_link' %>
-    </div>
-
-<!-- ライブハウス情報 -->
-    <div class="tab-pane fade" id="livehouse" role="tabpanel" aria-labelledby="livehouse-tab">
-      <div class="row"> 
-        <div class="col-lg-5">
-          <div class="address">
-            <div class="label">住所</div>
-            <%= @livehouse.address %>
-          </div>
-          <div class="url">
-            <div class="label">公式HP</div>
-            <%= link_to @livehouse.url %>
-          </div>
-          <div class="station">
-            <div class="label">最寄駅</div>
-            <%= @livehouse.nearest_station %>
-          </div>
-        </div>
-        <div class="col-lg-7">
-          <div id='map'></div>
-        </div>
+    <div class="row">
+      <div id="livehouses_area">
+        <ul class="favorite_group">
+          <% @livehouses.each do |livehouse| %>
+            <li class="favorite_list">
+              <span id="favorite_<%= livehouse.id %>"><%= render 'livehouse', { livehouse: livehouse } %></span>
+              <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id}),class: "favorite_item" %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </div>
-  </div>
 </div>
 
+<div class="col-md-9">
 
-
-<script>
-  function initMap(){
-    geocoder = new google.maps.Geocoder()
-    
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: <%= @livehouse.latitude %>, lng: <%= @livehouse.longitude %>},
-      zoom: 15,
-      mapTypeControl: false, 
-      streetViewControl: false
-    });
-
-    marker = new google.maps.Marker({
-      position:  {lat: <%= @livehouse.latitude %>, lng: <%= @livehouse.longitude %>},
-      map: map
-    });
-  }
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap" async defer></script>
+  <!-- スケジュール一覧 -->
+  <div id="schedule">
+    <div class="schedule row" >
+      <%= render "schedule", {events: @events} %> 
+    </div>    
+    <%= link_to_next_page @events, 'さらに表示', remote: true, id: 'more_link' %>
+  </div>
+</div>

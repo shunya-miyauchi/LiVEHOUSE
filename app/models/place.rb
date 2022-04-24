@@ -5,7 +5,7 @@ class Place < ActiveHash::Base
     # {id: 7, prefecture: '山形県', area: ''},{id: 8, prefecture: '福島県', area: ''}, {id: 9, prefecture: '茨城県', area: ''},
     # {id: 10, prefecture: '栃木県', area: ''},{id: 11, prefecture: '群馬県', area: ''}, {id: 12, prefecture: '埼玉県', area: ''},
     # {id: 13, prefecture: '千葉県', area: ''},
-    { id: 14, prefecture: '東京都', area: '渋谷•原宿周辺' }, { id: 15, prefecture: '東京都', area: '下北沢周辺' },
+    { id: 14, prefecture: '東京都', area: '渋谷•原宿周辺' }, { id: 15, prefecture: '東京都', area: '下北沢周辺' }
     # { id: 16, prefecture: '東京都', area: '新宿周辺' }, { id: 17, prefecture: '東京都', area: '池袋周辺' }, { id: 18, prefecture: '東京都', area: '高円寺周辺' },
     # { id: 19, prefecture: '東京都', area: '六本木•赤坂周辺' }, { id: 20, prefecture: '東京都', area: 'お台場•豊洲周辺' }, { id: 21, prefecture: '東京都', area: '吉祥寺周辺' },
     # { id: 22, prefecture: '東京都', area: '調布•府中周辺' }, { id: 23, prefecture: '東京都', area: '八王子周辺' }, { id: 24, prefecture: '東京都', area: '町田周辺' },
@@ -15,7 +15,7 @@ class Place < ActiveHash::Base
     # {id: 31, prefecture: '石川県', area: ''},{id: 32, prefecture: '福井県', area: ''},{id: 33, prefecture: '山梨県', area: ''},
     # {id: 34, prefecture: '長野県', area: ''}, {id: 35, prefecture: '岐阜県', area: ''},{id: 36, prefecture: '静岡県', area: ''},
     # {id: 37, prefecture: '愛知県', area: '名古屋'}, {id: 38, prefecture: '愛知県', area: 'その他'}, {id: 39, prefecture: '三重県', area: ''},
-    # {id: 40, prefecture: '滋賀県', area: ''}, {id: 41, prefecture: '京都府', area: ''}, 
+    # {id: 40, prefecture: '滋賀県', area: ''}, {id: 41, prefecture: '京都府', area: ''},
     # {id: 42, prefecture: '大阪府', area: '心斎橋•難波'},{id: 43, prefecture: '大阪府', area: '梅田'},{id: 44, prefecture: '大阪府', area: 'その他'},
     # {id: 45, prefecture: '兵庫県', area: ''},
     # {id: 46, prefecture: '奈良県', area: ''}, {id: 47, prefecture: '和歌山県', area: ''},{id: 48, prefecture: '鳥取県', area: ''},

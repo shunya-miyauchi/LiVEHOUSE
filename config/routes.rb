@@ -9,7 +9,11 @@ Rails.application.routes.draw do
       resources :comments, only: %i[create]
     end
   end
-  resources :users, only: %i[show]
+  resources :users, only: %i[show] do
+    member do
+      get 'past_joins'
+    end
+  end
   resources :favorites, only: %i[index create destroy]
   resources :joins, only: %i[create destroy]
   resources :blogs
