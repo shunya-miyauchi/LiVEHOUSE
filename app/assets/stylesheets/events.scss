@@ -8,24 +8,39 @@ nav.pagination {
 
 main.container-fluid.events {
 
+ // index
+
 // 固定
+  .livehouse_top_name {
+    position: fixed;
+    top: 10%;
+    left: 1%;
+  }
   #event_search {
     position: fixed;
-    top: 8.5%;
+    top: 16%;
     left: 0%;
   }
   .livehouse_search {
     position: fixed;
-    top: 30%;
+    top: 38%;
     left: 0%;
   }
   #livehouses_area {
     position: fixed;
-    top: 44%;
+    top: 52%;
     left: 1%;
   }
 
-
+// ライブハウス名
+  .livehouse_top_name{
+    font-size: 1.3rem;
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background-color:rgba(255, 0, 0, 0.5) ;
+    color: white;
+    margin: 0;
+  }
 // 期間検索
   #event_search {
     padding: 0.5rem 1rem;
@@ -44,14 +59,14 @@ main.container-fluid.events {
       #q_event_held_on_lteq {
         width: 100%;
         font-size: 0.8rem;
-        padding: 0.3rem 4rem 0.3rem 0.1rem;
+        padding: 0.3rem 0.5rem 0.3rem 0.5rem;
         font-weight: 400;
         line-height: 1.5;
-        color: white;
+        color: black;
         vertical-align: middle;
         border: 1px solid white;
         border-radius: 0.25rem;
-        background-color: transparent;
+        background-color: white;
       }
       .line {
         font-size: 0.5rem;
@@ -153,37 +168,9 @@ main.container-fluid.events {
     }
   }
 
-// タブ・期間検索
-  .tabs {
-    width: 100%;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-    margin: 0;
-    border-color: transparent;
-    padding-left: 10px;
-    ul {
-      display: flex;
-      align-items: flex-end;
-      border: 1px solid rgba(255, 255, 255, 0.507);
-      .nav-link.active {
-        padding: 0.4rem 2rem;
-        background-color:rgba(255, 0, 0, 0.5) ;
-        color: white;
-        border-color: transparent;
-        margin: 0;
-        border-radius: 0;
-      }
-      .nav-link {
-        color: white;
-        padding: 0.4rem 2rem;
-        margin: 0;
-      }
-    }
-  }
-
 // スケジュール
   #schedule {
-    padding: 1.5rem 0.5rem 1.5rem 1.5rem;
+    padding: 0rem 0.5rem 1rem 1.5rem;
     .this_week,
     .next_week,
     .after_next_week {
@@ -299,26 +286,7 @@ main.container-fluid.events {
     border-radius: 0.25rem;
   }
 
-// ライブハウス情報
-  #livehouse {
-    padding-top: 50px;
-    .address,
-    .url,
-    .station {
-      font-size: 1.2rem;
-      padding: 1rem 0;
-      .label {
-        font-size: 1rem;
-        text-decoration:underline;
-        text-decoration-color: red;
-      }
-    }
-    #map {
-      height: 300px;
-      width: 80%;
-      margin-bottom: 20px;
-    }
-  }
+  
 
 // showページ
 // イベント詳細
@@ -342,9 +310,9 @@ main.container-fluid.events {
       }
     }
     .title {
-      font-size: 2rem;
+      font-size: 1.5rem;
       margin: 1.2rem auto 0.5rem auto;
-      width: 50%;
+      width: 100%;
       border-radius: 0.25rem;
     }
     .livehouse_name {
@@ -357,6 +325,46 @@ main.container-fluid.events {
       margin: 0 auto;
       text-align: start;
     }
+  }
+
+  // タブ
+  .tabs {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-color: transparent;
+    margin: 1rem 0 2rem 0;
+    ul {
+      display: flex;
+      justify-content: center;
+      border-color: transparent;
+      font-size: 0.8rem;
+      .nav-link.active {
+        padding: 0.4rem 2rem;
+        background-color:rgba(255, 0, 0, 0.5) ;
+        color: white;
+        border-color: transparent;
+        margin: 0;
+        border-radius: 0;
+        border: 1px solid rgba(255, 255, 255, 0.507);
+      }
+      .nav-link {
+        color: white;
+        padding: 0.4rem 2rem;
+        margin: 0;
+        border-radius: 0;
+        border: 1px solid rgba(255, 255, 255, 0.507);
+      }
+    }
+  }
+
+
+
+  //  イベント詳細
+  .detail {
+    display: flex;
+    justify-content: center;
   }
   .table_form {
     padding: 0;
@@ -384,14 +392,34 @@ main.container-fluid.events {
     }
   }
 
+  // ライブハウス情報
+  #livehouse {
+    .address,
+    .url,
+    .station {
+      font-size: 1.2rem;
+      padding: 1rem 0;
+      text-align: end;
+      .label {
+        font-size: 1rem;
+        text-decoration:underline;
+        text-decoration-color: red;
+      }
+    }
+    #map {
+      height: 300px;
+      width: 50%;
+      margin-bottom: 20px;
+    }
+  }
+
 
 // チャット
   .comments {
-    padding: 0;
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    width: 100%;
+    padding-top: 2rem;
+    margin: 0;
     .comments_field {
       display: flex;
       flex-direction: column;
@@ -399,14 +427,12 @@ main.container-fluid.events {
       .comment_title {
         width: 80%;
         margin: 0 auto;
-        height: 10%;
+        height: auto;
         display: flex;
         align-items: center;
         justify-content: center;
         color: black;
         background-color: rgb(255, 255, 255);
-        border-top-left-radius: 0.25rem;
-        border-top-right-radius: 0.25rem;
         border-bottom: 1px solid black;
       }
       .comments_area {
@@ -414,19 +440,19 @@ main.container-fluid.events {
         width: 80%;
         margin: 0 auto;
         height: 20rem;
-        background-color: rgb(231, 231, 231);
+        background-color: transparent;
         margin-bottom: 20px;
-        border-bottom-left-radius: 0.25rem;
-        border-bottom-right-radius: 0.25rem;
+        border: 1px solid white;
+        border-top: transparent;
         ul {
           list-style: none;
           width: 100%;
           padding: 0;
           .user {
             display: flex;
-            margin: 0.4rem 0;
+            padding: 0.4rem;
             .img {
-              border: thin solid rgba(0, 0, 0, 0.493);
+              border: thin solid white;
               border-radius: 50%;
               width: 7%;
               height: 7%;
@@ -444,12 +470,12 @@ main.container-fluid.events {
                 align-items: center;
                 margin-top: 5px;
                 .comment_name_red {
-                  color: red;
-                  font-size: 0.5rem;
+                  color: white;
+                  font-size: 0.7rem;
                 }
                 .comment_name {
-                  color: black;
-                  font-size: 0.5rem;
+                  color: white;
+                  font-size: 0.7rem;
                 }
                 .comment_time {
                   color: gray;
@@ -458,10 +484,10 @@ main.container-fluid.events {
                 }
               }
               .comment_content {
-                color: black;
+                color: white;
                 margin: 0;
                 text-align: start;
-                font-size: 0.9rem;
+                font-size: 1rem;
               }
             }
           }
@@ -470,6 +496,7 @@ main.container-fluid.events {
     }
     #comment_form {
       width: 100%;
+      padding-bottom: 1rem;
       form {
       margin: 0 auto;
       width: 85%;
@@ -502,6 +529,19 @@ main.container-fluid.events {
         }
       }
     }
+  }
+
+  // 戻るボタン
+  .back_btn {
+    margin-bottom: 5rem;
+  }
+  .back {
+    background-color: white;
+    color: black;
+    padding: 5px;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    margin: 0px 0.5rem 5rem 0;
   }
 }
 

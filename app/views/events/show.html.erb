@@ -10,35 +10,82 @@
       <div class="title">
         <%= @event.title %>
       </div>
-      <div class="livehouse_name">
-        at.<%= @event.livehouse.name %>
+    </div>
+  </div>
+
+
+
+
+  <!-- タブ -->
+  <div class="tabs row">
+    <div class="col-sm-6">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true">スケジュール</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="livehouse-tab" data-toggle="tab" href="#livehouse" role="tab" aria-controls="livehouse" aria-selected="false"><%= @livehouse.name %></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- イベント詳細 -->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
+      <div class=" detail row">
+        <div class="table_form col-lg-7">
+          <table class="table table-bordered">
+            <tr>
+              <td>開場／開演</td>
+              <td><%= @event.open %> ／ <%= @event.start %></td>
+            </tr>
+            <tr>
+              <td>チケット代</td>
+              <td><%= @event.price %>円</td>
+            </tr>
+            <tr>
+              <td>出演者</td>
+              <td><%= h(@event.artist).gsub("/", "</br>").html_safe %></td>
+            </tr>
+            <tr>
+              <td>URL</td>
+              <td><%= link_to "イベント詳細ページ", "#{@event.url}" %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ライブハウス情報 -->
+    <div class="tab-pane fade" id="livehouse" role="tabpanel" aria-labelledby="livehouse-tab">
+      <div class="row"> 
+        <div class="col-md-6">
+          <div class="address">
+            <div class="label">住所</div>
+            <%= @livehouse.address %>
+          </div>
+          <div class="url">
+            <div class="label">公式HP</div>
+            <%= link_to @livehouse.url %>
+          </div>
+          <div class="station">
+            <div class="label">最寄駅</div>
+            <%= @livehouse.nearest_station %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div id='map'></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="table_form col-lg-7">
-      <table class="table table-bordered">
-        <tr>
-          <td>開場／開演</td>
-          <td><%= @event.open %> ／ <%= @event.start %></td>
-        </tr>
-        <tr>
-          <td>チケット代</td>
-          <td><%= @event.price %>円</td>
-        </tr>
-        <tr>
-          <td>出演者</td>
-          <td><%= h(@event.artist).gsub("/", "</br>").html_safe %></td>
-        </tr>
-        <tr>
-          <td>URL</td>
-          <td><%= link_to "イベント詳細ページ", "#{@event.url}" %></td>
-        </tr>
-      </table>
-    </div>
 
-    <div class="comments col-lg-5">
+
+  <div class="comments row">
+    <div class="col-8">
       <div class="comments_field">
         <div class="comment_title">コメント</div>
         <div class="comments_area">
@@ -52,4 +99,27 @@
       <% end %>
     </div>
   </div>
+  <div class="back_btn">
+    <%= link_to "戻る", 'javascript:history.back()',class:"back" %>
+  </div>
 </div>
+
+
+<script>
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+    
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: <%= @livehouse.latitude %>, lng: <%= @livehouse.longitude %>},
+      zoom: 15,
+      mapTypeControl: false, 
+      streetViewControl: false
+    });
+
+    marker = new google.maps.Marker({
+      position:  {lat: <%= @livehouse.latitude %>, lng: <%= @livehouse.longitude %>},
+      map: map
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_MAP_API_KEY"] %>&callback=initMap" async defer></script>

@@ -19,7 +19,7 @@
       </div>
       <div class="card_footer">
         <div class="event_held_on"><%= blog.event.held_on.strftime("%y/%m/%d") %></div>
-        <div class="event_title"><%= blog.event.title %></div>
+        <div class="event_title"><%= blog.event.title.truncate(15, omission: '..') %></div>
         <div class="blog_create">created_at:<%= blog.created_at.strftime(" %y/%m/%d %H:%M") %></div>
       </div>
     </div>

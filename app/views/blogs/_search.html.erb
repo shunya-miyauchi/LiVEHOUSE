@@ -1,0 +1,11 @@
+<%= search_form_for @q_livehouse, url: user_path(current_user.id), remote: true do |f| %>
+  <div class="search_title">ライブハウス検索</div>
+  <div class="row">
+    <div class="col-lg-10">
+      <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
+    </div>
+    <div class="livehouse_search_btn col-lg-2">
+      <%= f.submit '検索', class: "livehouse_btn" %>
+    </div>
+  </div>
+<% end %>

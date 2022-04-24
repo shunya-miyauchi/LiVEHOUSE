@@ -1,32 +1,10 @@
-<div class="col-lg-3">
-<!-- プロフィール -->
-  <div class="row">
-    <div class="user_profile">
-      <div class="col-lg-5">
-        <% if current_user.image? %>
-          <%= image_tag current_user.image.url,class:"img" %>
-        <% else %>
-          <%= image_tag "default.png",class:"img" %>
-        <% end %>
-      </div>
-      <div class="col-lg-7">
-        <div class="article">
-          <div class="name"><%= current_user.name %></div>
-          <div class="display_name">@<%= current_user.display_name %></div>
-          <%= link_to "編集", edit_user_registration_path(current_user.id), class: "edit_btn" %>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="col-md-3">
+  <!-- プロフィール -->
+  <%= render 'profile' %>
 
 
   <!-- ライブハウス検索窓 -->
-  <%= search_form_for @q_livehouse, url: user_path(current_user.id), remote: true do |f| %>
-    <div class="search_livehouse">
-      <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
-      <%= f.submit '検索', class: "search_btn" %>
-    </div>
-  <% end %>
+  <%= render 'search' %>
 
   <!-- ライブハウス検索結果 -->
   <div id="livehouses_area">
@@ -35,22 +13,20 @@
 </div>
 
   <!-- ブログ一覧 -->
-<div class="col-lg-9">
+<div class="col-md-9">
   <div class="row">
-    <div class="title_icon col-12">
-      <div class="title">ブログ</div>
-      <%= link_to new_blog_path do %>
-        <span class="material-icons">post_add</span>
+    <div class="col-12">
+      <div class="title_icon">
+        <div class="title">ブログ</div>
+        <%= link_to "新規作成", new_blog_path, class:"new_btn" %>
+      </div>
+      <% if current_user.blogs.blank? %>
+        <div>まだブログの作成がありません。</div>
       <% end %>
-    </div>
-  </div>
-  <div class="col-12">
-    <% if current_user.blogs.blank? %>
-      <div>まだブログの作成がありません。</div>
-    <% end %>
-    <div class="blog_schedule row">
+      <div class="blog_schedule row">
         <%= render "schedule", { blogs: @blogs} %>
+      </div>
+      <%= link_to_next_page @blogs, 'さらに表示', remote: true, id: 'more_link' %>
     </div>
-    <%= link_to_next_page @blogs, 'さらに表示', remote: true, id: 'more_link' %>
   </div>
 </div>
