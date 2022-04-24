@@ -120,7 +120,7 @@ RSpec.describe 'イベント管理', type: :system do
       context '左の検索ボックスに日付を入力した場合' do
         before do
           fill_in 'q_event[held_on_gteq]', with: '002022-01-10'
-          find(".search_form .search_btn").click 
+          find(".search_btn .btn").click 
         end
         it 'その日付以降のイベントのみ表示される' do
           expect(page).not_to have_content 'タイトル１'
@@ -131,7 +131,7 @@ RSpec.describe 'イベント管理', type: :system do
       context '右の検索ボックスに日付を入力した場合' do
         before do
           fill_in 'q_event[held_on_lteq]', with: '002022-01-10'
-          find(".search_form .search_btn").click 
+          find(".search_btn .btn").click 
         end
         it 'その日付以前のイベントのみ表示される' do
           expect(page).to have_content 'タイトル１'
@@ -143,7 +143,7 @@ RSpec.describe 'イベント管理', type: :system do
         before do
           fill_in 'q_event[held_on_gteq]', with: '002022-01-5'
           fill_in 'q_event[held_on_lteq]', with: '002022-01-15'
-          find(".search_form .search_btn").click 
+          find(".search_btn .btn").click 
         end
         it 'その期間内のイベントのみ表示される' do
           expect(page).not_to have_content 'タイトル１'
@@ -164,7 +164,7 @@ RSpec.describe 'イベント管理', type: :system do
       context '左の検索ボックスに日付を入力した場合' do
         before do
           fill_in 'date_search[held_on_gteq]', with: '002022-01-10'
-          find(".search_form .search_btn").click 
+          find(".search_btn .btn").click 
         end
         it 'その日付以降のイベントのみ表示される' do
           expect(page).not_to have_content 'タイトル１'
@@ -175,7 +175,7 @@ RSpec.describe 'イベント管理', type: :system do
       context '右の検索ボックスに日付を入力した場合' do
         before do
           fill_in 'date_search[held_on_lteq]', with: '002022-01-10'
-          find(".search_form .search_btn").click 
+          find(".search_btn .btn").click 
         end
         it 'その日付以前のイベントのみ表示される' do
           expect(page).to have_content 'タイトル１'
@@ -187,7 +187,7 @@ RSpec.describe 'イベント管理', type: :system do
         before do
           fill_in 'date_search[held_on_gteq]', with: '002022-01-5'
           fill_in 'date_search[held_on_lteq]', with: '002022-01-15'
-          find(".search_form .search_btn").click 
+          find(".search_btn .btn").click 
         end
         it 'その期間内のイベントのみ表示される' do
           expect(page).not_to have_content 'タイトル１'

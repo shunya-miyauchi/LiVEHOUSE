@@ -13,7 +13,7 @@ RSpec.describe 'ライブハウス情報管理', type: :system do
     context 'ログインしている場合' do
       before do
         sign_in user
-        visit livehouse_events_path(livehouse)
+        visit livehouse_event_path(livehouse,event)
       end
       it 'ライブハウス情報を確認できる' do
         find("#livehouse-tab").click
@@ -28,7 +28,7 @@ RSpec.describe 'ライブハウス情報管理', type: :system do
     end
     context 'ログインしていない場合' do
       before do
-        visit livehouse_events_path(livehouse)
+        visit livehouse_event_path(livehouse,event)
       end
       it 'ライブハウス情報を確認できる' do
         find("#livehouse-tab").click
