@@ -17,7 +17,7 @@ RSpec.describe 'イベント参加記録', type: :system do
       end
       context 'イベント参加ボタンを押した場合' do
         before do
-          all("#join_#{event.id} .join")[0].click 
+          all("#join_#{event.id} .join")[0].click
         end
         it '非同期でボタン表示が変わる' do
           expect(page).to have_selector "#join_#{event.id}", text: '不参加'

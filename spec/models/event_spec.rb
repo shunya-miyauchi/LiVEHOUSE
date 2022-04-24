@@ -23,7 +23,7 @@ RSpec.describe Event, type: :model do
     context ':date_after_today' do
       it '開催日が今日以降' do
         events = Event.date_after_today
-        expect(events).to include(event_second,event_third,event_fourth)
+        expect(events).to include(event_second, event_third, event_fourth)
         expect(events).not_to include(event)
       end
     end
@@ -31,28 +31,28 @@ RSpec.describe Event, type: :model do
       it '開催日が今週(今日以降)' do
         events = Event.this_week
         expect(events).to include(event_second)
-        expect(events).not_to include(event,event_third,event_fourth)
+        expect(events).not_to include(event, event_third, event_fourth)
       end
     end
     context ':date_before_today' do
       it '開催日が今日より前' do
         events = Event.date_before_today
         expect(events).to include(event)
-        expect(events).not_to include(event_second,event_third,event_fourth)
+        expect(events).not_to include(event_second, event_third, event_fourth)
       end
     end
     context ':next_week' do
       it '開催日が来週' do
         events = Event.next_week
         expect(events).to include(event_third)
-        expect(events).not_to include(event,event_second,event_fourth)
+        expect(events).not_to include(event, event_second, event_fourth)
       end
     end
     context ':after_next_week' do
       it '開催日が再来週以降' do
         events = Event.after_next_week
         expect(events).to include(event_fourth)
-        expect(events).not_to include(event,event_second,event_third)
+        expect(events).not_to include(event, event_second, event_third)
       end
     end
     context ':sort_held_on' do

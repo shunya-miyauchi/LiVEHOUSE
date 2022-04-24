@@ -56,7 +56,7 @@ RSpec.describe 'ユーザー管理', type: :system do
       end
       it '他のマイページにアクセスするとトップページに遷移する' do
         visit user_path(user_second)
-        expect(page).to have_content 'アクセスできません。' 
+        expect(page).to have_content 'アクセスできません。'
         expect(current_path).to eq root_path
       end
     end

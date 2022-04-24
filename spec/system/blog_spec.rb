@@ -37,8 +37,8 @@ RSpec.describe 'ブログ機能', type: :system do
     context '新規投稿した場合' do
       before do
         select 'タイトル１', from: 'blog[event_id]'
-        fill_in "タイトル",	with: "ブログ１"
-        fill_in "本文",	with: "本文１"
+        fill_in 'タイトル',	with: 'ブログ１'
+        fill_in '本文',	with: '本文１'
         attach_file('画像選択', "#{Rails.root}/spec/factories/images/qujila-flower.png", make_visible: true)
         find('.submit_btn').click
       end
@@ -67,12 +67,12 @@ RSpec.describe 'ブログ機能', type: :system do
       before do
         visit new_blog_path
         select 'タイトル１', from: 'blog[event_id]'
-        fill_in "タイトル",	with: "ブログ１"
-        fill_in "本文",	with: "本文１"
-        attach_file('画像選択', [ 
-          "#{Rails.root}/spec/factories/images/qujila-flower.png",
-          "#{Rails.root}/spec/factories/images/ushibeaf.png"
-          ] , make_visible: true)
+        fill_in 'タイトル',	with: 'ブログ１'
+        fill_in '本文',	with: '本文１'
+        attach_file('画像選択', [
+                      "#{Rails.root}/spec/factories/images/qujila-flower.png",
+                      "#{Rails.root}/spec/factories/images/ushibeaf.png"
+                    ], make_visible: true)
         find('.submit_btn').click
       end
       it '一覧ページへ遷移する' do
@@ -112,7 +112,7 @@ RSpec.describe 'ブログ機能', type: :system do
     end
     context 'タイトルを修正した場合' do
       before do
-        fill_in "タイトル",	with: "修正しました"
+        fill_in 'タイトル',	with: '修正しました'
         find('.submit_btn').click
       end
       it '一覧でのタイトルが変更になる' do
@@ -123,7 +123,7 @@ RSpec.describe 'ブログ機能', type: :system do
     context '本文を修正した場合' do
       before do
         select 'タイトル１', from: 'blog[event_id]'
-        fill_in "本文",	with: "修正しました"
+        fill_in '本文',	with: '修正しました'
         find('.submit_btn').click
       end
       it '詳細画面での本文が変更になる' do
@@ -151,8 +151,8 @@ RSpec.describe 'ブログ機能', type: :system do
     context '一覧画面で削除した場合' do
       before do
         visit blogs_path
-        all(".dropdown .material-icons")[0].click
-        all(".dropdown .delete")[0].click
+        all('.dropdown .material-icons')[0].click
+        all('.dropdown .delete')[0].click
       end
       it '一覧からブログが削除される' do
         expect(Blog.where(user_id: user.id).size).to eq 0
