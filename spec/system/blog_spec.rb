@@ -52,7 +52,7 @@ RSpec.describe 'ブログ機能', type: :system do
         find('.submit_btn').click
       end
       it '保存できませんとメッセージが表示される' do
-        expect(page).to have_content '保存できません。'
+        expect(page).to have_content 'タイトルを入力してください'
       end
     end
   end

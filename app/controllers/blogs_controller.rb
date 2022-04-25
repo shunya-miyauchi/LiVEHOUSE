@@ -3,7 +3,7 @@ class BlogsController < ApplicationController
   before_action :q_livehouse
 
   def index
-    @blogs = Blog.includes(:event).reverse_created_at.page(params[:page]).per(5)
+    @blogs = Blog.where(user_id: current_user.id).includes(:event).reverse_created_at.page(params[:page]).per(5)
     respond_to do |format|
       format.html {}
       format.js { render :schedule }
@@ -18,9 +18,8 @@ class BlogsController < ApplicationController
   def create
     @blog = current_user.blogs.build(blog_params)
     if @blog.save
-      redirect_to blogs_path, notice: 'ブログ投稿'
+      redirect_to blogs_path, flash: { blog_notice: 'ブログ投稿'}
     else
-      flash.now[:alert] = '保存できません。'
       render :new
     end
   end
@@ -33,15 +32,13 @@ class BlogsController < ApplicationController
     if @blog.update(blog_params)
       redirect_to blogs_path
     else
-      flash.now[:alert] = '変更できません。'
       render :edit
     end
   end
 
   def destroy
     @blog.destroy
-    flash[:notice] = '削除しました。'
-    redirect_to blogs_path
+    redirect_to blogs_path, flash: { blog_notice: 'ブログ削除'}
   end
 
   private
