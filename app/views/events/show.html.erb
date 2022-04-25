@@ -91,8 +91,10 @@
         <div class="comments_area">
           <%= render 'index', { comments: @comments } %>
         </div>
+
       </div>
       <% if user_signed_in? %>
+        <div class="error_msg"></div>
         <div id="comment_form">
           <%= render 'form', { livehouse: @event.livehouse, event: @event, comment: @comment } %>
         </div>
