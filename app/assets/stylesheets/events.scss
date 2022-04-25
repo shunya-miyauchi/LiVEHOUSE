@@ -455,7 +455,7 @@ main.container-fluid.events {
               border: thin solid white;
               border-radius: 50%;
               width: 7%;
-              height: 7%;
+              height: auto;
               object-fit: cover;
               margin: 5px;
             }
@@ -528,6 +528,10 @@ main.container-fluid.events {
           transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
       }
+    }
+    #error_explanation {
+      margin: 0px;
+      color: red;
     }
   }
 

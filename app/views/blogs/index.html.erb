@@ -19,6 +19,9 @@
       <div class="title_icon">
         <div class="title">ブログ</div>
         <%= link_to "新規作成", new_blog_path, class:"new_btn" %>
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "#{key}") %>
+        <% end %>
       </div>
       <% if current_user.blogs.blank? %>
         <div>まだブログの作成がありません。</div>

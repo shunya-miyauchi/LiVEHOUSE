@@ -1,2 +1,3 @@
 $(".comments_area").html("<%= j(render 'events/index', { comments: @comment.event.comments.reverse_created_at }) %>");
+$(".error_msg").html("<%= j(render 'layouts/error', resource: @comment, attribute: :content) %>");
 $("textarea").val('');
