@@ -152,9 +152,12 @@ RSpec.describe 'ブログ機能', type: :system do
       before do
         visit blogs_path
         all('.dropdown .material-icons')[0].click
-        all('.dropdown .delete')[0].click
+        page.accept_confirm do
+          all('.dropdown .delete')[0].click
+        end
       end
       it '一覧からブログが削除される' do
+        sleep 0.1
         expect(Blog.where(user_id: user.id).size).to eq 0
       end
     end
