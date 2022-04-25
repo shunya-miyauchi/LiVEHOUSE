@@ -26,3 +26,5 @@ ja:
         nearest_station: 最寄駅情報 
         latitude: 緯度
         longitude: 経度
+      comment:
+        content: コメント
