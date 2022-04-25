@@ -3,13 +3,14 @@
     <div class="blog_card">
       <div class="card_header">
         <div class="title"><%= link_to "#{blog.title}",blog_path(blog.id),class:"title" %></div>
+        <%= blog.user.name %>
         <div class="dropdown">
           <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
             <span class="material-icons">expand_circle_down</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <%= link_to "編集", edit_blog_path(blog.id),class:"dropdown-item dit" %>
-            <%= link_to "削除", blog_path(blog.id), method: :delete,class:"dropdown-item delete" %>
+            <%= link_to "削除", blog_path(blog.id), method: :delete,class:"dropdown-item delete", data: { confirm: '本当に削除してよろしいですか？' } %>
           </div>
       </div>
     
