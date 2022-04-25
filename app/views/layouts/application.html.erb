@@ -20,7 +20,7 @@
       <header>
         <% if user_signed_in? %>
           <div class="header_top">
-              <%= image_tag "top_logo_only.png", class: "logo_only" %>
+              <%= image_tag "logo_only.png", class: "logo_only" %>
               <% if notice %>
                 <p class="alert alert-notice"><%= notice %></p>
               <% end %>
@@ -56,7 +56,7 @@
           </div>
         <% else %>
           <div class="header_top">
-            <%= image_tag "top_logo_only.png", class: "logo_only" %>
+            <%= image_tag "logo_only.png", class: "logo_only" %>
             <% if notice %>
               <p class="alert alert-notice"><%= notice %></p>
             <% end %>

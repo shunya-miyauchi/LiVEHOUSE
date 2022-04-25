@@ -1,4 +1,4 @@
-![Livehouse](/app/assets/images/top_logo_only.png) 
+![Livehouse](/app/assets/images/logo_only.png) 
   
 音楽を全身で感じることができるライブハウス。
 「LiVEHOUSE」は、ふと思いついた時に行きたいライブハウスを探せるアプリです。
