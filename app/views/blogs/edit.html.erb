@@ -24,6 +24,7 @@
     </div>
     <div>
       <%= f.label :title, 'タイトル',class:"title_label" %>
+      <%= render 'layouts/error', resource: @blog, attribute: :title %>
       <div><%= f.text_field :title,placeholder:"30字以内" %></div>
     </div>
     <div>
