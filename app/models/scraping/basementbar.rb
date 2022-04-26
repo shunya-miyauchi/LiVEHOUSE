@@ -2,53 +2,73 @@ class Scraping::Basementbar < ApplicationRecord
   require 'open-uri'
 
   class << self
-    def execute
-      basementbar_import
+
+    # データベース保存
+    def import
+      events = get_events
+      result =
+      Event.import events,
+              validate_uniqueness: true,
+              on_duplicate_key_update: {
+                constraint_name: :for_upsert,
+                columns: %i[title open price artist] 
+              }
+      p result.failed_instances
     end
 
     private
 
-    def basementbar_import
+    # 月毎のURL取得
+    def get_urls
       date = Date.current
-      livehouse_id = Livehouse.find_by('name LIKE?', '%下北沢BASEMENT BAR%').id
-      @events = []
+      url = []
       3.times do |_f|
         year = date.year
         month = date.strftime('%m')
-        url = "https://toos.co.jp/basementbar/event/on/#{year}/#{month}/"
-        events_get(url, livehouse_id)
+        url << "https://toos.co.jp/basementbar/event/on/#{year}/#{month}/"
         date = date.next_month
         date = date.next_year if date.month == 1
       end
-      Event.import @events,
-                   validate_uniqueness: true,
-                   on_duplicate_key_update: {
-                     constraint_name: :for_upsert,
-                     columns: %i[title held_on open start price artist]
-                   }
+      url
     end
 
-    def events_get(url, livehouse_id)
-      html = URI.open(url.to_s).read
-      doc = Nokogiri::HTML.parse(html)
-      links = doc.xpath("//h2[@class='eo-event-title entry-title']//a").map { |f| f.attribute('href').value }
+    # イベント毎のURL取得 
+    def get_links
+      urls = get_urls
+      links = []
+      get_urls.each do |url|
+        html = URI.open(url.to_s).read
+        doc = Nokogiri::HTML.parse(html)
+        links << doc.xpath("//h2[@class='eo-event-title entry-title']//a").map { |f| f.attribute('href').value }
+      end
+      links.flatten
+    end
+
+    # イベント詳細取得
+    def get_events
+      events = []
+      livehouse_id = Livehouse.find_by('name LIKE?', '%下北沢BASEMENT BAR%').id
+      links = get_links
       links.map do |link|
         link_html = URI.open(link.to_s)
         link_doc = Nokogiri::HTML.parse(link_html)
-        @events << {  title: title(link_doc),
-                      held_on: held_on(link_doc),
-                      open: open(link_doc),
-                      start: start(link_doc),
-                      price: price(link_doc),
-                      artist: artist(link_doc),
-                      url: link,
-                      livehouse_id: livehouse_id }
+        events << { title: title(link_doc),
+                    held_on: held_on(link_doc),
+                    open: open(link_doc),
+                    start: start(link_doc),
+                    price: price(link_doc),
+                    artist: artist(link_doc),
+                    url: link,
+                    livehouse_id: livehouse_id }
       end
+      events
     end
 
+
+    # カラム毎
     def title(link_doc)
-      title = link_doc.xpath("//div[@class='main_title']")
-      title.text.presence || '未定'
+      title = link_doc.xpath("//div[@class='main_title']").text.strip
+      title.presence || '未定'
     end
 
     def held_on(link_doc)
@@ -96,4 +116,5 @@ class Scraping::Basementbar < ApplicationRecord
       end
     end
   end
+
 end

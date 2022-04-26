@@ -2,41 +2,57 @@ class Scraping::SpotifyOnest < ApplicationRecord
   require 'open-uri'
 
   class << self
-    def execute
-      onest_import
+
+    # データベース保存
+    def import
+      events = get_events
+      result =
+      Event.import events,
+              validate_uniqueness: true,
+              on_duplicate_key_update: {
+                constraint_name: :for_upsert,
+                columns: %i[title open price artist] 
+              }
+      p result.failed_instances
     end
 
     private
 
-    def onest_import
+    # 月毎のURL取得
+    def get_urls
       date = Date.current
-      livehouse_id = Livehouse.find_by('name LIKE?', '%Spotify O-nest%').id
-      @events = []
+      urls = []
       3.times do |_f|
         year = date.year
         month = date.month
-        url = "https://shibuya-o.com/nest/schedule/?y=#{year}&m=#{month}/"
-        events_get(url, livehouse_id)
+        urls << "https://shibuya-o.com/nest/schedule/?y=#{year}&m=#{month}/"
         date = date.next_month
         date = date.next_year if date.month == 1
       end
-      Event.import @events,
-                   validate_uniqueness: true,
-                   on_duplicate_key_update: {
-                     constraint_name: :for_upsert,
-                     columns: %i[title held_on open start price artist]
-                   }
+      urls
     end
 
-    # "Spotify O-nest"スクレイピング、DB保存
-    def events_get(url, livehouse_id)
-      html = URI.open(url.to_s).read
-      doc = Nokogiri::HTML.parse(html)
-      links = doc.xpath("//div[@class='p-scheduled-card p-scheduled-card--horizontal']//a").map { |f| f.attribute('href').value }
+    # イベント毎のURL取得 
+    def get_links
+      urls = get_urls
+      links = []
+      get_urls.each do |url|
+        html = URI.open(url.to_s).read
+        doc = Nokogiri::HTML.parse(html)
+        links << doc.xpath("//div[@class='p-scheduled-card p-scheduled-card--horizontal']//a").map { |f| f.attribute('href').value }
+      end
+      links.flatten
+    end
+
+    # イベント詳細取得
+    def get_events
+      events = []
+      livehouse_id = Livehouse.find_by('name LIKE?', '%Spotify O-nest%').id
+      links = get_links
       links.map do |link|
         link_html = URI.open(link.to_s)
         link_doc = Nokogiri::HTML.parse(link_html)
-        @events << {  title: title(link_doc),
+        events << {  title: title(link_doc),
                       held_on: held_on(link_doc),
                       open: open(link_doc),
                       start: start(link_doc),
@@ -45,6 +61,7 @@ class Scraping::SpotifyOnest < ApplicationRecord
                       url: link,
                       livehouse_id: livehouse_id }
       end
+      events
     end
 
     def title(link_doc)
