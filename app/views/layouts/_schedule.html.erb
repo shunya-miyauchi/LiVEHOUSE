@@ -14,11 +14,18 @@
         <div class="date">
           <span class="year"><%= event.held_on.strftime("%Y") %></span>
           <span class="day"><%= event.held_on.strftime("%m.%d") %></span>
-          <span class="week"><%= event.held_on.strftime("%a") %></span> 
+          <% if event.held_on.sunday? %>
+            <span class="week_sunday"><%= event.held_on.strftime("%a") %></span>
+          <% elsif event.held_on.saturday? %> 
+            <span class="week_saturday"><%= event.held_on.strftime("%a") %></span> 
+          <% else %>
+            <span class="week"><%= event.held_on.strftime("%a") %></span> 
+          <% end %>
         </div> 
       </div>
       <div class="card_title", id="<%= event.id %>">
-        <%= event.title %>
+        <%= link_to "#{event.title}", livehouse_event_path(event.livehouse_id,event.id), class:"title" %>
+        <%#= event.title %>
       </div>
       <div class="card_time">
         <span class="title">OPEN/START</span>
@@ -28,7 +35,6 @@
         <%= simple_format(event.artist.gsub(/\/| \/ |\／/, "<br>").truncate(70, separator: "<br>",omission: '..')) %>
       </div>
       <div class="card_select">
-        <%= link_to "詳細",livehouse_event_path(event.livehouse_id,event.id),class: "detail" %>
         <div id="join_<%= event.id %>">
           <%= render 'joins/select', { event: event } %>
         </div>   
