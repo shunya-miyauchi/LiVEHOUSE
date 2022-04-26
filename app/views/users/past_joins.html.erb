@@ -1,41 +1,43 @@
 <div class="col-md-3">
 
-<!-- プロフィール -->
-  <div class="user_profile">
-    <div class="row">
-      <div class="col-md-5">
-        <% if @user.image? %>
-          <%= image_tag @user.image.url,class:"img" %>
-        <% else %>
-          <%= image_tag "default.png",class:"img" %>
-        <% end %>
-      </div>
-      <div class="col-md-7">
-        <div class="article">
-          <div class="name"><%= @user.name %></div>
-          <div class="display_name">@<%= @user.display_name %></div>
-          <%= link_to "編集", edit_user_registration_path(@user.id), class: "edit_btn" %>
+  <div class="side_bar">
+    <!-- プロフィール -->
+    <div class="user_profile">
+      <div class="row">
+        <div class="img_con col-md-5">
+          <% if @user.image? %>
+            <%= image_tag @user.image.url,class:"img" %>
+          <% else %>
+            <%= image_tag "default.png",class:"img" %>
+          <% end %>
+        </div>
+        <div class="article_con col-md-7">
+          <div class="article">
+            <div class="name"><%= @user.name %></div>
+            <div class="display_name">@<%= @user.display_name %></div>
+            <%= link_to "編集", edit_user_registration_path(@user.id), class: "edit_btn" %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- 期間検索 -->
-  <%= search_form_for @q_event, as: :date_search, url: user_path(current_user.id) do |f| %>
-    <div class="search_title">期間検索</div>
-    <div class="row">
-      <div class="col-lg-10">
-        <div class="search_form">
-          <%= f.date_field :held_on_gteq %>
-          <div class="line" >〜</div>
-          <%= f.date_field :held_on_lteq %>
+    <!-- 期間検索 -->
+    <%= search_form_for @q_event, as: :date_search, url: user_path(current_user.id) do |f| %>
+      <div class="row">
+        <div class="col-md-11">
+          <div class="search_title">期間検索</div>
+          <div class="search_form">
+            <%= f.date_field :held_on_gteq %>
+            <div class="line" >×</div>
+            <%= f.date_field :held_on_lteq %>
+          </div>
+        </div>
+        <div class="search_btn col-md-11">
+          <%= f.submit '検索', class: "btn" %>
         </div>
       </div>
-      <div class="search_btn col-lg-2">
-        <%= f.submit '検索', class: "btn" %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 
 
 
@@ -43,10 +45,10 @@
   <%= search_form_for @q_livehouse, url: user_path(current_user.id), remote: true do |f| %>
     <div class="search_title">ライブハウス検索</div>
     <div class="row">
-      <div class="col-lg-10">
+      <div class="col-md-11">
         <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
       </div>
-      <div class="livehouse_search_btn col-lg-2">
+      <div class="livehouse_search_btn col-md-11">
         <%= f.submit '検索', class: "livehouse_btn" %>
       </div>
     </div>
@@ -62,23 +64,17 @@
 <div class="col-md-9">
 
 
-<!-- ライブ予定一覧 -->
-<div class="row">
-  <div class="schedule">
-    <div class="schedule_title">
-      <div class="title_search col-12">
-        <div class="title">参戦記録</div>
-      </div>
-      <div class="col-12">
-        <% if @events_past.blank? %>
-          <div>参加したイベントはありません。</div>
-        <% end %>
-        <div class="schedule_past row" >
-          <%= render "layouts/schedule", { events: @events_past} %> 
-        </div>
-        <%= link_to_next_page @events_future, 'さらに表示', remote: true, id: 'more_link' %>
-      </div>
-    </div>
+  <!-- スケジュール一覧 -->
+  <div id="schedule">
+    <% if @events_past.blank? %>
+      <div>参加したイベントはありません。</div>
+    <% else %>
+      <div class="past_join_title">参戦記録</div>
+    <% end %>
+    <div class="schedule row" >
+      <%= render "layouts/schedule", {events: @events_past} %> 
+    </div>    
+    <%= link_to_next_page @events_past, 'さらに表示', remote: true, id: 'more_link' %>
   </div>
 </div>
 
