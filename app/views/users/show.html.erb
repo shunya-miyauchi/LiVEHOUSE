@@ -70,7 +70,7 @@
             <div>参加予定のイベントはありません。</div>
           <% end %>
           <div class="schedule_future row" >
-            <%= render "events/schedule", { events: @events_future} %> 
+            <%= render "layouts/schedule", { events: @events_future} %> 
           </div>
           <%= link_to_next_page @events_future, 'さらに表示', remote: true, id: 'more_link' %>
         </div>

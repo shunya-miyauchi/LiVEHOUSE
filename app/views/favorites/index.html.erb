@@ -22,7 +22,7 @@
     <% else %>
       <div id="schedule">
         <div class="schedule row" >
-          <%= render "events/schedule", {events: @events} %> 
+          <%= render "layouts/schedule", {events: @events} %> 
         </div>
         <%= link_to_next_page @events, 'さらに表示', remote: true, id: 'more_link' %>
       </div>

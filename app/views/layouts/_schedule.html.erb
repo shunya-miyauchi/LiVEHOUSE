@@ -1,16 +1,20 @@
 <% events.each do |event| %>
-  <% if events.this_week.present? && event == events[0] %>
-    <div class="col-12 this_week">今週のライブ</div>
-  <% elsif events.next_week.present? && event == events.next_week[0] %>
-    <div class="col-12 next_week">来週のライブ</div>
+  <% if this_week?(events,event) %>
+    <div class="col-12 event_separate">
+      <div class="this_week">今週のライブ</div>
+    </div>
+  <% elsif next_week?(events,event) %>
+    <div class="col-12 event_separate">
+      <div class="next_week">来週のライブ</div>
+    </div>
   <% end %>
   <div class="col-lg-4 col-md-6 col-sm-12 body_card">
     <div class="schedule_card">
       <div class="card_header">
         <div class="date">
           <span class="year"><%= event.held_on.strftime("%Y") %></span>
-          <span class="month"><%= event.held_on.strftime("%-m.%d") %></span>
-          <span class="day"><%= event.held_on.strftime("%a") %></span> 
+          <span class="day"><%= event.held_on.strftime("%m.%d") %></span>
+          <span class="week"><%= event.held_on.strftime("%a") %></span> 
         </div> 
       </div>
       <div class="card_title", id="<%= event.id %>">
@@ -21,7 +25,7 @@
         <span class="content"><%= event.open %>/<%= event.start %></span>
       </div>
       <div class="card_artist">
-        <%= event.artist.truncate(70, separator: "/",omission: '...他') %>
+        <%= simple_format(event.artist.gsub(/\/| \/ |\／/, "<br>").truncate(70, separator: "<br>",omission: '..')) %>
       </div>
       <div class="card_select">
         <%= link_to "詳細",livehouse_event_path(event.livehouse_id,event.id),class: "detail" %>
