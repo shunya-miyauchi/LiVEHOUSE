@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_15_115956) do
+ActiveRecord::Schema.define(version: 2022_04_26_072521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,9 +48,9 @@ ActiveRecord::Schema.define(version: 2022_04_15_115956) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "url"
+    t.index ["held_on", "start", "livehouse_id"], name: "for_upsert", unique: true
     t.index ["held_on"], name: "index_events_on_held_on"
     t.index ["livehouse_id"], name: "index_events_on_livehouse_id"
-    t.index ["title", "held_on", "start"], name: "for_upsert", unique: true
   end
 
   create_table "favorites", force: :cascade do |t|
