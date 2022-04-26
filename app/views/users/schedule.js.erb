@@ -1,5 +1,5 @@
 $('#more_link').remove();
-$('.schedule_future').append("<%= escape_javascript(render partial:'schedule',locals: { events: @events_future } ) %>");
+$('.schedule_future').append("<%= escape_javascript(render partial:'layouts/schedule',locals: { events: @events_future } ) %>");
 $('.schedule_future').after("<%= escape_javascript(link_to_next_page(@events_future, 'さらに表示', remote: true, id: 'more_link')) %>");
-$('.schedule_past').append("<%= escape_javascript(render partial:'schedule',locals: { events: @events_past } ) %>");
+$('.schedule_past').append("<%= escape_javascript(render partial:'layouts/schedule',locals: { events: @events_past } ) %>");
 $('.schedule_past').after("<%= escape_javascript(link_to_next_page(@events_past, 'さらに表示', remote: true, id: 'more_link')) %>");
