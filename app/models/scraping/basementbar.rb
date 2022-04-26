@@ -21,15 +21,15 @@ class Scraping::Basementbar < ApplicationRecord
     # 月毎のURL取得
     def get_urls
       date = Date.current
-      url = []
+      urls = []
       3.times do |_f|
         year = date.year
         month = date.strftime('%m')
-        url << "https://toos.co.jp/basementbar/event/on/#{year}/#{month}/"
+        urls << "https://toos.co.jp/basementbar/event/on/#{year}/#{month}/"
         date = date.next_month
         date = date.next_year if date.month == 1
       end
-      url
+      urls
     end
 
     # イベント毎のURL取得 
