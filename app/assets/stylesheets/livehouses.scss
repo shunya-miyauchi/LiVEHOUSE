@@ -30,7 +30,7 @@ body.container-fluid.passwords {
   .top_logo {
     position: absolute;
     transform: translate(-50%,-50%);
-    top: 380px;
+    top: 350px;
     left: 50%;
     max-width: 100%;
     height: auto;
@@ -103,9 +103,10 @@ body.container-fluid.passwords {
     .search_livehouse {
       display: flex;
       align-items: center;
+      justify-content: center;
       #q_place_id_eq {
         display: inline-block;
-        width: 80%;
+        width: 60%;
         height: calc(2rem + 2rem + 2px);
         font-size: 1rem;
         padding: 0.375rem 1.75rem 0.375rem 0.75rem;
@@ -179,26 +180,25 @@ body.container-fluid.passwords {
 
 // 説明部分(トップ)
     .explanation {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       width: 100%;
       position: absolute;
       transform: translate(-50%,-50%);
       top: 660px;
       left: 50%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
       .about,
       .how_to,
       .membership {
         display: inline-block;
-        font-size: 2rem;
-
+        font-size: 1.5rem;
         text-align: center;
         padding-top: 4rem;
       }
       hr {
         border-top: 2px solid #fa0000;
-        width: 50%;
+        width: 20%;
         margin: 0 auto 1rem auto;
         text-align: start;
 
@@ -210,29 +210,24 @@ body.container-fluid.passwords {
         margin: 0;
         padding-top: 10px 0px 40px 0px;   
       }
-      .about_1,
-      .about_2,
-      .about_3 {
+      .about_1 {
+        font-size: 2.5vw;
+        padding: 5px 0px;
+      }
+      .about_2 {
+        font-size: 1vw;
         padding: 5px 0;
       }
-      .about_4 {
-        font-size: 1.7rem;
-        padding-top: 5px;
-      }
-      .how_to_1,
-      .how_to_2,
-      .how_to_3 {
-        padding: 5px 0;
-      }
-      .membership_1 {
-        padding: 10px 0;
+      .how_to_1 {
+        font-size: 1.1vw;
+        padding: 3px 0;
       }
       .membership_2,
       .membership_4,
       .membership_6,
       .membership_8 {
-        padding: 15px 0 3px 0;
-        font-size: 1.3rem;
+        padding: 15px 0 0 0;
+        font-size: 2vw;
         
       }
     }
