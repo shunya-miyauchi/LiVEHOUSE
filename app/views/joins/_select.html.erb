@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
   <% if current_user.joins_by?(event.id) %>
-    <%= link_to "不参加", join_path(id: event.id), method: :delete, remote: true, class: "unjoin" %>
+    <%= link_to "登録中", join_path(id: event.id), method: :delete, remote: true, class: "unjoin" %>
   <% else %>
-    <%= link_to "参加", joins_path(id: event.id), method: :post, remote: true, class:"join" %>
+    <%= link_to "登録", joins_path(id: event.id), method: :post, remote: true, class:"join" %>
   <% end %>
 <% end %>

@@ -1,31 +1,41 @@
 <div class="col-md-3">
+  <div class="side_bar">
 
-<!-- ライブハウス一覧 -->
-  <div id="livehouses_area">
-    <div class="title">お気に入り</div>
-    <ul class="favorite_group">
-      <% @livehouses.each do |livehouse| %>
-        <li class="favorite_list">
-          <span id="favorite_<%= livehouse.id %>"><%= render 'events/livehouse', { livehouse: livehouse } %></span>
-          <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id}),class: "favorite_item" %>
-        </li>
-      <% end %>
-    </ul>
+    <!-- プロフィール -->
+    <%= render 'users/profile' %>
+
+    <!-- 期間検索 -->
+    <%= render 'livehouses/period_search', { q_event: @q_event, path: favorites_path } %>
+
+
+    <!-- ライブハウス一覧 -->
+    <div id="livehouses_area">
+      <div class="title">お気に入り</div>
+      <div class="container">
+        <ul class="favorite_group">
+          <% @livehouses.each do |livehouse| %>
+            <li class="favorite_list">
+              <span id="favorite_<%= livehouse.id %>"><%= render 'events/livehouse', { livehouse: livehouse } %></span>
+              <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id }),class: "favorite_item" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- スケジュール -->
+
 <div class="col-md-9">
-  <div>
-    <% if @livehouses.blank? %>
-      <div>ライブハウスをお気に入り登録して下さい。</div>
-    <% else %>
-      <div id="schedule">
-        <div class="schedule row" >
-          <%= render "events/schedule", {events: @events} %> 
-        </div>
-        <%= link_to_next_page @events, 'さらに表示', remote: true, id: 'more_link' %>
-      </div>
+
+  <!-- スケジュール一覧 -->
+  <div id="schedule">
+    <% if @events.blank? %>
+      <div>参加予定のイベントはありません。</div>
     <% end %>
+    <div class="schedule row" >
+      <%= render "layouts/schedule", {events: @events} %> 
+    </div>    
+    <%= link_to_next_page @events, 'さらに表示', remote: true, id: 'more_link' %>
   </div>
 </div>

@@ -8,65 +8,82 @@ nav.pagination {
 
 main.container-fluid.events {
 
- // index
+// index
 
 // 固定
   .livehouse_top_name {
     position: fixed;
-    top: 10%;
-    left: 1%;
+    top: 11%;
   }
   #event_search {
     position: fixed;
-    top: 16%;
-    left: 0%;
+    top: 19%;
+    left: 1.5%;
   }
   .livehouse_search {
     position: fixed;
     top: 38%;
-    left: 0%;
+    left: 1.5%;
   }
   #livehouses_area {
     position: fixed;
-    top: 52%;
-    left: 1%;
+    top: 56%;
+    left: 2.5%;
+  }
+
+  // サイドバー枠
+  .side_bar {
+    position: fixed;
+    top: 9%;
+    left: 1.5%;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 0.25rem;
+    // background-color: rgba(255, 255, 255, 0.801);
+    width: 23%;
+    height: 80%;
   }
 
 // ライブハウス名
   .livehouse_top_name{
-    font-size: 1.3rem;
-    display: inline-block;
+    font-size: 1.5vw;
+    width: 22.8%;
+    text-align: center;
     padding: 0.2rem 0.5rem;
     background-color:rgba(255, 0, 0, 0.5) ;
     color: white;
     margin: 0;
   }
-// 期間検索
+
+  // 期間検索
   #event_search {
-    padding: 0.5rem 1rem;
     width: 25%;
     .search_title {
       display: inline-block;
-      margin-bottom: 0.7rem;
-      padding: 0.1rem 0.5rem;
-      font-size: 0.9rem;
-      background-color: white;
-      color: black;
-      border-radius: 0.25rem;
+      width: 30%;
+      margin: 0 auto;
+      margin-bottom: 0.9rem;
+      padding: 0.1rem 0rem;
+      font-size: 1.2vw;
+      color: white;
+      background: linear-gradient(transparent 80%, rgba(179, 255, 0, 0.801) 80%);
+    }
+    .row {
+      margin: 0;
     }
     .search_form {
       #q_event_held_on_gteq,
       #q_event_held_on_lteq {
         width: 100%;
         font-size: 0.8rem;
-        padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+        padding: 0.3rem 0em;
         font-weight: 400;
         line-height: 1.5;
         color: black;
         vertical-align: middle;
-        border: 1px solid white;
+        border: 1px solid black;
         border-radius: 0.25rem;
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.911);
       }
       .line {
         font-size: 0.5rem;
@@ -75,13 +92,13 @@ main.container-fluid.events {
       }
     }
     .search_btn {
+      margin-top: 0.5rem;
       display: flex;
       justify-content: flex-end;
-      align-items: flex-end;
       .btn {
         font-size: 0.8rem;
-        color: red;
-        border: 1px solid red;
+        color: white;
+        border: 1px solid white;
         font-weight: 400;
         user-select: none;
         background-color: transparent;
@@ -99,12 +116,13 @@ main.container-fluid.events {
     width: 25%;
     .search_title {
       display: inline-block;
-      margin-bottom: 0.7rem;
-      padding: 0.1rem 0.5rem;
-      font-size: 0.9rem;
-      background-color: white;
-      color: black;
-      border-radius: 0.25rem;
+      width: 47%;
+      margin: 0 auto;
+      margin-bottom: 0.9rem;
+      padding: 0.1rem 0rem;
+      font-size: 1.2vw;
+      color: white;
+      background: linear-gradient(transparent 80%, rgba(179, 255, 0, 0.801) 80%);
     }
     #q_livehouse_place_id_eq {
       width: 100%;
@@ -112,20 +130,19 @@ main.container-fluid.events {
       padding: 0.8rem 0rem 0.8rem 0.2rem;
       font-weight: 400;
       line-height: 1.5;
-      color: white;
+      color: black;
       vertical-align: middle;
-      border: 1px solid white;
       border-radius: 0.25rem;
-      background-color: transparent;
+      background-color: rgba(255, 255, 255, 0.897);
     }
     .livehouse_search_btn {
+      margin-top: 0.5rem;
       display: flex;
       justify-content: flex-end;
-      align-items: flex-end;
       .livehouse_btn {
         font-size: 0.8rem;
-        color: red;
-        border: 1px solid red;
+        color: white;
+        border: 1px solid white;
         font-weight: 400;
         user-select: none;
         background-color: transparent;
@@ -171,16 +188,32 @@ main.container-fluid.events {
 // スケジュール
   #schedule {
     padding: 0rem 0.5rem 1rem 1.5rem;
-    .this_week,
+    .event_separate {
+      padding-left: 0.5rem;
+    }
+    .this_week {
+      padding: 0.2rem 0 0.2rem 0rem;
+      display: inline-block;
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.5rem;
+      background: linear-gradient(transparent 80%, rgba(255, 255, 0, 0.801) 80%);
+      color: white;
+      font-weight: 700;
+    }
     .next_week,
     .after_next_week {
-      padding: 10px 0px 10px 10px;
-      font-size: 1.2rem;
+      padding: 0.2rem 0 0.2rem 0rem;
+      display: inline-block;
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.5rem;
+      background: linear-gradient(transparent 80%, rgba(255, 255, 0, 0.801) 80%);
+      color: white;
+      font-weight: 700;
     }
     .body_card {
-      height: 300px;
+      height: 400px;
       margin: 0px;
-      padding: 0.5rem 0.3rem;
+      padding: 0.7rem 0.5rem;
       .schedule_card {
         height: 100%;
         position: relative;
@@ -189,28 +222,60 @@ main.container-fluid.events {
         flex-direction: column;
         background-color: transparent;
         background-clip: border-box;
-        border: 1px solid white;
+        border: 6px solid rgba(255, 255, 255, 0.801);
+        border-top: transparent;
         border-radius: 0.25rem;
         .card_header {
-          background-color: white;
+          background-color: rgba(255, 255, 255, 0.801);
           color: black;
+          padding: 2px 0px;
           .date {
             .year {
               font-size: 0.7rem;
             }
-            .month {
-              font-size: 1.5rem;
-            }
             .day {
-              font-size: 1rem;
+              font-size: 1.7rem;
+              margin: 0 5px;
+            }
+            .week_sunday {
+              font-size: 0.8rem;
+              background-color: rgba(255, 0, 0, 0.808);
+              color: white;
+              border-radius: 0.25rem;
+              padding: 0.2rem 0.4rem;
+            }
+            .week_saturday {
+              font-size: 0.8rem;
+              background-color: rgba(0, 0, 255, 0.801);
+              color: white;
+              border-radius: 0.25rem;
+              padding: 0.2rem 0.4rem;
+            }
+            .week {
+              font-size: 0.8rem;
+              background-color: black;
+              color: white;
+              border-radius: 0.25rem;
+              padding: 0.2rem 0.4rem;
             }
           }
         }
         .card_title {
-          margin: 1rem 1rem 0 1rem;
-          font-size: 0.9rem;
-          background-color: rgba(255, 0, 0, 0.5);
-          border-radius: 0.25rem;
+          margin: 1rem 1rem 0rem 1rem;
+          .title {
+            display: block;
+            font-size: 1vw;
+            color: white;
+            vertical-align: middle;
+            padding: 3px 0px;
+            background-color: rgba(255, 0, 0, 0.5);
+            border-radius: 0.25rem;
+            width: 100%;
+            height: 100%;
+          }
+          .title:hover {
+            background-color: red;
+          }
         }
         .card_time {
           width: 80%;
@@ -221,13 +286,13 @@ main.container-fluid.events {
             font-size: 0.4rem;
           }
           .content {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             padding-left: 0.1rem;
           }
         }
         .card_artist {
           overflow-wrap: break-word;
-          font-size: 1rem;
+          font-size: 1.2rem;
           padding: 1rem 0.5rem 0 0.5rem;
         }
         .card_select {
@@ -236,46 +301,30 @@ main.container-fluid.events {
           bottom: 0;
           left: 50%;
           display: flex;
-          .detail {
-            font-size: 0.6rem;
-            color: rgba(172, 255, 47, 0.726);
-            border: 1px solid rgba(172, 255, 47, 0.726);
-            font-weight: 400;
-            text-align: center;
-            vertical-align: middle;
-            background-color: transparent;
-            padding: 0.2rem 0.7rem 0 0.7rem;
-            border-radius: 0.25rem;
-          }
+          align-items: center;
           .join {
-            font-size: 0.7rem;
-            color: orange;
-            border: 1px solid orange;
+            font-size: 0.9rem;
+            color: white;
+            border: 1px solid white;
             display: inline-block;
-            font-weight: 400;
             text-align: center;
-            vertical-align: middle;
             user-select: none;
-            background-color: transparent;
-            padding: 0.1rem 0.5rem;
-            border-radius: 0.25rem;
+            padding: 0rem 0.7rem;
             transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
             margin-left: 0.5rem;
+            border-radius: 0.25rem;
           }
           .unjoin {
-            font-size: 0.7rem;
-            color: skyblue;
-            border: 1px solid skyblue;
+            font-size: 0.9rem;
+            color: red;
+            border: 1px solid red;
             display: inline-block;
-            font-weight: 400;
             text-align: center;
-            vertical-align: middle;
             user-select: none;
-            background-color: transparent;
-            padding: 0.1rem 0.5rem;
-            border-radius: 0.25rem;
+            padding: 0rem 0.7rem;
             transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
             margin-left: 0.5rem;
+            border-radius: 0.25rem;
           }
         }
       }
@@ -283,7 +332,8 @@ main.container-fluid.events {
   }
   #more_link {
     color: white;
-    border-radius: 0.25rem;
+    padding-top: 100px;
+    font-size: 1.2rem;
   }
 
   

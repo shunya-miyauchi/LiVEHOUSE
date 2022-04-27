@@ -6,5 +6,5 @@ class Blog < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 30 }
 
-  scope :reverse_created_at, -> { order(created_at: 'DESC') }
+  scope :reverse_event_held_on, -> { order('events.held_on desc') }
 end

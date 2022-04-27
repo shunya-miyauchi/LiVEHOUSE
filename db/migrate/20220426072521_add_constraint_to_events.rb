@@ -1,6 +1,6 @@
 class AddConstraintToEvents < ActiveRecord::Migration[6.0]
   def up
-    execute 'ALTER TABLE events ADD CONSTRAINT for_upsert UNIQUE (title, held_on, start)'
+    execute 'ALTER TABLE events ADD CONSTRAINT for_upsert UNIQUE (held_on, start, livehouse_id)'
   end
 
   def down

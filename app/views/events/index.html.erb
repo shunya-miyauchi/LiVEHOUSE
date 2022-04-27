@@ -1,39 +1,26 @@
 <div class="col-md-3">
-  <!-- ライブハウス名 --> 
-  <div class="livehouse_top_name"><%= @livehouse.name %></div>
+  <div class="side_bar">
+    <!-- ライブハウス名 --> 
+    <div class="livehouse_top_name"><%= @livehouse.name %></div>
 
-  <!-- 期間検索 -->
-  <%= search_form_for @q_event, as: :q_event, url: livehouse_events_path(@livehouse) do |f| %>
-    <div class="search_title">期間検索</div>
-    <div class="row">
-      <div class="col-lg-10">
-        <div class="search_form">
-          <%= f.date_field :held_on_gteq %>
-          <div class="line" >×</div>
-          <%= f.date_field :held_on_lteq %>
+    <!-- 期間検索 -->
+    <%= render 'livehouses/period_search', { q_event: @q_event, path: user_path(current_user.id) } %>
+
+
+    <!-- ライブハウス検索窓 -->
+    <%= search_form_for @q_livehouse, as: :q_livehouse, url: livehouse_events_path(@livehouse) do |f| %>
+      <div class="search_title">ライブハウス検索</div>
+      <div class="row">
+        <div class="col-md-11">
+          <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
+        </div>
+        <div class="livehouse_search_btn col-md-11">
+          <%= f.submit '検索', class: "livehouse_btn" %>
         </div>
       </div>
-      <div class="search_btn col-lg-2">
-        <%= f.submit '検索', class: "btn" %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
 
-
-<!-- ライブハウス検索窓 -->
-  <%= search_form_for @q_livehouse, as: :q_livehouse, url: livehouse_events_path(@livehouse) do |f| %>
-    <div class="search_title">ライブハウス検索</div>
-    <div class="row">
-      <div class="col-lg-10">
-        <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
-      </div>
-      <div class="livehouse_search_btn col-lg-2">
-        <%= f.submit '検索', class: "livehouse_btn" %>
-      </div>
-    </div>
-  <% end %>
-
-<!-- ライブハウス検索結果 -->
+    <!-- ライブハウス検索結果 -->
     <div class="row">
       <div id="livehouses_area">
         <ul class="favorite_group">
@@ -46,6 +33,7 @@
         </ul>
       </div>
     </div>
+  </div>
 </div>
 
 <div class="col-md-9">
@@ -53,7 +41,7 @@
   <!-- スケジュール一覧 -->
   <div id="schedule">
     <div class="schedule row" >
-      <%= render "schedule", {events: @events} %> 
+      <%= render "layouts/schedule", {events: @events} %> 
     </div>    
     <%= link_to_next_page @events, 'さらに表示', remote: true, id: 'more_link' %>
   </div>
