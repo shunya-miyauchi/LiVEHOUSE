@@ -1,9 +1,9 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: %i[show edit update destroy]
   before_action :q_livehouse
+  before_action :q_blog, only: %i[index]
 
   def index
-    @blogs = Blog.where(user_id: current_user.id).includes(:event).reverse_created_at.page(params[:page]).per(5)
     respond_to do |format|
       format.html {}
       format.js { render :schedule }
@@ -54,5 +54,16 @@ class BlogsController < ApplicationController
   def q_livehouse
     @q_livehouse = Livehouse.ransack(params[:q])
     @result_livehouses = @q_livehouse.result(distinct: true)
+  end
+
+  # 期間検索
+  def q_blog
+    @q_blog = Blog.ransack(params[:date_search], search_key: :date_search)
+    @blogs =
+      if @q_blog.conditions.present?
+        @q_blog.result.includes(:event).order("events.held_on").page(params[:page]).per(10)
+      else
+        Blog.where(user_id: current_user.id).includes(:event).reverse_event_held_on.page(params[:page]).per(10)
+      end
   end
 end

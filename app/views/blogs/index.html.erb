@@ -3,6 +3,23 @@
     <!-- プロフィール -->
     <%= render 'users/profile' %>
 
+    <!-- イベント検索 -->
+    <%= search_form_for @q_blog, as: :date_search, url: blogs_path do |f| %>
+      <div class="row">
+        <div class="col-md-11">
+          <div class="search_title">ライブ日検索</div>
+          <div class="search_form">
+            <%= f.date_field :event_held_on_gteq %>
+            <div class="line" >×</div>
+            <%= f.date_field :event_held_on_lteq %>
+          </div>
+        </div>
+        <div class="search_btn col-md-11">
+          <%= f.submit '検索', class: "btn" %>
+        </div>
+      </div>
+    <% end %>
+
     <!-- ライブハウス検索窓 -->
     <%= render 'livehouses/search', { q_livehouse: @q_livehouse} %>
 
