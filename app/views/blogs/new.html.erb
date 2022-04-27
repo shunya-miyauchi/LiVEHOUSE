@@ -4,7 +4,7 @@
     <%= render 'users/profile' %>
 
     <!-- ライブハウス検索窓 -->
-    <%= render 'livehouses/search', { q_livehouse: @q_livehouse} %>
+    <%= render 'livehouses/search', { q_livehouse: @q_livehouse, path: user_path(current_user.id)} %>
 
     <!-- ライブハウス検索結果 -->
     <div id="livehouses_area">
