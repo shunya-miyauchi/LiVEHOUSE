@@ -1,13 +1,13 @@
 <div class="user_profile">
   <div class="row">
-    <div class="col-md-5">
+    <div class="img_con col-md-5">
       <% if current_user.image? %>
         <%= image_tag current_user.image.url,class:"img" %>
       <% else %>
         <%= image_tag "default.png",class:"img" %>
       <% end %>
     </div>
-    <div class="col-md-7">
+    <div class="article_con col-md-7">
       <div class="article">
         <div class="name"><%= current_user.name %></div>
         <div class="display_name">@<%= current_user.display_name %></div>
