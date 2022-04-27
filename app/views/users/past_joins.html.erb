@@ -28,7 +28,7 @@
     <% else %>
       <div class="past_join_title">参戦記録</div>
     <% end %>
-    <div class="schedule row" >
+    <div class="schedule_past row" >
       <%= render "layouts/schedule", {events: @events_past} %> 
     </div>    
     <%= link_to_next_page @events_past, 'さらに表示', remote: true, id: 'more_link' %>

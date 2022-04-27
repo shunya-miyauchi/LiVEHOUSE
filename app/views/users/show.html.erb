@@ -25,7 +25,7 @@
     <% if @events_future.blank? %>
       <div>参加予定のイベントはありません。</div>
     <% end %>
-    <div class="schedule row" >
+    <div class="schedule_future row" >
       <%= render "layouts/schedule", {events: @events_future} %> 
     </div>    
     <%= link_to_next_page @events_future, 'さらに表示', remote: true, id: 'more_link' %>
