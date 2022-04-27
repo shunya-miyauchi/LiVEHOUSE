@@ -4,21 +4,7 @@
     <div class="livehouse_top_name"><%= @livehouse.name %></div>
 
     <!-- 期間検索 -->
-    <%= search_form_for @q_event, as: :q_event, url: livehouse_events_path(@livehouse) do |f| %>
-      <div class="row">
-        <div class="col-md-11">
-          <div class="search_title">期間検索</div>
-          <div class="search_form">
-            <%= f.date_field :held_on_gteq %>
-            <div class="line" >×</div>
-            <%= f.date_field :held_on_lteq %>
-          </div>
-        </div>
-        <div class="search_btn col-md-11">
-          <%= f.submit '検索', class: "btn" %>
-        </div>
-      </div>
-    <% end %>
+    <%= render 'livehouses/period_search', { q_event: @q_event, path: user_path(current_user.id) } %>
 
 
     <!-- ライブハウス検索窓 -->
