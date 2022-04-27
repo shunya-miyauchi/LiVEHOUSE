@@ -95,7 +95,7 @@ Livehouse.create!([
       name: Faker::Name.last_name,
       display_name: Faker::Internet.username(specifier: 5..15),
       email: Faker::Internet.safe_email,
-      password: 123_456,
+      password: 123456,
       image: File.open("./public/images/image#{n + 1}.png")
     )
 end
@@ -118,24 +118,29 @@ end
   end
 end
 
-# blogs
 # comments
 # joins
 @users.each do |user|
   @events.each do |event|
-    Blog.create!(
-      title: Faker::Games::Pokemon.name,
-      content: 'あああああああああああああああああああああああああああああああ',
-      images: [open("#{Rails.root}/public/images/image1.png")],
-      user_id: user.id,
-      event_id: event.id
-    )
     Comment.create!(
       content: Faker::Games::Pokemon.name,
       user_id: user.id,
       event_id: event.id
     )
     Join.create!(
+      user_id: user.id,
+      event_id: event.id
+    )
+  end
+end
+
+# blogs
+@users.each do |user|
+  @events.sample(5).each do |event|
+    Blog.create!(
+      title: Faker::Games::Pokemon.name,
+      content: 'あああああああああああああああああああああああああああああああ',
+      images: [open("#{Rails.root}/public/images/image1.png")],
       user_id: user.id,
       event_id: event.id
     )
