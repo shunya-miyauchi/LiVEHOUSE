@@ -139,11 +139,10 @@ body.container-fluid.passwords {
 
 // 検索結果(トップ)
     #livehouses_area {
-      margin-top: 20px;
+      margin: 20px auto 0 auto;
       width: 80%;
       height: 8rem;
       background-color: transparent;
-      text-align: start;
       .container {
         border: 1px solid white;
         overflow: auto;
