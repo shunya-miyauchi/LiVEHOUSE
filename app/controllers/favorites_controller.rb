@@ -31,12 +31,12 @@ class FavoritesController < ApplicationController
 
   # 期間検索
   def q_event
-    @q_event = Event.where(livehouse_id: @livehouses.ids).includes(:livehouse).ransack(params[:date_search], search_key: :date_search)
+    @q_event = Event.where(livehouse_id: @livehouses.ids).ransack(params[:date_search], search_key: :date_search)
     @events =
       if @q_event.conditions.present?
         @q_event.result(distinct: true).sort_held_on.page(params[:page]).per(12)
       else
-        Event.where(livehouse_id: @livehouses.ids).includes(:livehouse).date_after_today.sort_held_on.page(params[:page]).per(12)
+        Event.where(livehouse_id: @livehouses.ids).date_after_today.sort_held_on.page(params[:page]).per(12)
       end
   end
 end
