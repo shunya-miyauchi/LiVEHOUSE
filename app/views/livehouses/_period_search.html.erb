@@ -3,9 +3,9 @@
     <div class="col-md-11">
       <div class="search_title">期間検索</div>
       <div class="search_form">
-        <%= f.date_field :held_on_gteq %>
+        <%= f.date_field :held_on_gteq, limit %>
         <div class="line" >×</div>
-        <%= f.date_field :held_on_lteq %>
+        <%= f.date_field :held_on_lteq, limit %>
       </div>
     </div>
     <div class="search_btn col-md-11">

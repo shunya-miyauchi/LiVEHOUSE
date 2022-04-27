@@ -5,7 +5,7 @@
     <%= render 'profile' %>
 
     <!-- 期間検索 -->
-     <%= render 'livehouses/period_search', { q_event: @q_event, path: user_path(current_user.id) } %>
+     <%= render 'livehouses/period_search', { q_event: @q_event, path: user_path(current_user.id), limit: { min: Date.current } } %>
 
     <!-- ライブハウス検索窓 -->
     <%= render 'livehouses/search', { q_livehouse: @q_livehouse, path: user_path(current_user.id)} %>

@@ -4,7 +4,7 @@
     <div class="livehouse_top_name"><%= @livehouse.name %></div>
 
     <!-- 期間検索 -->
-    <%= render 'livehouses/period_search', { q_event: @q_event, path: livehouse_events_path(@livehouse.id) } %>
+    <%= render 'livehouses/period_search', { q_event: @q_event, path: livehouse_events_path(@livehouse.id), limit: { min: Date.current } } %>
 
 
     <!-- ライブハウス検索窓 -->
