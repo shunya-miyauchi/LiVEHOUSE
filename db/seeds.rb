@@ -95,7 +95,7 @@ Livehouse.create!([
       name: Faker::Name.last_name,
       display_name: Faker::Internet.username(specifier: 5..15),
       email: Faker::Internet.safe_email,
-      password: 123456,
+      password: 123_456,
       image: File.open("./public/images/image#{n + 1}.png")
     )
 end
