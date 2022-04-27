@@ -1,3 +1,12 @@
+.container-fluid.blogs.new,
+.container-fluid.blogs.edit  {
+  .livehouse_search {
+    position: fixed;
+    top: 32%;
+    left: 1.5%;
+  }
+}
+
 
 .container-fluid.blogs {
 
@@ -333,6 +342,7 @@
       text-align: center;
     }
     #blog_event_id {
+      overflow-y: auto;
       display: inline-block;
       width: 80%;
       height: calc(2rem + 2rem + 2px);
@@ -345,6 +355,10 @@
       border: 1px solid white;
       border-radius: 0.25rem;
       background-color: transparent;
+    }
+    slot {
+      overflow-y: auto;
+      height: 10px;
     }
     .title_label,
     .content_label {
