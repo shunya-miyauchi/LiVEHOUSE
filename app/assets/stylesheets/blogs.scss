@@ -5,36 +5,56 @@
   .user_profile {
     position: fixed;
     top: 10%;
-    left: 1%;
+    left: 1.6%;
   }
   .livehouse_search {
     position: fixed;
-    top: 37%;
-    left: 0%;
+    top: 31%;
+    left: 1.5%;
   }
   #livehouses_area {
     position: fixed;
-    top: 46%;
-    left: 0.5%;
+    top: 48%;
+    left: 2%;
+  }
+
+  // サイドバー枠
+  .side_bar {
+    position: fixed;
+    top: 9%;
+    left: 1.5%;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 0.25rem;
+    width: 23%;
+    height: 85%;
   }
 
   // プロフィール
   .user_profile {
     width: 23%;
-    border: 1px solid white;
     padding: 1.5rem 1rem;
     border-radius: 0.25rem;
-    .col-md-5 {
+    .img_con {
       padding: 0 0 0 15px;
+    }
+    .article_con {
+      padding: 0 0 0 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .img_con {
+      text-align: center;
     }
     .img {
       border: thin solid white;
       border-radius: 50%;
-      width: 100%;
-      height: auto;
+      width: 7vw;
+      height: 7vw;
       object-fit: cover;
       padding: 0;
-      // margin: 5px;
+      margin: 0 auto;
     }
     .article {
       .name {
@@ -63,44 +83,138 @@
       }
     }
   }
-  .title_icon {
+
+
+  // ライブハウス検索
+  .livehouse_search {
+    padding: 0.5rem 1rem;
+    width: 25%;
+    .search_title {
+      display: inline-block;
+      width: 47%;
+      margin: 0 auto;
+      margin-bottom: 0.9rem;
+      padding: 0.1rem 0rem;
+      font-size: 1.2vw;
+      color: white;
+      background: linear-gradient(transparent 85%, rgba(179, 255, 0, 0.801) 85%);
+    }
+    #q_place_id_eq {
+      width: 100%;
+      font-size: 1rem;
+      padding: 0.8rem 0rem 0.8rem 0.2rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: black;
+      vertical-align: middle;
+      border-radius: 0.25rem;
+      background-color: rgba(255, 255, 255, 0.897);
+    }
+    .livehouse_search_btn {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 15px 0 0;
+      .livehouse_btn {
+        font-size: 0.8rem;
+        color: white;
+        border: 1px solid white;
+        font-weight: 400;
+        user-select: none;
+        background-color: transparent;
+        padding: 0.1rem 0.5rem;
+        margin: 0.1rem 0 0 0.1rem;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      }
+    }
+  }
+
+
+  // ライブハウス一覧
+  #livehouses_area {
+    overflow-y: auto;
+    width: 21%;
+    padding: 0.5rem;
+    background-color: transparent;
+    .container {
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      overflow: auto;
+      height: 200px;
+      .favorite_group {
+        padding: 0;
+        li span {
+          display: flex;
+          align-items: center;
+          color: red;
+        }
+        .favorite_list {
+          display: flex;
+          list-style: none;
+          text-align: start;
+          align-items: center;
+          align-content: center;
+          padding: 4px 0px;
+          .favorite_item {
+            padding-left: 1%;
+            color: white;
+            font-size: 1rem;
+          }
+        }  
+      }
+    }
+  }
+
+
+  // ブログ一覧
+  .title_con {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    padding-left: 0.5rem;
     .title {
-      padding: 10px 0px 10px 10px;
-      font-size: 1.2rem;
-      text-decoration: underline overline red;
+      padding: 0.2rem 0;
+      display: inline-block;
+      margin: 1rem 0 0.5rem 0;
+      font-size: 1.5rem;
+      background: linear-gradient(transparent 80%, rgba(255, 255, 0, 0.801) 80%);
+      color: white;
+      font-weight: 700;
     }
     .new_btn {
       font-size: 1rem;
-      margin: 0px 20px;
+      margin: 1rem 0 0.5rem 1rem;
       padding: 0.1rem 0.5rem;
       color: black;
       background-color: white;
       border-radius: 0.25rem;
     }
     .blog_notice {
+      margin: 1rem 0 0.5rem 1rem;
       color: red;
     }
   }
+  .blog_schedule {
+    padding-left: 1.2rem;
+  }
   .body_card {
-    padding: 10px 0px 10px 5px;
+    padding: 1rem 0.5rem 0rem 0rem;
     .blog_card {
-      border: 1px solid white;
+      border: 6px solid rgba(255, 255, 255, 0.801);
       border-radius: 0.25rem;
       width: 98%;
       height: 150px;
       display: flex;
       flex-direction: column;
+      border-top: transparent;
       .card_header {
         display: flex;
         align-items: center;
         padding: 0px 10px;
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.801);
         color: black;
         .title {
           font-size: 1.2rem;
-          color: rgba(0, 81, 255, 0.692);
+          color: black;
           font-weight: bold;
         }
         .dropdown {
@@ -138,89 +252,7 @@
     }
   }
 
-  // ライブハウス検索
-  .livehouse_search {
-    padding: 0.5rem 1rem;
-    width: 25%;
-    .search_title {
-      display: inline-block;
-      margin-bottom: 0.7rem;
-      padding: 0.1rem 0.5rem;
-      font-size: 0.9rem;
-      background-color: transparent;
-      border: 1px solid red;
-      color: red;
-      border-radius: 0.25rem;
-    }
-    .col-lg-10 {
-      padding: 0 10px 0 15px;
-    }
-    #q_place_id_eq {
-      width: 100%;
-      font-size: 1rem;
-      padding: 0.8rem 0rem 0.8rem 0.2rem;
-      font-weight: 400;
-      line-height: 1.5;
-      color: white;
-      vertical-align: middle;
-      border: 1px solid white;
-      border-radius: 0.25rem;
-      background-color: transparent;
-    }
-    .livehouse_search_btn {
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-      padding: 0 15px 0 0;
-      .livehouse_btn {
-        font-size: 0.8rem;
-        color: white;
-        border: 1px solid white;
-        font-weight: 400;
-        user-select: none;
-        background-color: transparent;
-        padding: 0.1rem 0.5rem;
-        margin: 0.1rem 0 0 0.1rem;
-        border-radius: 0.25rem;
-        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-      }
-    }
-  }
 
-  // ライブハウス一覧
-  #livehouses_area {
-    overflow-y: auto;
-    width: 21%;
-    height: 150px;
-    padding: 0.5rem;
-    background-color: transparent;
-    .container {
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      overflow: auto;
-      height: 8rem;
-      .favorite_group {
-        padding: 0;
-        li span {
-          display: flex;
-          align-items: center;
-          color: red;
-        }
-        .favorite_list {
-          display: flex;
-          list-style: none;
-          text-align: start;
-          align-items: center;
-          align-content: center;
-          padding: 4px 0px;
-          .favorite_item {
-            padding-left: 1%;
-            color: white;
-            font-size: 1rem;
-          }
-        }  
-      }
-    }
-  }
 
 
   .blog_new {
@@ -232,12 +264,11 @@
     }
     .title {
       display: inline-block;
-      width: 30%;
-      color: black;
-      font-size: 1.5rem;
+      width: 20%;
+      color: white;
+      font-size: 1.6rem;
       margin: 2rem 0rem ;
-      background-color: white;
-      border-radius: 0.25rem;
+      background: linear-gradient(transparent 80%, rgba(255, 255, 0, 0.801) 80%);
       text-align: center;
     }
     #blog_event_id {

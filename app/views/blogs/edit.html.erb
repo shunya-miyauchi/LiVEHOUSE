@@ -1,21 +1,20 @@
-<div class="col-lg-3">
-  <!-- プロフィール -->
-  <%= render 'profile' %>
+<div class="col-md-3">
+  <div class="side_bar">
+    <!-- プロフィール -->
+    <%= render 'users/profile' %>
 
+    <!-- ライブハウス検索窓 -->
+    <%= render 'livehouses/search', { q_livehouse: @q_livehouse} %>
 
-  <!-- ライブハウス検索窓 -->
-  <%= render 'search' %>
-
-  <!-- ライブハウス検索結果 -->
-  <div id="livehouses_area">
-    <%= render 'livehouses/index', { result_livehouses: @result_livehouses, q_livehouse: @q_livehouse } %>
+    <!-- ライブハウス検索結果 -->
+    <div id="livehouses_area">
+      <%= render 'livehouses/index', { result_livehouses: @result_livehouses, q_livehouse: @q_livehouse } %>
+    </div>
   </div>
 </div>
 
-<div class="col-lg-9">
 
-
-<div class="blog_new col-lg-9">
+<div class="blog_new col-md-9">
   <!-- ブログ投稿 -->
   <div class="title">ブログ編集</div>
   <%= form_with( model: @blog,local:true ) do |f| %>
