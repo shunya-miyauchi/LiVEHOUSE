@@ -58,12 +58,12 @@ class BlogsController < ApplicationController
 
   # 期間検索
   def q_blog
-    @q_blog = Blog.ransack(params[:date_search], search_key: :date_search)
+    @q_blog = current_user.blogs.ransack(params[:date_search], search_key: :date_search)
     @blogs =
       if @q_blog.conditions.present?
         @q_blog.result.includes(:event).order('events.held_on').page(params[:page]).per(10)
       else
-        Blog.where(user_id: current_user.id).includes(:event).reverse_event_held_on.page(params[:page]).per(10)
+        current_user.blogs.includes(:event).reverse_event_held_on.page(params[:page]).per(10)
       end
   end
 end
