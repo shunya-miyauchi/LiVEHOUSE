@@ -2,41 +2,40 @@ class Scraping::SpotifyOnest < ApplicationRecord
   require 'open-uri'
 
   class << self
-
     # データベース保存
     def import
-      events = get_events
+      events = event_details
       result =
-      Event.import events,
-              validate_uniqueness: true,
-              on_duplicate_key_update: {
-                constraint_name: :for_upsert,
-                columns: %i[title open price artist] 
-              }
+        Event.import events,
+                     validate_uniqueness: true,
+                     on_duplicate_key_update: {
+                       constraint_name: :for_upsert,
+                       columns: %i[title open price artist]
+                     }
       p result.failed_instances
     end
 
     private
 
     # 月毎のURL取得
-    def get_urls
+    def monthly_urls
       date = Date.current
-      urls = []
+      month_urls = []
       3.times do |_f|
         year = date.year
         month = date.month
-        urls << "https://shibuya-o.com/nest/schedule/?y=#{year}&m=#{month}/"
+        month_urls << "https://shibuya-o.com/nest/schedule/?y=#{year}&m=#{month}/"
         date = date.next_month
         date = date.next_year if date.month == 1
       end
-      urls
+      month_urls
     end
 
-    # イベント毎のURL取得 
-    def get_links
-      urls = get_urls
+    # イベント毎のURL取得
+    def day_links
+      month_urls = monthly_urls
       links = []
-      get_urls.each do |url|
+      month_urls.each do |url|
         html = URI.open(url.to_s).read
         doc = Nokogiri::HTML.parse(html)
         links << doc.xpath("//div[@class='p-scheduled-card p-scheduled-card--horizontal']//a").map { |f| f.attribute('href').value }
@@ -45,21 +44,21 @@ class Scraping::SpotifyOnest < ApplicationRecord
     end
 
     # イベント詳細取得
-    def get_events
+    def event_details
       events = []
       livehouse_id = Livehouse.find_by('name LIKE?', '%Spotify O-nest%').id
-      links = get_links
+      links = day_links
       links.map do |link|
         link_html = URI.open(link.to_s)
         link_doc = Nokogiri::HTML.parse(link_html)
-        events << {  title: title(link_doc),
-                      held_on: held_on(link_doc),
-                      open: open(link_doc),
-                      start: start(link_doc),
-                      price: price(link_doc),
-                      artist: artist(link_doc),
-                      url: link,
-                      livehouse_id: livehouse_id }
+        events << { title: title(link_doc),
+                    held_on: held_on(link_doc),
+                    open: open(link_doc),
+                    start: start(link_doc),
+                    price: price(link_doc),
+                    artist: artist(link_doc),
+                    url: link,
+                    livehouse_id: livehouse_id }
       end
       events
     end
