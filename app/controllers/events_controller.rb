@@ -35,7 +35,7 @@ class EventsController < ApplicationController
 
   # 期間検索
   def q_event
-    @q_event = @livehouse.events.ransack(params[:q_event], search_key: :q_event)
+    @q_event = @livehouse.events.ransack(params[:date_search], search_key: :date_search)
     @events =
       if @q_event.conditions.present?
         @q_event.result(distinct: true).sort_held_on.page(params[:page]).per(12)

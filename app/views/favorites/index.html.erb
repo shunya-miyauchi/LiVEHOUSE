@@ -31,7 +31,7 @@
   <!-- スケジュール一覧 -->
   <div id="schedule">
     <% if @events.blank? %>
-      <div>参加予定のイベントはありません。</div>
+      <div>お気に入り登録して下さい。</div>
     <% end %>
     <div class="schedule row" >
       <%= render "layouts/schedule", {events: @events} %> 

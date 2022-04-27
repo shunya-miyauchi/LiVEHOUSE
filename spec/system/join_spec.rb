@@ -20,7 +20,7 @@ RSpec.describe 'イベント参加記録', type: :system do
           all("#join_#{event.id} .join")[0].click
         end
         it '非同期でボタン表示が変わる' do
-          expect(page).to have_selector "#join_#{event.id}", text: '不参加'
+          expect(page).to have_selector "#join_#{event.id}", text: '登録中'
         end
         it 'joinsテーブルに登録される' do
           sleep 0.1
@@ -34,7 +34,7 @@ RSpec.describe 'イベント参加記録', type: :system do
           all("#join_#{event.id} .unjoin")[0].click
         end
         it '非同期でボタン表示が変わる' do
-          expect(page).to have_selector "#join_#{event.id}", text: '参加'
+          expect(page).to have_selector "#join_#{event.id}", text: '登録'
         end
         it 'joinsテーブルから削除される' do
           sleep 0.1
@@ -47,8 +47,8 @@ RSpec.describe 'イベント参加記録', type: :system do
         visit livehouse_events_path(livehouse)
       end
       it 'お気に入りボタンは表示されない' do
-        expect(page).not_to have_content '参加'
-        expect(page).not_to have_content '不参加'
+        expect(page).not_to have_selector '.schedule_card', text: '登録'
+        expect(page).not_to have_content '登録中'
       end
     end
   end

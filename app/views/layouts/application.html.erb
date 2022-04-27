@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
   </head>
 
-  <body class="container-fluid <%=controller.controller_name %>">
+  <body class="container-fluid <%=controller.controller_name %> <%=controller.action_name %>">
     <div class="wrapper row">
       <header>
         <% if user_signed_in? %>

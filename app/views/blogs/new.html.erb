@@ -4,7 +4,7 @@
     <%= render 'users/profile' %>
 
     <!-- ライブハウス検索窓 -->
-    <%= render 'livehouses/search', { q_livehouse: @q_livehouse} %>
+    <%= render 'livehouses/search', { q_livehouse: @q_livehouse, path: user_path(current_user.id)} %>
 
     <!-- ライブハウス検索結果 -->
     <div id="livehouses_area">
@@ -18,7 +18,7 @@
   <div class="title">新規投稿</div>
   <%= form_with( model: @blog,local:true ) do |f| %>
     <div>
-      <%= f.collection_select :event_id, current_user.join_events.date_before_today, :id, :date_title,include_blank:"選択してください" %> 
+      <%= f.collection_select :event_id, current_user.join_events.date_before_today.reverse_held_on, :id, :date_title,include_blank:"選択してください" %> 
     </div>
     <div>
       <%= f.label :title, 'タイトル',class:"title_label" %>

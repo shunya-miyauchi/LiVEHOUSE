@@ -1,6 +1,7 @@
 module ApplicationHelper
   def this_week?(events, event)
-    events.this_week.present? && events.first_page? && event == events[0]
+    return unless events.first_page?
+    events.this_week.present? && event == events[0]
   end
 
   def next_week?(events, event)
