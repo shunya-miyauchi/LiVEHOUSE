@@ -68,7 +68,7 @@ RSpec.describe 'ライブハウス情報管理', type: :system do
         end
         it 'そのライブハウスのスケジュールが表示される' do
           expect(page).to have_content 'タイトル１'
-          expect(page).to have_content 'あああ / あああ'
+          expect(page).to have_content 'あああ'
         end
       end
     end
@@ -123,7 +123,7 @@ RSpec.describe 'ライブハウス情報管理', type: :system do
         end
         it 'そのライブハウスのスケジュールが表示される' do
           expect(page).to have_content 'タイトル１'
-          expect(page).to have_content 'あああ / あああ'
+          expect(page).to have_content 'あああ'
         end
       end
     end
