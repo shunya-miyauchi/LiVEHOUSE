@@ -18,7 +18,7 @@ class BlogsController < ApplicationController
   def create
     @blog = current_user.blogs.build(blog_params)
     if @blog.save
-      redirect_to blogs_path, flash: { blog_notice: 'ブログ投稿'}
+      redirect_to blogs_path, flash: { blog_notice: 'ブログ投稿' }
     else
       render :new
     end
@@ -38,7 +38,7 @@ class BlogsController < ApplicationController
 
   def destroy
     @blog.destroy
-    redirect_to blogs_path, flash: { blog_notice: 'ブログ削除'}
+    redirect_to blogs_path, flash: { blog_notice: 'ブログ削除' }
   end
 
   private
@@ -61,7 +61,7 @@ class BlogsController < ApplicationController
     @q_blog = Blog.ransack(params[:date_search], search_key: :date_search)
     @blogs =
       if @q_blog.conditions.present?
-        @q_blog.result.includes(:event).order("events.held_on").page(params[:page]).per(10)
+        @q_blog.result.includes(:event).order('events.held_on').page(params[:page]).per(10)
       else
         Blog.where(user_id: current_user.id).includes(:event).reverse_event_held_on.page(params[:page]).per(10)
       end

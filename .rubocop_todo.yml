@@ -27,6 +27,8 @@ Metrics/AbcSize:
     - 'app/models/scraping/spotify_onest.rb'
     - 'app/models/scraping/basementbar.rb'
     - 'app/controllers/users_controller.rb'
+    - 'app/controllers/blogs_controller.rb'
+    - 'app/controllers/favorites_controller.rb'
 
 Security/Open:
   Exclude:
