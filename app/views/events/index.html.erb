@@ -8,30 +8,11 @@
 
 
     <!-- ライブハウス検索窓 -->
-    <%= search_form_for @q_livehouse, as: :q_livehouse, url: livehouse_events_path(@livehouse) do |f| %>
-      <div class="search_title">ライブハウス検索</div>
-      <div class="row">
-        <div class="col-md-11">
-          <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
-        </div>
-        <div class="livehouse_search_btn col-md-11">
-          <%= f.submit '検索', class: "livehouse_btn" %>
-        </div>
-      </div>
-    <% end %>
+    <%= render 'livehouses/search', { q_livehouse: @q_livehouse, path: livehouse_events_path(@livehouse.id)} %>
 
     <!-- ライブハウス検索結果 -->
-    <div class="row">
-      <div id="livehouses_area">
-        <ul class="favorite_group">
-          <% @livehouses.each do |livehouse| %>
-            <li class="favorite_list">
-              <span id="favorite_<%= livehouse.id %>"><%= render 'livehouse', { livehouse: livehouse } %></span>
-              <%= link_to "#{livehouse.name}", livehouse_events_path(livehouse.id,q: {place_id_eq: livehouse.place_id}),class: "favorite_item" %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+    <div id="livehouses_area">
+      <%= render 'livehouses/index', { result_livehouses: @livehouses, q_livehouse: @q_livehouse } %>
     </div>
   </div>
 </div>

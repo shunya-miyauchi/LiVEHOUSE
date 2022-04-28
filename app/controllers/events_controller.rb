@@ -6,7 +6,13 @@ class EventsController < ApplicationController
   def index
     respond_to do |format|
       format.html {}
-      format.js { render :schedule }
+      format.js do
+        if params[:q].present?
+          render :index
+        else
+          render :schedule
+        end
+      end
     end
   end
 
@@ -24,7 +30,7 @@ class EventsController < ApplicationController
 
   # ライブハウス検索
   def q_livehouse
-    @q_livehouse = Livehouse.ransack(params[:q_livehouse], search_key: :q_livehouse)
+    @q_livehouse = Livehouse.ransack(params[:q], search_key: :q_livehouse)
     @livehouses =
       if @q_livehouse.conditions.present?
         @q_livehouse.result(distinct: true)

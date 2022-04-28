@@ -18,7 +18,7 @@
     <div class="col-sm-6">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <a class="nav-link active" id="schedule-tab" data-toggle="tab" href="#schedule" role="tab" aria-controls="schedule" aria-selected="true">スケジュール</a>
+          <a class="nav-link active" id="schedule-tab" data-toggle="tab" href="#schedule-detail" role="tab" aria-controls="schedule" aria-selected="true">イベント詳細</a>
         </li>
         <li class="nav-item" role="presentation">
           <a class="nav-link" id="livehouse-tab" data-toggle="tab" href="#livehouse" role="tab" aria-controls="livehouse" aria-selected="false"><%= @livehouse.name %></a>
@@ -29,9 +29,9 @@
 
   <!-- イベント詳細 -->
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="schedule" role="tabpanel" aria-labelledby="schedule-tab">
+    <div class="tab-pane fade show active" id="schedule-detail" role="tabpanel" aria-labelledby="schedule-tab">
       <div class=" detail row">
-        <div class="table_form col-lg-7">
+        <div class="table_form col-md-8">
           <table class="table table-bordered">
             <tr>
               <td>開場／開演</td>
@@ -58,7 +58,7 @@
     <!-- ライブハウス情報 -->
     <div class="tab-pane fade" id="livehouse" role="tabpanel" aria-labelledby="livehouse-tab">
       <div class="row"> 
-        <div class="col-md-6">
+        <div class="livehouse_detail col-md-6">
           <div class="address">
             <div class="label">住所</div>
             <%= @livehouse.address %>
@@ -82,14 +82,12 @@
 
 
   <div class="comments row">
-    <div class="col-8">
-      <div class="comments_field">
-        <div class="comment_title">コメント</div>
-        <div class="comments_area">
-          <%= render 'index', { comments: @comments } %>
-        </div>
-
+    <div class="comments_field col-lg-8">
+      <div class="comment_title">コメント</div>
+      <div class="comments_area">
+        <%= render 'index', { comments: @comments } %>
       </div>
+
       <% if user_signed_in? %>
         <div class="error_msg"></div>
         <div id="comment_form">
