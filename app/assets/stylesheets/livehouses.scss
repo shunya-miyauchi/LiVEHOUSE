@@ -102,9 +102,9 @@ body.container-fluid.passwords {
     }
     .search_livehouse {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
-      #q_place_id_eq {
+      #livehouse_search_place_id_eq {
         display: inline-block;
         width: 60%;
         height: calc(2rem + 2rem + 2px);
@@ -119,19 +119,17 @@ body.container-fluid.passwords {
         background-color: transparent;
       }
       .search_btn {
-        width: 15%;
-        height: 3rem;
-        font-size: 1rem;
-        margin-left: 20px;
+        width: 8%;
+        height: 2rem;
+        font-size: 0.8rem;
+        margin-left: 15px;
         color: #dc3545;
         border: 1px solid red;
         display: inline-block;
-        font-weight: 400;
         text-align: center;
         vertical-align: middle;
         user-select: none;
         background-color: transparent;
-        padding: 0.375rem 0.5rem;
         border-radius: 0.25rem;
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
       }
