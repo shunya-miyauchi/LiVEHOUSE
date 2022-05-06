@@ -85,7 +85,7 @@
     <div class="comments_field col-lg-8">
       <div class="comment_title">コメント</div>
       <div class="comments_area">
-        <%= render 'index', { comments: @comments } %>
+        <%= render 'layouts/result_livehouse_search', { comments: @comments } %>
       </div>
 
       <% if user_signed_in? %>
