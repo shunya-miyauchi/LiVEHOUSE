@@ -9,10 +9,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html {}
       format.js do
-        if params[:q].present?
-          render :index
-        else
+        if params[:page]
           render :schedule
+        elsif params[:livehouse_search]
+          render :index
         end
       end
     end
@@ -37,11 +37,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  # ライブハウス検索
   def q_livehouse
-    @q_livehouse = Livehouse.ransack(params[:q])
-    @result_livehouses = @q_livehouse.result(distinct: true)
+    @q_livehouse = Livehouse.ransack(params[:livehouse_search], search_key: :livehouse_search)
+    @livehouses = @q_livehouse.result(distinct: true)
   end
 
+  # 期間検索
   def q_event
     @q_event = @user.join_events.ransack(params[:date_search], search_key: :date_search)
     if @q_event.conditions.present?

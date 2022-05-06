@@ -11,7 +11,7 @@ class LivehousesController < ApplicationController
   private
 
   def q_livehouse
-    @q_livehouse = Livehouse.ransack(params[:q])
-    @result_livehouses = @q_livehouse.result(distinct: true)
+    @q_livehouse = Livehouse.ransack(params[:livehouse_search], search_key: :livehouse_search)
+    @livehouses = @q_livehouse.result(distinct: true)
   end
 end
