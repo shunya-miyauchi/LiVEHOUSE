@@ -4,15 +4,15 @@
     <div class="livehouse_top_name"><%= @livehouse.name %></div>
 
     <!-- 期間検索 -->
-    <%= render 'livehouses/period_search', { q_event: @q_event, path: livehouse_events_path(@livehouse.id), limit: { min: Date.current } } %>
+    <%= render 'layouts/period_search', { q_event: @q_event, path: livehouse_events_path(@livehouse.id), limit: { min: Date.current } } %>
 
 
     <!-- ライブハウス検索窓 -->
-    <%= render 'livehouses/search', { q_livehouse: @q_livehouse, path: livehouse_events_path(@livehouse.id)} %>
+    <%= render 'layouts/livehouse_search', { q_livehouse: @q_livehouse, path: livehouse_events_path(@livehouse.id)} %>
 
     <!-- ライブハウス検索結果 -->
     <div id="livehouses_area">
-      <%= render 'livehouses/index', { result_livehouses: @livehouses, q_livehouse: @q_livehouse } %>
+      <%= render 'layouts/result_livehouse_search', { livehouses: @livehouses, q_livehouse: @q_livehouse } %>
     </div>
   </div>
 </div>

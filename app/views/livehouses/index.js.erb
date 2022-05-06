@@ -1,1 +1,1 @@
-$("#livehouses_area").html("<%= j(render 'index', { result_livehouses: @result_livehouses, q_livehouse: @q_livehouse }) %>");
+$("#livehouses_area").html("<%= j(render 'layouts/result_livehouse_search', { livehouses: @livehouses, q_livehouse: @q_livehouse }) %>");

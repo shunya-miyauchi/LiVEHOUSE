@@ -21,11 +21,11 @@
     <% end %>
 
     <!-- ライブハウス検索窓 -->
-    <%= render 'livehouses/search', { q_livehouse: @q_livehouse, path: user_path(current_user.id) } %>
+    <%= render 'layouts/livehouse_search', { q_livehouse: @q_livehouse, path: user_path(current_user.id) } %>
 
     <!-- ライブハウス検索結果 -->
     <div id="livehouses_area">
-      <%= render 'livehouses/index', { result_livehouses: @result_livehouses, q_livehouse: @q_livehouse } %>
+      <%= render 'layouts/result_livehouse_search', { livehouses: @livehouses, q_livehouse: @q_livehouse } %>
     </div>
   </div>
 </div>

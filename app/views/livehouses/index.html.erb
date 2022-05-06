@@ -6,7 +6,7 @@
 
 <div class="search_form col-sm-7 col-xl-5 ">  
   <!-- ライブハウス検索窓 -->
-  <%= search_form_for @q_livehouse, url: livehouses_path, remote: true do |f| %>
+  <%= search_form_for @q_livehouse, as: :livehouse_search, url: livehouses_path, remote: true do |f| %>
     <div class="search_livehouse">
       <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
       <%= f.submit '検索', class: "search_btn" %>
@@ -15,7 +15,7 @@
 
   <!-- ライブハウス検索結果 -->
   <div id="livehouses_area">
-    <%= render 'index', { result_livehouses: @result_livehouses, q_livehouse: @q_livehouse } %>
+    <%= render 'layouts/result_livehouse_search', { livehouses: @livehouses, q_livehouse: @q_livehouse } %>
   </div>
 
   <!-- アプリ説明 -->

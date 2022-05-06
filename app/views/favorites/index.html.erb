@@ -5,7 +5,7 @@
     <%= render 'users/profile' %>
 
     <!-- 期間検索 -->
-    <%= render 'livehouses/period_search', { q_event: @q_event, path: favorites_path, limit: { min: Date.current } } %>
+    <%= render 'layouts/period_search', { q_event: @q_event, path: favorites_path, limit: { min: Date.current } } %>
 
 
     <!-- ライブハウス一覧 -->
