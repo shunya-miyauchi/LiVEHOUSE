@@ -7,13 +7,18 @@ nav.pagination {
 }
 
 main.container-fluid.events {
+  background-image: image-url('background-img.jpg');
 
-// index
-
-// 固定
+  // 固定
+  .side_bar {
+    position: fixed;
+    top: 9%;
+    left: 1.5%;
+  }
   .livehouse_top_name {
     position: fixed;
-    top: 11%;
+    top: 12%;
+    left: 3%;
   }
   #event_search {
     position: fixed;
@@ -33,25 +38,22 @@ main.container-fluid.events {
 
   // サイドバー枠
   .side_bar {
-    position: fixed;
-    top: 9%;
-    left: 1.5%;
-    background-color: transparent;
-    border: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid black;
     border-radius: 0.25rem;
-    // background-color: rgba(255, 255, 255, 0.801);
     width: 23%;
     height: 80%;
   }
 
-// ライブハウス名
+  // ライブハウス名
   .livehouse_top_name{
     font-size: 1.5vw;
-    width: 22.8%;
+    width: 20%;
     text-align: center;
     padding: 0.2rem 0.5rem;
-    background-color:rgba(255, 0, 0, 0.5) ;
+    background-color:black ;
     color: white;
+    font-weight: 600;
     margin: 0;
   }
 
@@ -60,13 +62,14 @@ main.container-fluid.events {
     width: 25%;
     .search_title {
       display: inline-block;
-      width: 30%;
+      width: 23%;
       margin: 0 auto;
       margin-bottom: 0.9rem;
       padding: 0.1rem 0rem;
-      font-size: 1.2vw;
-      color: white;
-      background: linear-gradient(transparent 80%, rgba(179, 255, 0, 0.801) 80%);
+      font-size: 1vw;
+      text-align: center;
+      color: black;
+      background: linear-gradient(transparent 70%, rgba(179, 255, 0, 0.801) 70%);
     }
     .row {
       margin: 0;
@@ -81,14 +84,12 @@ main.container-fluid.events {
         line-height: 1.5;
         color: black;
         vertical-align: middle;
-        border: 1px solid black;
-        border-radius: 0.25rem;
-        background-color: rgba(255, 255, 255, 0.911);
       }
       .line {
         font-size: 0.5rem;
         padding: 0.5rem;
         text-align: center;
+        color: black;
       }
     }
     .search_btn {
@@ -97,8 +98,8 @@ main.container-fluid.events {
       justify-content: flex-end;
       .btn {
         font-size: 0.8rem;
-        color: white;
-        border: 1px solid white;
+        color: black;
+        border: 1px solid black;
         font-weight: 400;
         user-select: none;
         background-color: transparent;
@@ -110,19 +111,20 @@ main.container-fluid.events {
     }
   }
 
-// ライブハウス検索
+  // ライブハウス検索
   .livehouse_search {
     padding: 0.5rem 1rem;
     width: 25%;
     .search_title {
       display: inline-block;
-      width: 47%;
+      width: 36%;
       margin: 0 auto;
       margin-bottom: 0.9rem;
       padding: 0.1rem 0rem;
-      font-size: 1.2vw;
-      color: white;
-      background: linear-gradient(transparent 80%, rgba(179, 255, 0, 0.801) 80%);
+      font-size: 1vw;
+      text-align: center;
+      color: black;
+      background: linear-gradient(transparent 70%, rgba(179, 255, 0, 0.801) 70%);
     }
     #livehouse_search_place_id_eq {
       width: 100%;
@@ -132,8 +134,6 @@ main.container-fluid.events {
       line-height: 1.5;
       color: black;
       vertical-align: middle;
-      border-radius: 0.25rem;
-      background-color: rgba(255, 255, 255, 0.897);
     }
     .livehouse_search_btn {
       margin-top: 0.5rem;
@@ -141,8 +141,8 @@ main.container-fluid.events {
       justify-content: flex-end;
       .livehouse_btn {
         font-size: 0.8rem;
-        color: white;
-        border: 1px solid white;
+        color: black;
+        border: 1px solid black;
         font-weight: 400;
         user-select: none;
         background-color: transparent;
@@ -154,14 +154,14 @@ main.container-fluid.events {
     }
   }
 
-// ライブハウス一覧
+  // ライブハウス一覧
   #livehouses_area {
     overflow-y: auto;
     width: 21%;
     height: 250px;
     padding: 0.5rem;
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid black;
     .favorite_group {
       padding: 0;
       li span {
@@ -178,14 +178,14 @@ main.container-fluid.events {
         padding: 4px 0px;
         .favorite_item {
           padding-left: 1%;
-          color: white;
+          color: black;
           font-size: 1rem;
         }
       }  
     }
   }
 
-// スケジュール
+  // スケジュール
   #schedule {
     padding: 0rem 0.5rem 1rem 1.5rem;
     .event_separate {
@@ -220,14 +220,13 @@ main.container-fluid.events {
         display: flex;
         text-align: center;
         flex-direction: column;
-        background-color: transparent;
+        background-color: hsla(0, 0%, 100%, 0.4);
         background-clip: border-box;
-        border: 6px solid rgba(255, 255, 255, 0.801);
+        border: 2px solid black;
         border-top: transparent;
-        border-radius: 0.25rem;
         .card_header {
-          background-color: rgba(255, 255, 255, 0.801);
-          color: black;
+          background-color: black;
+          color: white;
           padding: 2px 0px;
           .date {
             .year {
@@ -265,23 +264,24 @@ main.container-fluid.events {
           .title {
             display: block;
             font-size: 1vw;
-            color: white;
+            color: black;
             vertical-align: middle;
-            padding: 3px 0px;
-            background-color: rgba(255, 0, 0, 0.5);
+            padding: 5px 0px;
+            background-color: rgba(255, 255, 255, 0.6);
             border-radius: 0.25rem;
             width: 100%;
             height: 100%;
           }
           .title:hover {
-            background-color: red;
+            background-color: rgba(255, 255, 255, 0.9);
           }
         }
         .card_time {
-          width: 80%;
+          width: 70%;
           margin: 0 auto;
           padding: 0.3rem 0;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+          border-bottom: 1px solid black;
+          color: black;
           .title {
             font-size: 0.4rem;
           }
@@ -292,8 +292,9 @@ main.container-fluid.events {
         }
         .card_artist {
           overflow-wrap: break-word;
-          font-size: 1.2rem;
+          font-size: 1.3rem;
           padding: 1rem 0.5rem 0 0.5rem;
+          color: black;
         }
         .card_select {
           position: absolute;
@@ -304,8 +305,8 @@ main.container-fluid.events {
           align-items: center;
           .join {
             font-size: 0.9rem;
-            color: white;
-            border: 1px solid white;
+            color: black;
+            border: 1px solid black;
             display: inline-block;
             text-align: center;
             user-select: none;
@@ -347,30 +348,26 @@ main.container-fluid.events {
       margin: 0 auto;
     }
     .date {
-      font-size: 1.5rem;
+      font-size: 2rem;
       .year {
-        font-size: 1rem;
+        font-size: 2vw;
       }
       .day {
-        font-size: 2.5rem;
+        font-size: 4vw;
         margin: 0 0.5rem;
       }
       .week {
-        font-size: 1rem;
+        font-size: 2vw;
       }
     }
     .title {
-      font-size: 1.5rem;
+      font-size: 2.5vw;
       margin: 1.2rem auto 0.5rem auto;
       width: 100%;
       border-radius: 0.25rem;
     }
-    .livehouse_name {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-    }
     hr {
-      border-top: 2px solid #8c8b8b;
+      border-top: 2px solid white;
       width: 50%;
       margin: 0 auto;
       text-align: start;
@@ -389,22 +386,22 @@ main.container-fluid.events {
       display: flex;
       justify-content: center;
       border-color: transparent;
-      font-size: 0.8rem;
+      font-size: 1.2vw;
       .nav-link.active {
         padding: 0.4rem 2rem;
-        background-color:rgba(255, 0, 0, 0.5) ;
+        background-color:rgba(255, 0, 0, 0.7) ;
         color: white;
         border-color: transparent;
         margin: 0;
         border-radius: 0;
-        border: 1px solid rgba(255, 255, 255, 0.507);
+        border: 1px solid white;
       }
       .nav-link {
         color: white;
         padding: 0.4rem 2rem;
         margin: 0;
         border-radius: 0;
-        border: 1px solid rgba(255, 255, 255, 0.507);
+        border: 1px solid white;
       }
     }
   }
@@ -419,11 +416,12 @@ main.container-fluid.events {
   }
   .table_form {
     padding: 0;
+    background-color: rgba(255, 255, 255, 0.4);
     table {
       width: 100%;
       height: 100%;
       margin: 0px auto;
-      color: white;
+      color: black;
       tr:first-child {
         height: 15%;
       }
@@ -438,31 +436,42 @@ main.container-fluid.events {
       }
       td {
         vertical-align: middle;
-        font-size: 1rem;
+        font-size: 1.3vw;
+        border-color: black;
+        a {
+          color: black;
+          text-decoration:underline;
+          text-decoration-color: black;
+        }
       }
     }
   }
 
   // ライブハウス情報
   #livehouse {
-    width: 55%;
+    width: 66%;
     margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.4);
     .livehouse_detail {
       .address,
       .url,
       .station {
-        font-size: 1.2rem;
-        padding: 1rem 0;
-        text-align: start;
+        font-size: 1.2vw;
+        padding: 1.2rem 0;
+        text-align: center;
+        color: black;
         .label {
-          font-size: 1rem;
+          font-size: 1.2vw;
           text-decoration:underline;
           text-decoration-color: red;
+        }
+        a {
+          color: black;
         }
       }
     }
     #map {
-      height: 300px;
+      height: 100%;
       width: 100%;
       margin-bottom: 20px;
     }
@@ -486,8 +495,8 @@ main.container-fluid.events {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: black;
-        background-color: rgb(255, 255, 255);
+        color: white;
+        background-color: black;
         border-bottom: 1px solid black;
         border-top-left-radius: 0.25rem;
         border-top-right-radius: 0.25rem;
@@ -497,9 +506,9 @@ main.container-fluid.events {
         width: 100%;
         margin: 0 auto;
         height: 20rem;
-        background-color: transparent;
+        background-color: rgba(255, 255, 255, 0.4);
         margin-bottom: 20px;
-        border: 1px solid white;
+        border: 1px solid black;
         border-top: transparent;
         border-bottom-left-radius: 0.25rem;
         border-bottom-right-radius: 0.25rem;
@@ -511,10 +520,10 @@ main.container-fluid.events {
             display: flex;
             padding: 0.4rem;
             .img {
-              border: thin solid white;
+              border: thin solid black;
               border-radius: 50%;
-              width: 7%;
-              height: auto;
+              width: 4vw;
+              height: 4vw;
               object-fit: cover;
               margin: 5px;
             }
@@ -529,24 +538,20 @@ main.container-fluid.events {
                 align-items: center;
                 margin-top: 5px;
                 .comment_name_red {
-                  color: white;
-                  font-size: 0.7rem;
-                }
-                .comment_name {
-                  color: white;
-                  font-size: 0.7rem;
+                  color: black;
+                  font-size: 1vw;
                 }
                 .comment_time {
-                  color: gray;
-                  font-size: 0.5rem;
-                  margin-left: 5px;
+                  color: white;
+                  font-size: 1vw;
+                  margin-left: 1rem;
                 }
               }
               .comment_content {
-                color: white;
+                color: black;
                 margin: 0;
                 text-align: start;
-                font-size: 1rem;
+                font-size: 1.2vw;
               }
             }
           }
@@ -555,7 +560,7 @@ main.container-fluid.events {
     }
     #comment_form {
       width: 100%;
-      padding-bottom: 1rem;
+      padding-bottom: 3rem;
       form {
       margin: 0 auto;
       width: 85%;
@@ -573,14 +578,14 @@ main.container-fluid.events {
         }
         input {
           font-size: 0.8rem;
-          color: #dc3545;
-          border: 1px solid red;
+          color: white;
+          border: 1px solid black;
           display: inline-block;
           font-weight: 400;
           text-align: center;
           vertical-align: middle;
           user-select: none;
-          background-color: transparent;
+          background-color: black;
           padding: 0.1rem 0.5rem;
           margin-bottom: 6px;
           border-radius: 0.25rem;
@@ -599,12 +604,11 @@ main.container-fluid.events {
     margin-bottom: 5rem;
   }
   .back {
-    background-color: white;
-    color: black;
-    padding: 5px;
+    background-color: black;
+    color: white;
+    padding: 10px;
     border-radius: 0.25rem;
-    font-size: 1rem;
-    margin: 0px 0.5rem 5rem 0;
+    font-size: 0.9vw;
   }
 }
 
