@@ -52,7 +52,7 @@ RSpec.describe 'ライブハウス情報管理', type: :system do
       end
       context '地域を選択し、検索する' do
         before do
-          select '東京都/ 下北沢周辺', from: 'q[place_id_eq]'
+          select '東京都/ 下北沢周辺', from: 'livehouse_search[place_id_eq]'
           find('.livehouse_search').click_button '検索'
         end
         it 'その地域のライブハウス名が表示される' do
@@ -62,7 +62,7 @@ RSpec.describe 'ライブハウス情報管理', type: :system do
       end
       context '検索されたライブハウス名をクリックする' do
         before do
-          select '東京都/ 下北沢周辺', from: 'q[place_id_eq]'
+          select '東京都/ 下北沢周辺', from: 'livehouse_search[place_id_eq]'
           find('.livehouse_search').click_button '検索'
           click_link '下北沢BASEMENT BAR'
         end
@@ -80,7 +80,7 @@ RSpec.describe 'ライブハウス情報管理', type: :system do
       end
       context '地域を選択し、検索する' do
         before do
-          select '東京都/ 渋谷•原宿周辺', from: 'q_livehouse[place_id_eq]'
+          select '東京都/ 渋谷•原宿周辺', from: 'livehouse_search[place_id_eq]'
           find('.livehouse_search').click_button '検索'
         end
         it 'その地域のライブハウス名が表示される' do
@@ -90,7 +90,7 @@ RSpec.describe 'ライブハウス情報管理', type: :system do
       end
       context '検索されたライブハウス名をクリックする' do
         before do
-          select '東京都/ 渋谷•原宿周辺', from: 'q_livehouse[place_id_eq]'
+          select '東京都/ 渋谷•原宿周辺', from: 'livehouse_search[place_id_eq]'
           find('.livehouse_search').click_button '検索'
           click_link 'Spotify O-nest'
         end
@@ -107,7 +107,7 @@ RSpec.describe 'ライブハウス情報管理', type: :system do
       end
       context '地域を選択し、検索する' do
         before do
-          select '東京都/ 下北沢周辺', from: 'q[place_id_eq]'
+          select '東京都/ 下北沢周辺', from: 'livehouse_search[place_id_eq]'
           find('.livehouse_search').click_button '検索'
         end
         it 'その地域のライブハウス名が表示される' do
@@ -117,7 +117,7 @@ RSpec.describe 'ライブハウス情報管理', type: :system do
       end
       context '検索されたライブハウス名をクリックする' do
         before do
-          select '東京都/ 下北沢周辺', from: 'q[place_id_eq]'
+          select '東京都/ 下北沢周辺', from: 'livehouse_search[place_id_eq]'
           find('.livehouse_search').click_button '検索'
           click_link '下北沢BASEMENT BAR'
         end

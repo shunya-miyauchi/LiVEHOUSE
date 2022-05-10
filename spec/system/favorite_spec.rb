@@ -10,11 +10,14 @@ RSpec.describe 'お気に入り', type: :system do
   describe 'お気に入り登録機能' do
     context 'ログインしている場合' do
       before do
+        travel_to Time.zone.local(2022, 1, 3)
         sign_in user
         visit livehouse_events_path(livehouse)
       end
       context 'お気に入りボタンを押した場合' do
         before do
+          select '東京都/ 下北沢周辺', from: 'livehouse_search[place_id_eq]'
+          find('.livehouse_search').click_button '検索'
           all("#favorite_#{livehouse.id}")[0].click_on 'favorite_border'
         end
         it '非同期でボタン表示が変わる' do
@@ -30,6 +33,8 @@ RSpec.describe 'お気に入り', type: :system do
         before do
           FactoryBot.create(:favorite, user_id: user.id, livehouse_id: livehouse.id)
           visit current_path
+          select '東京都/ 下北沢周辺', from: 'livehouse_search[place_id_eq]'
+          find('.livehouse_search').click_button '検索'
         end
         it '非同期でボタン表示が変わる' do
           all("#favorite_#{livehouse.id}")[0].click_link 'favorite'
