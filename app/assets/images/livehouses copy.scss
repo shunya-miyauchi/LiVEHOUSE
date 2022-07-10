@@ -1,0 +1,198 @@
+// トップ、新規登録、ログイン、パスワード忘れ共通
+
+body.container-fluid.livehouses,
+body.registrations,
+body.container-fluid.sessions,
+body.container-fluid.passwords {
+  height: 2000px;
+  position: relative;
+
+// フラッシュメッセージ
+  .alert-error,
+  .alert-notice {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    color:red;
+    top: 100px;
+    left: 50%;
+    z-index: 100;
+  }
+
+// トップ画像
+  .top_img {
+    position: absolute;
+    width: 100%;
+    height: 1080px;
+    object-fit: cover;
+  }
+
+// トップロゴ
+  .top_logo {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 350px;
+    left: 50%;
+    max-width: 100%;
+    height: auto;
+    z-index: 10;
+  }
+
+// ヘッダー
+
+
+// メインボディ 
+  main.livehouses,
+  main.registrations,
+  main.sessions,
+  main.passwords {
+    height: 100%;
+    padding-top: 0;
+
+// エラーメッセージ(新規登録)
+    #error_explanation ul {
+      color: red;
+      list-style: none;
+      margin: 0;
+    }
+
+
+// トップページ
+// 検索フォーム(トップ)
+    .search_form {
+      position: absolute;
+      transform: translate(-50%,-50%);
+      text-align: center;
+      top: 700px;
+      left: 50%;
+      z-index: 1000;
+    }
+    .search_livehouse {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      #livehouse_search_place_id_eq {
+        display: inline-block;
+        width: 60%;
+        height: calc(2rem + 2rem + 2px);
+        font-size: 1rem;
+        padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: white;
+        vertical-align: middle;
+        border: 1px solid white;
+        border-radius: 0.25rem;
+        background-color: transparent;
+      }
+      .search_btn {
+        width: 8%;
+        height: 2rem;
+        font-size: 0.8rem;
+        margin-left: 15px;
+        color: #dc3545;
+        border: 1px solid red;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        user-select: none;
+        background-color: transparent;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      }
+    }
+
+// 検索結果(トップ)
+    #livehouses_area {
+      margin: 20px auto 0 auto;
+      width: 80%;
+      height: 8rem;
+      background-color: transparent;
+      .container {
+        border: 1px solid white;
+        overflow: auto;
+        height: 8rem;
+        .favorite_group {
+          padding: 0;
+          margin: 10px 0px;
+          width: 100%;
+          li span {
+            display: flex;
+            align-items: center;
+          }
+          .favorite_list {
+            display: flex;
+            list-style: none;
+            text-align: start;
+            padding: 2px 0px;
+            margin-left: 30px;
+            align-items: center;
+            align-content: center;
+            .favorite_item {
+              padding-left: 5%;
+              color: white;
+              font-size: 1rem;
+            }
+            .material-icons {
+              color: red;
+            }
+          }  
+        }
+      }
+    }
+  
+
+// 説明部分(トップ)
+    .explanation {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      position: absolute;
+      transform: translate(-50%,-50%);
+      top: 700px;
+      left: 50%;
+      .about,
+      .how_to,
+      .membership {
+        display: inline-block;
+        font-size: 1.5rem;
+        text-align: center;
+        padding-top: 4rem;
+      }
+      hr {
+        border-top: 2px solid #fa0000;
+        width: 20%;
+        margin: 0 auto 1rem auto;
+        text-align: start;
+
+      }
+      .about_content,
+      .how_to_content,
+      .membership_content {
+        text-align: center;
+        margin: 0;
+        padding-top: 10px 0px 40px 0px;   
+      }
+      .about_1 {
+        font-size: 2.5vw;
+        padding: 5px 0px;
+      }
+      .about_2 {
+        font-size: 1vw;
+        padding: 5px 0;
+      }
+      .how_to_1 {
+        font-size: 1.1vw;
+        padding: 3px 0;
+      }
+      .membership_2,
+      .membership_4,
+      .membership_6,
+      .membership_8 {
+        padding: 15px 0 0 0;
+        font-size: 2vw;
+        
+      }
+    }
+  }
+}

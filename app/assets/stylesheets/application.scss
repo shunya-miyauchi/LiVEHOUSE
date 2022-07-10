@@ -14,98 +14,124 @@
  *= require_tree .
  */
 
+// Colors
+// =============================
+$grey: #333;
+$white: #fff;
 
+// Common
+// ==============================
 html {
-  height: 100%;
-  width: 100%;
+  font-size: 100%;
 }
-
 body {
-  height: 100%;
-  width: 100%;
-  font-family: 'BIZ UDPGothic', sans-serif !important;
-  .col-md-3 {
-    padding: 0 2px;
-  }
-}
-
-.wrapper {
-  height: 100%;
-}
-
-.header_top {
-  height: 45px;
+  font-family: 'Roboto', sans-serif;
   display: flex;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030;
-  float: right;
-  background-color: black;
-  flex-flow: row nowrap;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  .header_nav * {
-    color: white;
-    padding-left: 15px;
-  }
-  .alert {
-    display: inline-block;
-    padding: 0px 0px 0px 15px;
-    margin: 0px;
-    color: red;
-  }
-  .header_nav {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: flex-end;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-    margin-top: 0;
-    .header-item {
-      display: flex;
-      align-items: center;
-      font-size: 1rem;
-      font-weight: bold;
-    }
-    .header_link *{
-    display: block;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    background-color: transparent;
-    }
-  }
-}
-
-main {
-  // height: 2000px;
-  padding-top: 80px ;
-  color: white;
-  background-color: black;
-}
-
-main.container-fluid {
+  flex-flow: column;
   min-height: 100vh;
-  position: relative;
-  box-sizing: border-box;
 }
-  footer {
-    width: 100%;
-    height: 40px;
-    background-color: black;
-    .content {
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      border-top: 0.5px solid rgba(255, 255, 255, 0.5);
-      font-size: 0.5rem;
-    }
+main {
+  padding-top: 3.4rem;
+  background: #f8f6f2;
+  height: 100vh;
+  flex: 1;
+}
 
+// Layouts
+.wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+// HEADER
+// ===============================
+header {
+  background-color: $grey;
+  padding: 0.7rem 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 2rem;
+    .logo {
+      font-family: 'Patua One', cursive;
+      font-size: 1.2rem;
+      color: $white;
+    }
+    .btn-menu {
+      position: absolute;
+      top: 9px;
+      right: 12px;
+      border: 1px solid rgba(255,255,255,.5);
+      padding: 0.2rem 1rem;
+      color: $white;
+    }
+    .main-nav {
+      background-color: $grey;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      width: 0;
+      overflow: hidden;
+      transition: 0.5s;
+      z-index: 2;
+      li {
+        text-align: center;
+        margin: 2rem 0;
+      }
+      a {
+        color: $white;
+        display: block;
+      }
+    }
+    .main-nav.open-menu {
+      width: 100%;
+    }
+  }
+}
+
+// Footer
+// ============================
+footer {
+  background: $grey;
+  text-align: center;
+  padding: 1rem;
+  p {
+    margin: 0;
+  }
+  small {
+  color: $white;
+  font-size: .875rem;
+  }
+}
+
+// ********************************
+// Desktop
+// ********************************
+@media (min-width: 600px) {
+
+// HEADER
+// ===============================
+header {
+  .wrapper {
+    align-items: center;
+    .btn-menu {
+      display: none;
+    }
+    .main-nav {
+      display: flex;
+      position: static;
+      width: 100%;
+      margin: 0;
+      li {
+        margin: 0 0 0 1rem;
+      }
+    }
+  }
+}
+  
 }

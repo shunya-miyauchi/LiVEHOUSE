@@ -6,7 +6,7 @@ nav.pagination {
   display: none;
 }
 
-main.container-fluid.events {
+main.events {
   background-image: image-url('background-img.jpg');
 
   // 固定
@@ -84,6 +84,7 @@ main.container-fluid.events {
         line-height: 1.5;
         color: black;
         vertical-align: middle;
+        border: 1px solid white;
       }
       .line {
         font-size: 0.5rem;
@@ -134,6 +135,7 @@ main.container-fluid.events {
       line-height: 1.5;
       color: black;
       vertical-align: middle;
+      border: 1px solid white;
     }
     .livehouse_search_btn {
       margin-top: 0.5rem;

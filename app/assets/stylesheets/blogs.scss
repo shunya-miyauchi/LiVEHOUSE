@@ -1,6 +1,6 @@
-.container-fluid.blogs.new,
-.container-fluid.blogs.edit,
-.container-fluid.blogs.show  {
+.blogs.new,
+.blogs.edit,
+.blogs.show  {
   .livehouse_search {
     position: fixed;
     top: 30%;
@@ -8,7 +8,7 @@
   }
 }
 
-main.container-fluid.blogs {
+main.blogs {
   background-image: image-url('background-img.jpg');
   // 固定
   .side_bar {
@@ -130,6 +130,7 @@ main.container-fluid.blogs {
         line-height: 1.5;
         color: black;
         vertical-align: middle;
+        border: 1px solid white;
       }
       .line {
         font-size: 0.5rem;
@@ -180,6 +181,7 @@ main.container-fluid.blogs {
       line-height: 1.5;
       color: black;
       vertical-align: middle;
+      border: 1px solid white;
     }
     .livehouse_search_btn {
       margin-top: 0.5rem;
