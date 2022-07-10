@@ -1,4 +1,4 @@
-main.container-fluid.favorites {
+main.favorites {
   background-image: image-url('background-img.jpg');
   // 固定
   .side_bar {
@@ -115,6 +115,7 @@ main.container-fluid.favorites {
         line-height: 1.5;
         color: black;
         vertical-align: middle;
+        border: 1px solid white;
       }
       .line {
         font-size: 0.5rem;

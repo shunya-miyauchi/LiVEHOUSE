@@ -1,89 +1,67 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>LiVEHOUSE</title>
+    <meta name="description" content="今行きたいライブハウスが見つかる">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+    <%# Javascript %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%# CSS %>
+    <link rel="stylesheet" href="https://unpkg.com/destyle.css@1.0.5/destyle.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+
+    <%# Google %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Patua+One&family=Roboto:wght@300&display=swap" rel="stylesheet">
   </head>
 
-  <body class="container-fluid <%=controller.controller_name %> <%=controller.action_name %>">
-    <div class="wrapper row">
-      <header class="<%=controller.controller_name %> <%=controller.action_name %>">
-        <% if user_signed_in? %>
-          <div class="header_top">
-            <% if notice %>
-              <p class="alert alert-notice"><%= notice %></p>
-            <% end %>
-            <% if alert %>
-              <p class="alert alert-error"><%= alert %></p>
-            <% end %>
-            <ul class="header_nav">
-              <li class="header-item">
-                <%= link_to "スケジュール", user_path(current_user.id), class: "header-link"  %>
-              </li>
-              <li class="header-item">
-                <%= link_to "記録", past_joins_user_path(current_user.id), class: "header-link"  %>
-              </li>
-              <li class="header-item">
-                <%= link_to "ブログ", blogs_path, class: "header-link"  %>
-              </li>
-              <li class="header-item">
-                <%= link_to "お気に入り", favorites_path, class: "header-link"  %>
-              </li>
-              <li class="header-item">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-link"  %>
-              </li>
-              <li class="header-item">
-                <% if current_user.admin? %>
-                  <%= link_to "管理者画面", rails_admin_path, class: "header-link"  %>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        <% else %>
-          <div class="header_top">
-            <% if notice %>
-              <p class="alert alert-notice"><%= notice %></p>
-            <% end %>
-            <% if alert %>
-              <p class="alert alert-error"><%= alert %></p>
-            <% end %>
-            <ul class="header_nav">
-              <li class="header-item">
-                <%= link_to "新規登録", new_user_registration_path, class: "header-link" %>
-              </li>
-              <li class="header-item">
-                <%= link_to "ログイン", new_user_session_path, class: "header-link" %>
-              </li>
-              <li class="header-item">
-                <%= link_to '一般ゲスト', users_guest_sign_in_path, method: :post, class: "header-link" %>
-              </li>
-              <li class="header-item">
-                <%= link_to '管理ゲスト', users_admin_guest_sign_in_path, method: :post, class: "header-link" %>
-              </li>
-            </ul>
-          </div>
-        <% end %> 
-      </header>
-      <main class="container-fluid <%=controller.controller_name %> <%=controller.action_name %>">
-        <div class="row">
-          <%= yield %>
+  <body>
+      <header>
+        <div class="wrapper">
+          <%= link_to "LiVEHOUSE", root_path, class: "logo"  %>
+          <% if user_signed_in? %>
+            <nav>
+              <button class="btn-menu">Menu</button>
+              <ul class="main-nav">
+                <li><%= link_to "スケジュール", user_path(current_user.id) %></li>
+                <li><%= link_to "記録", past_joins_user_path(current_user.id) %></li>
+                <li><%= link_to "ブログ", blogs_path %></li>
+                <li><%= link_to "お気に入り", favorites_path %></li>
+                <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+                <li>
+                  <% if current_user.admin? %>
+                    <%= link_to "管理者画面", rails_admin_path %>
+                  <% end %>
+                </li>
+              </ul>
+            </nav>
+          <% else %>
+            <nav>
+              <button class="btn-menu">Menu</button>
+              <ul class="main-nav">
+                <li><%= link_to "新規登録", new_user_registration_path %></li>
+                <li><%= link_to "ログイン", new_user_session_path %></li>
+                <li><%= link_to '一般ゲスト', users_guest_sign_in_path, method: :post %></li>
+                <li><%= link_to '管理ゲスト', users_admin_guest_sign_in_path, method: :post %></li>
+              </ul>
+            </nav>
+          <% end %> 
         </div>
+      </header>
+      <main class="<%=controller.controller_name %> <%=controller.action_name %>">
+        <%= yield %>
       </main>
       <footer>
-        <div class="content">
-          Copyright © 2022 miyauchi All Rights Reserved.
-        </div>
+        <p><small>&copy; 2022 miyauchi All Rights Reserved.</small></p>
       </footer>
-    </div>
   </body>
 </html>

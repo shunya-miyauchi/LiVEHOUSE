@@ -1,54 +1,38 @@
-<!-- 背景画像 -->
-<%= image_tag "top_img.png", class: "top_img" %>
-
-<!-- トップロゴ -->
-<%= image_tag "top_logo.png", class: "top_logo" %>
-
-<div class="search_form col-sm-7 col-xl-5 ">  
-  <!-- ライブハウス検索窓 -->
-  <%= search_form_for @q_livehouse, as: :livehouse_search, url: livehouses_path, remote: true do |f| %>
-    <div class="search_livehouse">
+<section id="main-img">
+  <div class="wrapper">
+    <h2>LiVEHOUSE</h2>
+    <p>-スケジュールを検索/管理できるアプリ-</p>
+    <!-- ライブハウス検索窓 -->
+    <%= search_form_for @q_livehouse, as: :livehouse_search, url: livehouses_path, remote: true do |f| %>
       <%= f.collection_select :place_id_eq, Place.all, :id, :prefecture_area, include_blank: "ライブハウス検索" %>
       <%= f.submit '検索', class: "search_btn" %>
-    </div>
-  <% end %>
-
-  <!-- ライブハウス検索結果 -->
-  <div id="livehouses_area">
-    <%= render 'layouts/result_livehouse_search', { livehouses: @livehouses, q_livehouse: @q_livehouse } %>
-  </div>
-
-  <!-- アプリ説明 -->
-  <div class="explanation">
-    <div class="about">About</div>
-    <hr>
-    <div class="about_content">
-      <div class="about_1">"今"行きたいライブハウスを探そう</div>
-      <div class="about_2">音楽を全身で感じることができるライブハウス</div>
-      <div class="about_2">ふとライブに行きたいと思った時、このアプリで探してみてください</div>
-      <div class="about_2">そこには"非日常"と"出会い"が待ってると思います。</div>
-    </div>
-
-    <div class="how_to">How to use</div>
-    <hr>
-    <div class="how_to_content">
-      <div class="how_to_1">自分の行きたいエリアからライブハウスを検索</div>
-      <div class="how_to_1">スケジュールから、気になるライブを探してみよう</div>
-      <div class="how_to_1">ライブの詳細、ライブハウスへの行き方を調べられます</div>
-    </div>
-
-    <div class="membership">Membership</div>
-    <hr>
-    <div class="membership_content">
-      <div class="membership_2">ライブハウスお気に入り機能</div>
-      <div class="membership_3">自分の好きなライブハウス、よく行くライブハウスをお気に入り登録しよう</div>
-      <div class="membership_4">コメント機能</div>
-      <div class="membership_5">ライブに参加するワクワクや参加した後の感動をみんなで共有しよう</div>
-      <div class="membership_6">ライブ登録機能</div>
-      <div class="membership_7">自分が行く予定のライブを登録しよう</div>
-      <div class="membership_8">ブログ機能</div>
-      <div class="membership_9">ライブ後の感動を写真と文で残そう</div>
+    <% end %>
+    <!-- ライブハウス検索結果 -->
+    <div id="livehouses_area">
+      <%= render 'layouts/result_livehouse_search', { livehouses: @livehouses, q_livehouse: @q_livehouse } %>
     </div>
   </div>
+</section>
 
-</div>
+<section id="about" class="wrapper">
+  <div class="title">About</div>
+  <div class="content">
+    <p class="about_1">地域からライブハウスを検索！</p>
+    <p class="about_2">各ライブハウスのスケジュールを調べることができます。</p>
+    <p class="about_2">会員登録することで、ライブハウスやスケジュールを管理したり、コメントやブログの投稿ができるようになります。</p>
+  </div>
+</section>
+
+<section id="membership" class="wrapper">
+    <div class="title">Member</div>
+    <div class="content">
+      <p class="con-title">ライブハウスお気に入り</p>
+      <p>好きなライブハウスをお気に入り登録。お気に入りページで管理できます。</p>
+      <p class="con-title">ライブ登録</p>
+      <p>スケジュールからライブを登録。スケジュールページから登録したライブを確認できます。</p>
+      <p class="con-title">コメント</p>
+      <p>各ライブの詳細ページからコメント投稿ができます。</p>
+      <p class="con-title">ブログ</p>
+      <p>ブログページからブログの投稿ができます。</p>
+    </div>
+</section>

@@ -1,54 +1,55 @@
-<div class="col-md-3">
-  <div class="side_bar">
-    <!-- プロフィール -->
-    <%= render 'users/profile' %>
+<div class="row">
+  <div class="col-md-3">
+    <div class="side_bar">
+      <!-- プロフィール -->
+      <%= render 'users/profile' %>
 
-    <!-- ライブハウス検索窓 -->
-    <%= render 'layouts/livehouse_search', { q_livehouse: @q_livehouse, path: user_path(current_user.id)} %>
+      <!-- ライブハウス検索窓 -->
+      <%= render 'layouts/livehouse_search', { q_livehouse: @q_livehouse, path: user_path(current_user.id)} %>
 
-    <!-- ライブハウス検索結果 -->
-    <div id="livehouses_area">
-      <%= render 'layouts/result_livehouse_search', { livehouses: @livehouses, q_livehouse: @q_livehouse } %>
+      <!-- ライブハウス検索結果 -->
+      <div id="livehouses_area">
+        <%= render 'layouts/result_livehouse_search', { livehouses: @livehouses, q_livehouse: @q_livehouse } %>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="blog_new col-md-9">
-  <!-- ブログ投稿 -->
-  <div class="title">新規投稿</div>
-  <%= form_with( model: @blog,local:true ) do |f| %>
-    <div>
-      <%= f.collection_select :event_id, current_user.join_events.date_before_today.reverse_held_on, :id, :date_title,include_blank:"選択してください" %> 
-    </div>
-    <div>
-      <%= f.label :title, 'タイトル',class:"title_label" %>
-      <%= render 'layouts/error', resource: @blog, attribute: :title %>
-      <div><%= f.text_field :title,placeholder:"30字以内" %></div>
-    </div>
-    <div>
-      <%= f.label :content, '本文',class:"content_label" %>
-      <div><%= f.text_area :content,placeholder:"本文" %></div>
-    </div>
-    <div class="field">
-      <div class="notes">JPG,JPEG,GIF,PNGのみ</div>
-      <%= f.label :images, "画像選択",class:"img_label" %><br />
-      <%= f.file_field :images, multiple: true,class: "img_input" %>
-      <p class='no_select'>選択されていません</p>
-    </div>
-    <div class="btns">
-      <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.submit '投稿',class:"submit_btn" %> 
-      <%= link_to "戻る", 'javascript:history.back()',class:"back" %>
-    </div>  
-  <% end %>
-</div>
+  <div class="blog_new col-md-9">
+    <!-- ブログ投稿 -->
+    <div class="title">新規投稿</div>
+    <%= form_with( model: @blog,local:true ) do |f| %>
+      <div>
+        <%= f.collection_select :event_id, current_user.join_events.date_before_today.reverse_held_on, :id, :date_title,include_blank:"選択してください" %> 
+      </div>
+      <div>
+        <%= f.label :title, 'タイトル',class:"title_label" %>
+        <%= render 'layouts/error', resource: @blog, attribute: :title %>
+        <div><%= f.text_field :title,placeholder:"30字以内" %></div>
+      </div>
+      <div>
+        <%= f.label :content, '本文',class:"content_label" %>
+        <div><%= f.text_area :content,placeholder:"本文" %></div>
+      </div>
+      <div class="field">
+        <div class="notes">JPG,JPEG,GIF,PNGのみ</div>
+        <%= f.label :images, "画像選択",class:"img_label" %><br />
+        <%= f.file_field :images, multiple: true,class: "img_input" %>
+        <p class='no_select'>選択されていません</p>
+      </div>
+      <div class="btns">
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.submit '投稿',class:"submit_btn" %> 
+        <%= link_to "戻る", 'javascript:history.back()',class:"back" %>
+      </div>  
+    <% end %>
+  </div>
 
-<script>
-$(function() {
-  $('.img_input').on('change', function () { 
-    var file = $(this).prop('files')[0]; 
-    $('.no_select').text(file.name); 
+  <script>
+  $(function() {
+    $('.img_input').on('change', function () { 
+      var file = $(this).prop('files')[0]; 
+      $('.no_select').text(file.name); 
+    });
   });
-});
-</script>
-
+  </script>
+</div>

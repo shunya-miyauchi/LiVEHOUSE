@@ -1,29 +1,31 @@
-<div class="col-md-3">
-  <div class="side_bar">
-    <!-- ライブハウス名 --> 
-    <div class="livehouse_top_name"><%= @livehouse.name %></div>
+<div class="row">
+  <div class="col-md-3">
+    <div class="side_bar">
+      <!-- ライブハウス名 --> 
+      <div class="livehouse_top_name"><%= @livehouse.name %></div>
 
-    <!-- 期間検索 -->
-    <%= render 'layouts/period_search', { q_event: @q_event, path: livehouse_events_path(@livehouse.id), limit: { min: Date.current } } %>
+      <!-- 期間検索 -->
+      <%= render 'layouts/period_search', { q_event: @q_event, path: livehouse_events_path(@livehouse.id), limit: { min: Date.current } } %>
 
 
-    <!-- ライブハウス検索窓 -->
-    <%= render 'layouts/livehouse_search', { q_livehouse: @q_livehouse, path: livehouse_events_path(@livehouse.id)} %>
+      <!-- ライブハウス検索窓 -->
+      <%= render 'layouts/livehouse_search', { q_livehouse: @q_livehouse, path: livehouse_events_path(@livehouse.id)} %>
 
-    <!-- ライブハウス検索結果 -->
-    <div id="livehouses_area">
-      <%= render 'layouts/result_livehouse_search', { livehouses: @livehouses, q_livehouse: @q_livehouse } %>
+      <!-- ライブハウス検索結果 -->
+      <div id="livehouses_area">
+        <%= render 'layouts/result_livehouse_search', { livehouses: @livehouses, q_livehouse: @q_livehouse } %>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="col-md-9">
+  <div class="col-md-9">
 
-  <!-- スケジュール一覧 -->
-  <div id="schedule">
-    <div class="schedule row" >
-      <%= render "layouts/schedule", {events: @events} %> 
-    </div>    
-    <%= link_to_next_page @events, 'さらに表示', remote: true, id: 'more_link' %>
+    <!-- スケジュール一覧 -->
+    <div id="schedule">
+      <div class="schedule row" >
+        <%= render "layouts/schedule", {events: @events} %> 
+      </div>    
+      <%= link_to_next_page @events, 'さらに表示', remote: true, id: 'more_link' %>
+    </div>
   </div>
 </div>

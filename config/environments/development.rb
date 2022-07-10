@@ -2,10 +2,10 @@ Rails.application.configure do
   # config.after_initialize do
   #   Bullet.enable        = true
   #   Bullet.alert         = true
-  #   Bullet.bullet_logger = true
+  #   Bullet.bullet_ = true
   #   Bullet.console       = true
   #   # Bullet.growl         = true
-  #   Bullet.rails_logger  = true
+  #   Bullet.rails_  = true
   #   Bullet.add_footer    = true
   # end
 
@@ -46,7 +46,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  # Print deprecation notices to the Rails logger.
+  # Print deprecation notices to the Rails .
   config.active_support.deprecation = :log
 
   # Raise an error on page load if there are pending migrations.
@@ -60,7 +60,7 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  # Suppress logger output for asset requests.
+  # Suppress  output for asset requests.
   config.assets.quiet = true
 
   # Raises error for missing translations.

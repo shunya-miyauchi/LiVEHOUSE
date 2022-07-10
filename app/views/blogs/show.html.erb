@@ -1,47 +1,49 @@
-<div class="col-md-3">
-  <div class="side_bar">
-    <!-- プロフィール -->
-    <%= render 'users/profile' %>
+<div class="row">
+  <div class="col-md-3">
+    <div class="side_bar">
+      <!-- プロフィール -->
+      <%= render 'users/profile' %>
 
-    <!-- ライブハウス検索窓 -->
-    <%= render 'layouts/livehouse_search', { q_livehouse: @q_livehouse, path: user_path(current_user.id)} %>
+      <!-- ライブハウス検索窓 -->
+      <%= render 'layouts/livehouse_search', { q_livehouse: @q_livehouse, path: user_path(current_user.id)} %>
 
-    <!-- ライブハウス検索結果 -->
-    <div id="livehouses_area">
-      <%= render 'layouts/result_livehouse_search', { livehouses: @livehouses, q_livehouse: @q_livehouse } %>
-    </div>
-  </div>
-</div>
-
-<div class="blog_show col-md-9">
-  <!-- ブログ投稿 -->
-    <div class="title">
-      <%= @blog.title %> 
-    </div>
-    <hr>
-    <div class="created">
-      <%= @blog.created_at.strftime(" %Y/%-m/%d %H:%M") %> 
-    </div>
-    <div class="event_info">
-      <%= @blog.event.held_on.strftime('%Y/%-m/%d') %> 
-      <%= @blog.event.title %> 
-    </div>
-    <div class="content">
-      <%= @blog.content %> 
-    </div>
-    <div class="imgs">
-      <div class="row">
-        <% @blog.images.each do |image| %>
-          <div class="img_parent col-xl-3 col-lg-4 col-md-6 mb-4">
-            <%= image_tag image.url,class:"img" %>
-          </div>
-        <% end %>
+      <!-- ライブハウス検索結果 -->
+      <div id="livehouses_area">
+        <%= render 'layouts/result_livehouse_search', { livehouses: @livehouses, q_livehouse: @q_livehouse } %>
       </div>
     </div>
-    <div>
-      <%= %> 
-    </div>
-    <div class="btns">
-      <%= link_to "戻る", 'javascript:history.back()',class:"back" %>
-    </div>  
+  </div>
+
+  <div class="blog_show col-md-9">
+    <!-- ブログ投稿 -->
+      <div class="title">
+        <%= @blog.title %> 
+      </div>
+      <hr>
+      <div class="created">
+        <%= @blog.created_at.strftime(" %Y/%-m/%d %H:%M") %> 
+      </div>
+      <div class="event_info">
+        <%= @blog.event.held_on.strftime('%Y/%-m/%d') %> 
+        <%= @blog.event.title %> 
+      </div>
+      <div class="content">
+        <%= @blog.content %> 
+      </div>
+      <div class="imgs">
+        <div class="row">
+          <% @blog.images.each do |image| %>
+            <div class="img_parent col-xl-3 col-lg-4 col-md-6 mb-4">
+              <%= image_tag image.url,class:"img" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <%= %> 
+      </div>
+      <div class="btns">
+        <%= link_to "戻る", 'javascript:history.back()',class:"back" %>
+      </div>  
+  </div>
 </div>
