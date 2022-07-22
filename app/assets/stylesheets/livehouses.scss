@@ -1,4 +1,4 @@
-// Img
+// top-img
 // ========================
 #main-img {
   background-image: image-url('top_img.png');
@@ -10,13 +10,22 @@
   position: relative;
   .wrapper {
     position: absolute;
-    top: 60%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     h2 {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
       font-family: 'Patua One', cursive;
       color: white;
       text-align: center;
+      
+      animation: updown infinite 1s;
+    }
+    @keyframes updown {
+      0%,100% { top: -2rem }
+      50% { top: -2.5rem }
     }
     p {
       color: white;
@@ -123,7 +132,7 @@
 // Desktop
 // ********************************
 @media (min-width: 600px) {
-  // Img
+  // top-img
   // ========================
   #main-img {
     height: 400px;
@@ -132,7 +141,7 @@
         font-size: 3rem;
       }
       p {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
       }
       .livehouse_search {
         #livehouse_search_place_id_eq {
